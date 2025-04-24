@@ -1,0 +1,84 @@
+[
+    {
+        "record_name": "3191",
+        "db_id": "university_basketball",
+        "target": "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation",
+        "nlq": "Determine the cumulative count of students enrolled in colleges established after the year 1850 for each type of affiliation. Display the results in a bar chart.",
+        "predict_rag_nlq": "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation",
+            "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation ORDER BY Affiliation ASC",
+            "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation ORDER BY Affiliation DESC",
+            "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation ORDER BY sum(Enrollment) ASC",
+            "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation ORDER BY sum(Enrollment) DESC",
+            "Visualize BAR SELECT Affiliation , sum(enrollment) FROM university GROUP BY affiliation",
+            "Visualize BAR SELECT Affiliation , sum(enrollment) FROM university GROUP BY affiliation ORDER BY sum(enrollment) ASC",
+            "Visualize BAR SELECT Affiliation , sum(enrollment) FROM university GROUP BY affiliation ORDER BY Affiliation ASC",
+            "Visualize BAR SELECT Affiliation , sum(enrollment) FROM university GROUP BY affiliation ORDER BY sum(enrollment) DESC",
+            "Visualize BAR SELECT Affiliation , sum(enrollment) FROM university GROUP BY affiliation ORDER BY Affiliation DESC"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Affiliation , sum(Enrollment) FROM university WHERE founded > 1850 GROUP BY affiliation",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Affiliation , SUM(Enrollment) FROM university WHERE Founded > 1850 GROUP BY Affiliation",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Affiliation , SUM(Enrollment) FROM university WHERE Founded > 1850 GROUP BY Affiliation": 0.9,
+            "Visualize BAR SELECT Affiliation , COUNT(Enrollment) FROM university WHERE Founded > 1850 GROUP BY Affiliation": 0.1
+        },
+        "content_prob": "\n{\n    \"Visualize\": {\n        \"BAR\": 1.0\n    },\n    \"SELECT\": {\n        \"name , identification\": 0.75,\n        \"T1.name , T1.identification\": 0.25\n    },\n    \"FROM\": {\n        \"Web_client_accelerator AS T1\": 0.75,\n        \"Web_client_accelerator T1\": 0.25\n    },\n    \"JOIN\": {\n        \"accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification\": 0.75,\n        \"accelerator_compatible_browser T2 ON T2.accelerator_identification = T1.identification\": 0.25\n    },\n    \"GROUP BY\": {\n        \"name, identification\": 0.5,\n        \"None\": 0.5\n    },\n    \"ORDER BY\": {\n        \"T1.identification ASC\": 0.5,\n        \"identification ASC\": 0.25,\n        \"identification DESC\": 0.25\n    }\n}\n"
+    },
+    {
+        "record_name": "375@y_name@ASC",
+        "db_id": "browser_web_robust",
+        "target": "Visualize BAR SELECT name , identification FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "nlq": "Create a bar chart to represent the IDs and names of web accelerators that are compatible with two or more browsers. Display the Y-axis in ascending order from lowest to highest.",
+        "predict_rag_nlq": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize BAR SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize BAR SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize PIE SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC": 0.4,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC": 0.3,
+            "Visualize BAR SELECT T1.name , T1.identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY T1.name, T1.identification ORDER BY T1.identification ASC": 0.2,
+            "Visualize BAR SELECT T1.name , T1.identification FROM Web_client_accelerator T1 JOIN accelerator_compatible_browser T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC": 0.1
+        },
+        "content_prob": "\n{\n    \"Visualize\": {\n        \"BAR\": 1.0\n    },\n    \"SELECT\": {\n        \"name , identification\": 0.75,\n        \"T1.name , T1.identification\": 0.25\n    },\n    \"FROM\": {\n        \"Web_client_accelerator AS T1\": 0.75,\n        \"Web_client_accelerator T1\": 0.25\n    },\n    \"JOIN\": {\n        \"accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification\": 0.75,\n        \"accelerator_compatible_browser T2 ON T2.accelerator_identification = T1.identification\": 0.25\n    },\n    \"GROUP BY\": {\n        \"name, identification\": 0.5,\n        \"None\": 0.5\n    },\n    \"ORDER BY\": {\n        \"T1.identification ASC\": 0.5,\n        \"identification ASC\": 0.25,\n        \"identification DESC\": 0.25\n    }\n}\n"
+    },
+    {
+        "record_name": "1582@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees whose salary falls within the range of 8000 to 12000 and have a non-null commission or do not belong to department number 40, determine their hire_date and the sum of employee_id grouped by hire_date, and represent the data using a bar chart with the y-axis displayed in descending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR DEPARTMENT_ID != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "rag_dvqs": [
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR DEPARTMENT_ID != 40 ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "predict_debugged_db_ann": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.4,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC": 0.3,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" AND Dept_ID != 40 GROUP BY date_of_hire ORDER BY date_of_hire DESC": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" AND Dept_ID != 40 GROUP BY date_of_hire ORDER BY date_of_hire DESC": 0.1
+        },
+        "content_prob": "\n{\n    \"Visualize\": {\n        \"BAR\": 1.0\n    },\n    \"SELECT\": {\n        \"name , identification\": 0.75,\n        \"T1.name , T1.identification\": 0.25\n    },\n    \"FROM\": {\n        \"Web_client_accelerator AS T1\": 0.75,\n        \"Web_client_accelerator T1\": 0.25\n    },\n    \"JOIN\": {\n        \"accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification\": 0.75,\n        \"accelerator_compatible_browser T2 ON T2.accelerator_identification = T1.identification\": 0.25\n    },\n    \"GROUP BY\": {\n        \"name, identification\": 0.5,\n        \"None\": 0.5\n    },\n    \"ORDER BY\": {\n        \"T1.identification ASC\": 0.5,\n        \"identification ASC\": 0.25,\n        \"identification DESC\": 0.25\n    }\n}\n"
+    }
+]
