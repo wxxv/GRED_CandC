@@ -1,0 +1,1039 @@
+[
+    {
+        "record_name": "375@y_name@ASC",
+        "db_id": "browser_web_robust",
+        "target": "Visualize BAR SELECT name , identification FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "nlq": "Present a bar graph representing the IDs and names of web accelerators that are compatible with two or more browsers, and kindly sort the y-axis in ascending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize BAR SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize BAR SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize PIE SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC": 0.4,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC": 0.3,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.2,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "name , identification": 1.0
+            },
+            "FROM": {
+                "Web_client_accelerator AS T1": 1.0
+            },
+            "JOIN": {
+                "accelerator_compatible_browser AS T2": 1.0
+            },
+            "ON": {
+                "T2.accelerator_identification = T1.identification": 1.0
+            },
+            "GROUP BY": {
+                "name, identification": 0.3,
+                "None": 0.7
+            },
+            "ORDER BY": {
+                "T1.identification ASC": 0.4,
+                "identification ASC": 0.6
+            },
+            "HAVING": {
+                "COUNT(DISTINCT T2.browser_identification) >= 2": 0.2,
+                "None": 0.8
+            },
+            "WHERE": {
+                "COUNT(DISTINCT T2.browser_identification) >= 2": 0.1,
+                "None": 0.9
+            }
+        }
+    },
+    {
+        "record_name": "375@y_name@ASC",
+        "db_id": "browser_web_robust",
+        "target": "Visualize BAR SELECT name , identification FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "nlq": "What are the identifiers and names of the web accelerators that are compatible with two or more browsers? Visualize this information using a bar chart, and sort it in ascending order on the y-axis, please.",
+        "predict_rag_nlq": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize BAR SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize BAR SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize PIE SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY name ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY name ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY name ASC": 0.4,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification": 0.3,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY name ASC": 0.2,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY name ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "name , identification": 1.0
+            },
+            "FROM": {
+                "Web_client_accelerator AS T1": 1.0
+            },
+            "JOIN": {
+                "accelerator_compatible_browser AS T2": 1.0
+            },
+            "ON": {
+                "T2.accelerator_identification = T1.identification": 1.0
+            },
+            "GROUP BY": {
+                "name, identification": 0.3,
+                "None": 0.7
+            },
+            "ORDER BY": {
+                "name ASC": 0.7,
+                "None": 0.3
+            },
+            "HAVING": {
+                "None": 0.8,
+                "COUNT(DISTINCT T2.browser_identification) >= 2": 0.2
+            },
+            "WHERE": {
+                "None": 0.9,
+                "COUNT(DISTINCT T2.browser_identification) >= 2": 0.1
+            }
+        }
+    },
+    {
+        "record_name": "375@y_name@ASC",
+        "db_id": "browser_web_robust",
+        "target": "Visualize BAR SELECT name , identification FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "nlq": "Create a bar chart to represent the IDs and names of web accelerators that are compatible with two or more browsers. Display the Y-axis in ascending order from lowest to highest.",
+        "predict_rag_nlq": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id ASC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY name DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id DESC",
+            "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize BAR SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize BAR SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id",
+            "Visualize PIE SELECT T2.name , COUNT(T2.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T2.name ORDER BY T1.compatible_since_year DESC",
+            "Visualize PIE SELECT T3.name , COUNT(T3.name) FROM accelerator_compatible_browser AS T1 JOIN browser AS T2 ON T1.browser_id = T2.id JOIN web_client_accelerator AS T3 ON T1.accelerator_id = T3.id GROUP BY T3.name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY identification ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC": 0.4,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.3,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification DESC": 0.2,
+            "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY name ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "name , identification": 1.0
+            },
+            "FROM": {
+                "Web_client_accelerator AS T1": 1.0
+            },
+            "JOIN": {
+                "accelerator_compatible_browser AS T2": 1.0
+            },
+            "ON": {
+                "T2.accelerator_identification = T1.identification": 1.0
+            },
+            "GROUP BY": {
+                "name, identification": 0.6,
+                "None": 0.4
+            },
+            "HAVING": {
+                "COUNT(DISTINCT T2.browser_identification) >= 2": 0.6,
+                "None": 0.4
+            },
+            "ORDER BY": {
+                "identification ASC": 0.7,
+                "identification DESC": 0.2,
+                "name ASC": 0.1
+            }
+        }
+    },
+    {
+        "record_name": "1582@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees whose salary falls within the range of 8000 to 12000 and have a non-null commission or do not belong to department number 40, determine their hire_date and the sum of employee_id grouped by hire_date, and represent the data using a bar chart with the y-axis displayed in descending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR DEPARTMENT_ID != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "rag_dvqs": [
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR DEPARTMENT_ID != 40 ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "predict_debugged_db_ann": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.4,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC": 0.3,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY date_of_hire DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "date_of_hire , SUM(employee_id)": 1.0
+            },
+            "FROM": {
+                "employees": 1.0
+            },
+            "WHERE": {
+                "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.4,
+                "wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.1,
+                "wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.2
+            },
+            "GROUP BY": {
+                "date_of_hire": 0.2,
+                "None": 0.8
+            },
+            "ORDER BY": {
+                "SUM(employee_id) DESC": 0.9,
+                "date_of_hire DESC": 0.1
+            },
+            "BIN": {
+                "date_of_hire BY MONTH": 0.4,
+                "None": 0.6
+            }
+        }
+    },
+    {
+        "record_name": "1582@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees with salaries ranging from 8000 to 12000, and with either non-null commission or department number not equal to 40, provide a comparison of the total employee_id sum grouped by hire_date bins over time using a bar chart. Please display the results in descending order by the total number count.",
+        "predict_rag_nlq": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR DEPARTMENT_ID != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "rag_dvqs": [
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR DEPARTMENT_ID != 40 ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "predict_debugged_db_ann": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.4,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.3,
+            "Visualize BAR SELECT TO_CHAR(date_of_hire, 'YYYY-MM') AS hire_month , COUNT(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY hire_month ORDER BY COUNT(employee_id) DESC": 0.2,
+            "Visualize BAR SELECT EXTRACT(MONTH FROM date_of_hire) AS hire_month , COUNT(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY hire_month ORDER BY COUNT(employee_id) DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "date_of_hire , SUM(employee_id)": 0.4,
+                "TO_CHAR(date_of_hire, 'YYYY-MM') AS hire_month , COUNT(employee_id)": 0.2,
+                "EXTRACT(MONTH FROM date_of_hire) AS hire_month , COUNT(employee_id)": 0.1,
+                "None": 0.3
+            },
+            "FROM": {
+                "employees": 1.0
+            },
+            "WHERE": {
+                "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 1.0
+            },
+            "GROUP BY": {
+                "date_of_hire": 0.3,
+                "hire_month": 0.3,
+                "None": 0.4
+            },
+            "ORDER BY": {
+                "SUM(employee_id) DESC": 0.7,
+                "COUNT(employee_id) DESC": 0.3
+            },
+            "BIN": {
+                "date_of_hire BY MONTH": 0.4,
+                "None": 0.6
+            }
+        }
+    },
+    {
+        "record_name": "1582@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees with salaries ranging from 8000 to 12000, and either a non-null commission or a department number not equal to 40, create a bar chart illustrating the distribution of hire dates and the sum of employee IDs per hire date over time, with the Y-axis ranked in descending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR DEPARTMENT_ID != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "rag_dvqs": [
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR DEPARTMENT_ID != 40 ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "predict_debugged_db_ann": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.4,
+            "Visualize BAR SELECT date_of_hire , COUNT(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY date_of_hire DESC": 0.3,
+            "Visualize BAR SELECT date_of_hire , COUNT(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY COUNT(employee_id) DESC": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "date_of_hire , SUM(employee_id)": 0.4,
+                "date_of_hire , COUNT(employee_id)": 0.6
+            },
+            "FROM": {
+                "employees": 1.0
+            },
+            "WHERE": {
+                "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.4,
+                "wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.6
+            },
+            "GROUP BY": {
+                "date_of_hire": 0.3,
+                "None": 0.7
+            },
+            "ORDER BY": {
+                "SUM(employee_id) DESC": 0.5,
+                "COUNT(employee_id) DESC": 0.2,
+                "date_of_hire DESC": 0.3
+            },
+            "BIN": {
+                "date_of_hire BY MONTH": 0.4,
+                "None": 0.6
+            }
+        }
+    },
+    {
+        "record_name": "1582@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees with salaries ranging from 8000 to 12000 and a non-null commission or a department number not equal to 40, please display the distribution of hire dates and the sum of employee IDs binned by hire date in a bar chart. Please arrange the Y-axis in descending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR DEPARTMENT_ID != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY WEEKDAY",
+        "rag_dvqs": [
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) ASC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) DESC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) ASC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) DESC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) ASC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) ASC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) DESC BIN HIRE_DATE BY WEEKDAY",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY WEEKDAY"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE SALARY BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR DEPARTMENT_ID != 40 ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY WEEKDAY",
+        "predict_debugged_db_ann": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY WEEKDAY",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY WEEKDAY": 0.4,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC": 0.3,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY date_of_hire DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "date_of_hire , SUM(employee_id)": 1.0
+            },
+            "FROM": {
+                "employees": 1.0
+            },
+            "WHERE": {
+                "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.2,
+                "wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.4,
+                "None": 0.4
+            },
+            "GROUP BY": {
+                "date_of_hire": 0.2,
+                "None": 0.8
+            },
+            "ORDER BY": {
+                "SUM(employee_id) DESC": 0.7,
+                "date_of_hire DESC": 0.1,
+                "None": 0.2
+            },
+            "BIN": {
+                "date_of_hire BY WEEKDAY": 0.4,
+                "None": 0.6
+            }
+        }
+    },
+    {
+        "record_name": "1582@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees with salaries ranging from 8000 to 12000, and either a non-null commission or a department number not equal to 40, provide a comparison of the sum of employee_id over the hire_date bin hire_date sorted by time, and list the Y-axis in descending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+        "rag_dvqs": [
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(EMPLOYEE_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(SALARY) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(DEPARTMENT_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(DEPARTMENT_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(EMPLOYEE_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) DESC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(MANAGER_ID) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40  ORDER BY SUM(MANAGER_ID) ASC BIN HIRE_DATE BY MONTH",
+            "Visualize BAR SELECT HIRE_DATE , SUM(SALARY) FROM employees WHERE salary BETWEEN 8000 AND 12000 AND commission_pct != \"null\" OR department_id != 40 BIN HIRE_DATE BY MONTH"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT HIRE_DATE , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN HIRE_DATE BY MONTH",
+        "predict_debugged_db_ann": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.4,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.3,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "date_of_hire , SUM(employee_id)": 1.0
+            },
+            "FROM": {
+                "employees": 1.0
+            },
+            "WHERE": {
+                "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.2,
+                "wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.3,
+                "wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.2,
+                "wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.1,
+                "None": 0.2
+            },
+            "ORDER BY": {
+                "SUM(employee_id) DESC": 1.0
+            },
+            "BIN": {
+                "date_of_hire BY MONTH": 1.0
+            }
+        }
+    },
+    {
+        "record_name": "3082",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "nlq": "Visualize the correlation between Team_ID and All_Games_Percent, with the grouping attribute set to ACC_Home.",
+        "predict_rag_nlq": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "rag_dvqs": [
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Regular_Season",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Road",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT ACC_Percent , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY Team_Name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "predict_debugged_db_ann": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home": 0.4,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\"": 0.3,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" ORDER BY teamID ASC": 0.2,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" ORDER BY teamID DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "SCATTER": 1.0
+            },
+            "SELECT": {
+                "teamID , percentage_of_all_games": 1.0
+            },
+            "FROM": {
+                "basketball_match": 1.0
+            },
+            "WHERE": {
+                "ACC_home != \"null\"": 1.0
+            },
+            "GROUP BY": {
+                "ACC_home": 0.4,
+                "None": 0.6
+            },
+            "ORDER BY": {
+                "teamID ASC": 0.2,
+                "teamID DESC": 0.1,
+                "None": 0.7
+            }
+        }
+    },
+    {
+        "record_name": "3082",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "nlq": "Create a scatter plot illustrating the relationship between Team_ID and All_Games_Percent, grouped by the attribute ACC_Home.",
+        "predict_rag_nlq": "Visualize SCATTER SELECT Team_ID, All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "rag_dvqs": [
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Regular_Season",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Road",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT ACC_Percent , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY Team_Name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "predict_debugged_db_ann": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home": 0.4,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\"": 0.3,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home": 0.2,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" ORDER BY teamID ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "SCATTER": 1.0
+            },
+            "SELECT": {
+                "teamID , percentage_of_all_games": 1.0
+            },
+            "FROM": {
+                "basketball_match": 1.0
+            },
+            "GROUP BY": {
+                "ACC_home": 0.6,
+                "None": 0.4
+            },
+            "WHERE": {
+                "ACC_home != \"null\"": 0.6,
+                "None": 0.4
+            },
+            "ORDER BY": {
+                "teamID ASC": 0.1,
+                "None": 0.9
+            }
+        }
+    },
+    {
+        "record_name": "3082",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "nlq": "A grouping scatter chart illustrates the relationship between Team_ID and All_Games_Percent, categorized by the ACC_Home attribute.",
+        "predict_rag_nlq": "Visualize SCATTER SELECT Team_ID, All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "rag_dvqs": [
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Regular_Season",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Road",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT ACC_Percent , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY Team_Name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "predict_debugged_db_ann": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home": 0.4,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home": 0.3,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\"": 0.2,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" ORDER BY teamID ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "SCATTER": 1.0
+            },
+            "SELECT": {
+                "teamID , percentage_of_all_games": 1.0
+            },
+            "FROM": {
+                "basketball_match": 1.0
+            },
+            "GROUP BY": {
+                "ACC_home": 0.7,
+                "None": 0.3
+            },
+            "WHERE": {
+                "ACC_home != \"null\"": 0.6,
+                "None": 0.4
+            },
+            "ORDER BY": {
+                "teamID ASC": 0.1,
+                "None": 0.9
+            }
+        }
+    },
+    {
+        "record_name": "3082",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "nlq": "Display the correlation between Team_ID and All_Games_Percent, and group them by the attribute ACC_Home in a scatter chart.",
+        "predict_rag_nlq": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "rag_dvqs": [
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Regular_Season",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Road",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT ACC_Percent , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY Team_Name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "predict_debugged_db_ann": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home": 0.4,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home": 0.3,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home ORDER BY ACC_home ASC": 0.2,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home ORDER BY ACC_home DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "SCATTER": 1.0
+            },
+            "SELECT": {
+                "teamID , percentage_of_all_games": 1.0
+            },
+            "FROM": {
+                "basketball_match": 1.0
+            },
+            "WHERE": {
+                "ACC_home != \"null\"": 0.6,
+                "None": 0.4
+            },
+            "GROUP BY": {
+                "ACC_home": 1.0
+            },
+            "ORDER BY": {
+                "ACC_home ASC": 0.2,
+                "ACC_home DESC": 0.1,
+                "None": 0.7
+            }
+        }
+    },
+    {
+        "record_name": "3082",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "nlq": "Provide a scatter plot demonstrating the relationship between Team_ID and All_Games_Percent, with the data grouped according to the ACC_Home attribute.",
+        "predict_rag_nlq": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "rag_dvqs": [
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Regular_Season",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Road",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT ACC_Percent , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY Team_Name"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+        "predict_debugged_db_ann": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\"": 0.4,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" GROUP BY ACC_home": 0.3,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" ORDER BY teamID ASC": 0.2,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_home != \"null\" ORDER BY teamID DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "SCATTER": 1.0
+            },
+            "SELECT": {
+                "teamID , percentage_of_all_games": 1.0
+            },
+            "FROM": {
+                "basketball_match": 1.0
+            },
+            "WHERE": {
+                "ACC_home != \"null\"": 1.0
+            },
+            "GROUP BY": {
+                "ACC_home": 0.3,
+                "None": 0.7
+            },
+            "ORDER BY": {
+                "teamID ASC": 0.2,
+                "teamID DESC": 0.1,
+                "None": 0.7
+            }
+        }
+    },
+    {
+        "record_name": "3082",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "nlq": "Create a scatterplot with team identification on the x-axis and all_games_percent on the y-axis. Color the points according to the ACC_Home category.",
+        "predict_rag_nlq": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_home",
+        "rag_dvqs": [
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Regular_Season",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Games",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY ACC_Road",
+            "Visualize SCATTER SELECT Team_ID , All_Games_Percent FROM basketball_match GROUP BY All_Home",
+            "Visualize SCATTER SELECT ACC_Percent , All_Games_Percent FROM basketball_match GROUP BY ACC_Home",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY All_Neutral",
+            "Visualize SCATTER SELECT Team_ID , ACC_Percent FROM basketball_match GROUP BY ACC_Regular_Season"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_Home",
+        "predict_debugged_db_ann": "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match GROUP BY ACC_Home",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_Home != \"null\"": 0.4,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_Home != \"null\" GROUP BY teamID": 0.3,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_Home != \"null\" ORDER BY teamID ASC": 0.2,
+            "Visualize SCATTER SELECT teamID , percentage_of_all_games FROM basketball_match WHERE ACC_Home != \"null\" ORDER BY teamID DESC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "SCATTER": 1.0
+            },
+            "SELECT": {
+                "teamID , percentage_of_all_games": 1.0
+            },
+            "FROM": {
+                "basketball_match": 1.0
+            },
+            "WHERE": {
+                "ACC_Home != \"null\"": 1.0
+            },
+            "GROUP BY": {
+                "teamID": 0.3,
+                "None": 0.7
+            },
+            "ORDER BY": {
+                "teamID ASC": 0.2,
+                "teamID DESC": 0.1,
+                "None": 0.7
+            }
+        }
+    },
+    {
+        "record_name": "443@x_name@ASC",
+        "db_id": "cinema_robust",
+        "target": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "nlq": "Bar chart to display the quantity of films directed by various directors, with the \"Directed_by\" category listed in ascending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY Directed_by ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY count(*) ASC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY Directed_by DESC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY count(*) DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by DESC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) DESC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Directed_by , COUNT(*) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Directed_by , COUNT(*) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC": 0.5,
+            "Visualize BAR SELECT Directed_by , COUNT(*) FROM film GROUP BY Directed_by": 0.3,
+            "Visualize BAR SELECT Directed_by , COUNT(*) FROM film GROUP BY Directed_by ORDER BY COUNT(*) DESC": 0.2
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "Directed_by , COUNT(*)": 1.0
+            },
+            "FROM": {
+                "film": 1.0
+            },
+            "GROUP BY": {
+                "Directed_by": 1.0
+            },
+            "ORDER BY": {
+                "Directed_by ASC": 0.5,
+                "COUNT(*) DESC": 0.2,
+                "None": 0.3
+            }
+        }
+    },
+    {
+        "record_name": "443@x_name@ASC",
+        "db_id": "cinema_robust",
+        "target": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "nlq": "Provide me with a bar chart illustrating the quantity of films for each director, and arrange the bars in ascending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY count(*) ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY Directed_by ASC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY count(*) DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY Directed_by DESC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC": 0.6,
+            "Visualize BAR SELECT Directed_by , COUNT(*) FROM film GROUP BY Directed_by ORDER BY COUNT(*) ASC": 0.3,
+            "Visualize BAR SELECT Directed_by , COUNT(*) FROM film WHERE Directed_by != \"null\" GROUP BY Directed_by ORDER BY COUNT(*) ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "Directed_by , COUNT(Directed_by)": 0.6,
+                "Directed_by , COUNT(*)": 0.4
+            },
+            "FROM": {
+                "film": 1.0
+            },
+            "GROUP BY": {
+                "Directed_by": 1.0
+            },
+            "ORDER BY": {
+                "COUNT(Directed_by) ASC": 0.6,
+                "COUNT(*) ASC": 0.4
+            },
+            "WHERE": {
+                "Directed_by != \"null\"": 0.1,
+                "None": 0.9
+            }
+        }
+    },
+    {
+        "record_name": "443@x_name@ASC",
+        "db_id": "cinema_robust",
+        "target": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "nlq": "What is the quantity of films for each director? Provide a bar graph, arranged in ascending order by the names, please.",
+        "predict_rag_nlq": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY Directed_by ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY count(*) ASC",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by",
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY count(*) DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by ORDER BY Directed_by DESC",
+            "Visualize BAR SELECT Directed_by , count(*) FROM film GROUP BY directed_by"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC": 0.4,
+            "Visualize BAR SELECT Directed_by , COUNT(*) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC": 0.3,
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC, COUNT(Directed_by) DESC": 0.2,
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by ASC, COUNT(Directed_by) ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "Directed_by , COUNT(Directed_by)": 0.1,
+                "Directed_by , COUNT(*)": 0.3
+            },
+            "FROM": {
+                "film": 1.0
+            },
+            "GROUP BY": {
+                "Directed_by": 1.0
+            },
+            "ORDER BY": {
+                "Directed_by ASC": 1.0,
+                "Directed_by ASC, COUNT(Directed_by) DESC": 0.2,
+                "Directed_by ASC, COUNT(Directed_by) ASC": 0.1
+            }
+        }
+    },
+    {
+        "record_name": "3064@x_name@DESC",
+        "db_id": "tvshow_robust",
+        "target": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+        "nlq": "Create a bar chart for the quantity of package options for all TV channels that do not broadcast any cartoons directed by Ben Jones. Please arrange the names in descending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT id FROM Cartoon WHERE Directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option ASC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option",
+            "Visualize PIE SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) DESC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY Language DESC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) ASC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY Language ASC"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC": 0.6,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC": 0.3,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "Package_Option , COUNT(Package_Option)": 1.0
+            },
+            "FROM": {
+                "TV_Channel": 1.0
+            },
+            "WHERE": {
+                "id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = \"Ben Jones\")": 1.0
+            },
+            "GROUP BY": {
+                "Package_Option": 1.0
+            },
+            "ORDER BY": {
+                "COUNT(Package_Option) DESC": 0.6,
+                "Package_Option DESC": 0.3,
+                "Package_Option ASC": 0.1
+            }
+        }
+    },
+    {
+        "record_name": "3064@x_name@DESC",
+        "db_id": "tvshow_robust",
+        "target": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+        "nlq": "What are the available package choices for all TV channels that do not broadcast any cartoons directed by Ben Jones? Please present them in a bar chart, sorted from highest to lowest on the X-axis.",
+        "predict_rag_nlq": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT Network FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option ASC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option",
+            "Visualize PIE SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY Language DESC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) DESC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY Language ASC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) ASC"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT Network FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT Network FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT Network FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC": 0.6,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT Network FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC": 0.3,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT Network FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "Package_Option , COUNT(Package_Option)": 1.0
+            },
+            "FROM": {
+                "TV_Channel": 1.0
+            },
+            "WHERE": {
+                "id NOT IN(SELECT Network FROM Cartoon WHERE helmed_by = \"Ben Jones\")": 1.0
+            },
+            "GROUP BY": {
+                "Package_Option": 1.0
+            },
+            "ORDER BY": {
+                "Package_Option DESC": 0.6,
+                "COUNT(Package_Option) DESC": 0.3,
+                "Package_Option ASC": 0.1
+            }
+        }
+    },
+    {
+        "record_name": "3064@x_name@DESC",
+        "db_id": "tvshow_robust",
+        "target": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+        "nlq": "Identify the package options of TV channels that do not include any cartoons directed by Ben Jones, and represent their count using a bar chart, listing them in descending order from highest to lowest.",
+        "predict_rag_nlq": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT id FROM Cartoon WHERE Directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+        "rag_dvqs": [
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option ASC",
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option",
+            "Visualize PIE SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) DESC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY Language DESC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) ASC",
+            "Visualize BAR SELECT Language , count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY Language ASC"
+        ],
+        "predict_debugged_ref_dvqs": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+        "predict_debugged_db_ann": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) DESC": 0.6,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option DESC": 0.3,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY Package_Option ASC": 0.1
+        },
+        "content_prob": {
+            "Visualize": {
+                "BAR": 1.0
+            },
+            "SELECT": {
+                "Package_Option , COUNT(Package_Option)": 1.0
+            },
+            "FROM": {
+                "TV_Channel": 1.0
+            },
+            "WHERE": {
+                "id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = \"Ben Jones\")": 1.0
+            },
+            "GROUP BY": {
+                "Package_Option": 1.0
+            },
+            "ORDER BY": {
+                "COUNT(Package_Option) DESC": 0.6,
+                "Package_Option DESC": 0.3,
+                "Package_Option ASC": 0.1
+            }
+        }
+    }
+]

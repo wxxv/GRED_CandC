@@ -107,18 +107,30 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str):
     db = generate_schema('browser_web_robust')
     
     prompt = db + "\n\n" + """### Natural Language Question (NLQ): 
-# {}
-
-### Possible Data Visualization Query (DVQs): 
 {}
 
-#### Given Database Schemas, Natural Language Question (NLQ) and Possible Data Visualization Query (DVQs), for every DVQ keyword existing in the Possible Data Visualization Query (DVQs), please statistic their contents (include "None") in the form of a dictionary in JSON format. Follow these instructions:
-# 1. For each keyword, please statistic the content (include "None") in the DVQs, and give the probability of each content.
-# 2. For each keyword, the sum of the probabilities of all contents should be 1.
-# 3. You should also use the form "!= \\"null\\"" to escape the double quotes.
-# 4. Keep two decimal places for the probabilities.
+### Candidate Set of Data Visualization Query (DVQs) with their probabilities: 
+{}
+#### Given a set of database schemas, a natural language question (NLQ), and a list of candidate Data Visualization Queries (DVQs) with their associated probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
 
-A: Let’s think step by step!""".format(nlq, predict_dvq_set)
+# Step-by-step Instructions:
+# 1. Content Identification per Keyword:
+#   - For each SQL keyword that appears in the DVQs listed above, list all unique content variants found in the DVQs
+#   - For each keyword, if a content appears in multiple DVQs, sum the probabilities of all DVQs in which it appears
+#   - If a keyword is not present in given DVQs, treat its content as "None" with the corresponding probability sum of those DVQs
+# 2. Normalization:
+#   - For each SQL keyword, ensure the sum of probabilities of all its variants equals 1.0
+#   - Round each probability to two decimal places
+# 3. Output Format:
+#   Return the result as a JSON-formatted nested dictionary:
+#   - Outer keys: SQL keywords (excluding ones that are completely missing across all DVQs)
+#   - Inner keys: Content strings corresponding to each keyword
+#   - Inner values: Their associated probabilities (rounded to two decimal places)
+
+# Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
+
+A: Let's think step by step!""".format(nlq, predict_dvq_set)
+
     return prompt
 
 def generate_reply(messages, n=1, flag="vql"):
@@ -129,9 +141,9 @@ def generate_reply(messages, n=1, flag="vql"):
         messages=messages,
         n = n,
         stream = False,
-        temperature=0.0,
-        frequency_penalty=0.0,
-        presence_penalty=-0.0,
+        temperature=0,
+        frequency_penalty=0,
+        presence_penalty=0,
     )
 
     mes = completions.choices[0].message.content
@@ -147,9 +159,9 @@ def generate_reply(messages, n=1, flag="vql"):
 
 def get_dvqs(dvqs:list):
     prompt = ""
-    for i, s in enumerate(dvqs):
-        s = s.replace(" ) ", ") ")
-        prompt += f"{i+1} - " + s + "\n"
+    for i, (k, v) in enumerate(dvqs.items()):
+        k = k.replace(" ) ", ") ")
+        prompt += f"# " + k + " : " + str(v) + "\n"
     return prompt
 
 
@@ -169,8 +181,8 @@ if __name__ == '__main__':
             data = json.load(f)
 
         for index, example in tqdm(enumerate(data), total=len(data), desc=f"Processing {mode}"):
-            if index<len(data_new):
-                continue
+            # if index<len(data_new):
+            #     continue
             nlq = example['nlq']
             db_id = example['db_id']
             target = example['target']
@@ -184,11 +196,11 @@ if __name__ == '__main__':
             if "  " in final_dvq:
                 final_dvq = final_dvq.replace("  ", " ")
             
-            if True:
+            if nlq == "For employees with salaries ranging from 8000 to 12000, and with either non-null commission or department number not equal to 40, provide a comparison of the total employee_id sum grouped by hire_date bins over time using a bar chart. Please display the results in descending order by the total number count.":
                 prompt = prompt_maker(db_id, nlq, possible_dvqs)
 
-                # print(prompt)
-                # exit()
+                print(prompt)
+                exit()
                 messages = message.copy()
                 messages.append(
                     {
@@ -219,12 +231,12 @@ if __name__ == '__main__':
                         break
                 
                 # print(content_prob)
-                # exit()                
+                # exit()
                 example_new = example.copy()
                 example_new['content_prob'] = content_prob
                 data_new.append(example_new)
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
 
-                # if index == 19:
-                #     exit()
+                if index == 19:
+                    exit()

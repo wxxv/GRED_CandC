@@ -14,7 +14,7 @@ ask_gen_candidate_set = """### Database Schemas:
 # 2. Output the above Possible Data Visualization Query and all other possible correct DVQs with their probabilities in the form of a dictionary in JSON format.
 # 3. Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", instead of "IS NOT NULL", although they are exactly the same. Note that use the double quotes instead of the single quotes to indicate the string. Do not generate the column names that do not exist in the database schemas.
 
-A: Let’s think step by step!"""
+A: Let's think step by step!"""
 
 
 answer_gen_candidate_set="""{
@@ -50,55 +50,63 @@ ask_gen_prob = """### Database Schemas:
 # Foreign_keys = [ accelerator_compatible_browser.browser_identification = browser.identification , accelerator_compatible_browser.accelerator_identification = Web_client_accelerator.identification ]
 
 ### Natural Language Question (NLQ): 
-# Present a bar graph representing the IDs and names of web accelerators that are compatible with two or more browsers, and kindly sort the y-axis in ascending order.
+For employees with salaries ranging from 8000 to 12000, and with either non-null commission or department number not equal to 40, provide a comparison of the total employee_id sum grouped by hire_date bins over time using a bar chart. Please display the results in descending order by the total number count.
 
-### Possible Data Visualization Query (DVQs) with their probabilities: 
-{
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC": 0.4,
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC": 0.3,
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.2,
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.1
-}
+### Candidate Set of Data Visualization Query (DVQs) with their probabilities: 
+# Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH : 0.4
+# Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH : 0.3
+# Visualize BAR SELECT TO_CHAR(date_of_hire, 'YYYY-MM') AS hire_month , COUNT(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY hire_month ORDER BY COUNT(employee_id) DESC : 0.2
+# Visualize BAR SELECT EXTRACT(MONTH FROM date_of_hire) AS hire_month , COUNT(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY hire_month ORDER BY COUNT(employee_id) DESC : 0.1
 
-#### Given Database Schemas, Natural Language Question (NLQ) and Possible Data Visualization Query (DVQs) with their probabilities, for every DVQ keyword existing in the Possible Data Visualization Query (DVQs), please statistic their contents (include "None") in the form of a dictionary in JSON format. Follow these instructions:
-# 1. For each keyword, please statistic the content (include "None") in the DVQs, and give the probability mass function in the form of a dictionary.
-# 2. For each keyword, the sum of the probability mass function must be 1.
-# 3. You should also use the form "!= \\"null\\"" to escape the double quotes.
-# 4. Keep two decimal places for the probabilities.
+#### Given a set of database schemas, a natural language question (NLQ), and a list of candidate Data Visualization Queries (DVQs) with their associated probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
 
-A: Let’s think step by step!"""
+# Step-by-step Instructions:
+# 1. Content Identification per Keyword:
+#   - For each SQL keyword that appears in the DVQs listed above, list all unique content variants found in the DVQs
+#   - For each keyword, if a content appears in multiple DVQs, sum the probabilities of all DVQs in which it appears
+#   - If a keyword is not present in given DVQs, treat its content as "None" with the corresponding probability sum of those DVQs
+# 2. Normalization:
+#   - For each SQL keyword, ensure the sum of probabilities of all its variants equals 1.0
+#   - Round each probability to two decimal places
+# 3. Output Format:
+#   Return the result as a JSON-formatted nested dictionary:
+#   - Outer keys: SQL keywords (excluding ones that are completely missing across all DVQs)
+#   - Inner keys: Content strings corresponding to each keyword
+#   - Inner values: Their associated probabilities (rounded to two decimal places)
+
+# Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
+
+A: Let's think step by step!"""
 
 answer_gen_prob="""{
     "Visualize": {
-        "BAR": 1.00
+        "BAR": 1.0
     },
     "SELECT": {
-        "name , identification": 1.00,
+        "date_of_hire , SUM(employee_id)": 0.7,
+        "TO_CHAR(date_of_hire, 'YYYY-MM') AS hire_month , COUNT(employee_id)": 0.2,
+        "EXTRACT(MONTH FROM date_of_hire) AS hire_month , COUNT(employee_id)": 0.1
     },
     "FROM": {
-        "Web_client_accelerator AS T1": 1.00,
-    },
-    "JOIN": {
-        "accelerator_compatible_browser AS T2": 1.00,
-    },
-    "ON": {
-        "T2.accelerator_identification = T1.identification": 1.00,
-    },
-    "GROUP BY": {
-        "name, identification": 0.30,
-        "None": 0.70
-    },
-    "ORDER BY": {
-        "T1.identification ASC": 0.40,
-        "identification ASC": 0.60,
-    },
-    "HAVING": {
-        "None": 0.80,
-        "COUNT(DISTINCT T2.browser_identification) >= 2": 0.20
+        "employees": 1.0
     },
     "WHERE": {
-        "None": 0.90,
-        "COUNT(DISTINCT T2.browser_identification) >= 2": 0.10
+        "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.4,
+        "wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.3,
+        "wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.3
+    },
+    "GROUP BY": {
+        "date_of_hire": 0.3,
+        "hire_month": 0.3,
+        "None": 0.4
+    },
+    "ORDER BY": {
+        "SUM(employee_id) DESC": 0.7,
+        "COUNT(employee_id) DESC": 0.3
+    },
+    "BIN": {
+        "date_of_hire BY MONTH": 0.7,
+        "None": 0.3
     }
 }"""
 

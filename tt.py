@@ -16,7 +16,16 @@ def entropy_calculation(probabilities):
 # entropy = entropy_calculation(probabilities)
 # print(f"给定概率的熵为: {entropy}")
     
-a = entropy_calculation([0.4,0.15,0.2,0.25]) - 0.35*entropy_calculation([0,0.15,0.2,0]) - 0.65*entropy_calculation([0.4,0,0,0.25])
+
+# a = entropy_calculation([0.1,0.1,0.4,0.4]) - 0.1*entropy_calculation([1,0,0,0]) - 0.1*entropy_calculation([0,1,0,0]) - 0.8*entropy_calculation([0,0,0.8,0.8])    # RQ1
+# a = entropy_calculation([0.1,0.1,0.4,0.4]) - 0.5*entropy_calculation([0.1, 0.1, 0.8, 0]) - 0.5*entropy_calculation([0.1, 0.1, 0.8, 0])     # RQ2
+
+a = entropy_calculation([0.4,0.15,0.2,0.25]) - 0.15/0.35*entropy_calculation([0.4,0.35,0,0.25]) - 0.2/0.35*entropy_calculation([0.4,0.35,0,0.25])
 print(a)
-b = entropy_calculation([0.35,0.65])
+
+
+# b = entropy_calculation([0.1, 0.1 ,0.8])
+# b = 0.8 * entropy_calculation([0.5, 0.5])
+
+b = 0.35*entropy_calculation([0.2, 0.15])
 print(b)
