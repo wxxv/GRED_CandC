@@ -1,9 +1,14 @@
 import json
 import os
+import time
+import math
 from openai import OpenAI
 from tqdm import tqdm
 from prompt import ask_gen_question, answer_gen_question
 import pandas as pd
+import math
+
+# 初始化OpenAI客户端
 client = OpenAI(
         # openai系列的sdk，包括langchain，都需要这个/v1的后缀
         base_url='https://api.openai-proxy.org/v1',
@@ -15,19 +20,20 @@ data_path = "./nvBench-Rob/{}/result_multi-turn/{}_result_gen_candidate_set_with
 result_save_path = "./nvBench-Rob/{}/result_multi-turn/{}_result_multi-turn_gpt4o.json"
 DATASET_SCHEMA = './nvBench-Rob/tables.json'
 
+# System messages for different models
 message = [
-   {
-      "role":"system",
-      "content":"""You are a helpful assistant that can generate a question based on uncertain information."""
-   },
-   {
-      "role":"user",
-      "content":ask_gen_question
-   },
-   {
-      "role":"assistant",
-      "content":answer_gen_question
-   }
+    {
+        "role": "system",
+        "content": """You are a helpful assistant that can generate a question based on uncertain information."""
+    },
+    {
+        "role": "user",
+        "content": ask_gen_question
+    },
+    {
+        "role": "assistant",
+        "content": answer_gen_question
+    }
 ]
 
 def creating_schema(DATASET_JSON):
@@ -90,7 +96,7 @@ def generate_schema(db_name:str):
   schema = "### Database Schemas:\n" + find_fields_MYSQL_like(db_name) + find_foreign_keys_MYSQL_like(db_name)
   return schema
 
-def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str, content_prob:str):
+def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str, content_prob:str, keyword:str):
     with open(db_ann_file_path, 'r') as f:
         db_ann = json.load(f)
     db_ann = db_ann[db_id]
@@ -105,21 +111,28 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str, content_prob:str):
 ### Uncertain Data Visualization Query Information: 
 {}
 
-### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate one or two questions you want to ask based on the content of "ORDER BY" of the Uncertain Data Visualization Query Information. Focus on how to choose the content of "ORDER BY" from the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob)
+### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate one or two questions you want to ask based on the content of \"{}\" of the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob, keyword)
     return prompt
 
 def generate_reply(messages, n=1, flag="vql"):
     # print("generate...")
-    completions = client.chat.completions.create(
-        # model="gpt-3.5-turbo-0125",
-        model="gpt-4o-mini",
-        messages=messages,
-        n = n,
-        stream = False,
+    try:
+        completions = client.chat.completions.create(
+            # model="gpt-3.5-turbo-0125",
+            model="gpt-4o-mini",
+            messages=messages,
+            n = n,
+            stream = False,
         temperature=0.0,
-        frequency_penalty=0.0,
-        presence_penalty=-0.0,
-    )
+            frequency_penalty=0.0,
+            presence_penalty=-0.0,
+        )
+    except Exception as ex:
+        print("Exception in generate_reply")
+        print(f"API error: {ex}")
+        print("Waiting for 3s...")
+        exit()
+        time.sleep(3)
 
     mes = completions.choices[0].message.content
     if flag == "vql":
@@ -129,7 +142,7 @@ def generate_reply(messages, n=1, flag="vql"):
             # print(vql)
             all_p_vqls.append(vql)
     else:
-        return completions.choices[0].message.content
+        return completions.choices[0].message.content.replace("\n", "")
     return all_p_vqls
 
 def get_dvqs(dvqs:list):
@@ -139,7 +152,130 @@ def get_dvqs(dvqs:list):
         prompt += f"{i+1} - " + s + "\n"
     return prompt
 
+def calculate_entropy(probabilities):
+    """Calculate entropy of a probability distribution."""
+    # Normalize probabilities
+    total = sum(probabilities)
+    if total == 0:
+        return 0
+    
+    normalized_probs = [p/total for p in probabilities]
+    
+    # Calculate entropy
+    entropy = 0
+    for prob in normalized_probs:
+        if prob > 0:
+            entropy -= prob * math.log2(prob)
+    return entropy
 
+def select_keyword(content_prob):
+    """Select keyword based on probability of non-None content and entropy."""
+    max_score = -float('inf')
+    selected_keyword = None
+    
+    for keyword, content_dict in content_prob.items():
+        # Calculate probability of content not being None
+        non_none_prob = 1 - content_dict.get("None", 0)
+        
+        # Get probabilities of non-None contents
+        non_none_probs = [prob for content, prob in content_dict.items() if content != "None"]
+        
+        if non_none_probs:
+            # Calculate entropy of non-None parts
+            entropy = calculate_entropy(non_none_probs)
+            
+            # Calculate score as product of non-None probability and entropy
+            score = non_none_prob * entropy
+            print(f"keyword: {keyword}, Score: {score}")
+            print("-"*100)
+            
+            if score > max_score:
+                max_score = score
+                selected_keyword = keyword
+    
+    return selected_keyword
+
+def get_answer(question, db_id, nlq, target):
+    """Get answer from the ground truth model."""
+    messages = [
+        {
+            "role": "system",
+            "content": """You are a helpful assistant that has access to the ground truth knowledge. You know the correct data visualization query (target) that should be used to answer the natural language question. Your task is to generate answers based on this ground truth knowledge. You must strictly follow the target query in your answer, using exactly the same column names and table aliases as in the target."""
+        },
+        {
+            "role": "user",
+            "content": f"""Given the Database Schema, the Natural Language Question and the Ground Truth (Correct Data Visualization Query), please answer the follow-up question:
+
+{generate_schema(db_id)}
+
+### Natural Language Question:
+# {nlq}
+
+### Ground Truth (Correct Data Visualization Query): 
+# {target}
+
+### Follow-up Question:
+# {question}
+
+### Please first provide the analysis of the part of the Ground Truth that is related to the Follow-up Question, and then provide a clear and concise answer that strictly follows the target query."""
+        }
+    ]
+    
+    while True:
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+                temperature=0.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0,
+            )
+            return response.choices[0].message.content
+        except Exception as ex:
+            print("Exception in get_answer")
+            print(f"API error: {ex}")
+            print("Waiting for 3s...")
+            exit()
+            time.sleep(3)
+
+def select_correct_dvq(question, answer, predict_dvq_set):
+    """Select the correct DVQ based on the ground truth answer."""
+    messages = [
+        {
+            "role": "system",
+            "content": """You are a helpful assistant that can select the most appropriate data visualization query based on the given answer."""
+        },
+        {
+            "role": "user",
+            "content": f"""Given the following information, please select the most appropriate data visualization query:
+
+Possible DVQs:
+{predict_dvq_set}
+
+Question: {question}
+
+Answer: {answer}
+
+Please select the most appropriate DVQ that matches the given answer."""
+        }
+    ]
+    
+    while True:
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+                temperature=0.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0,
+            )
+            return response.choices[0].message.content
+        except Exception as ex:
+            print("Exception in select_correct_dvq")
+            print(f"API error: {ex}")
+            print("Waiting for 3s...")
+            exit()
+            time.sleep(3)
 
 if __name__ == "__main__":
     # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
@@ -157,8 +293,8 @@ if __name__ == "__main__":
             data = json.load(f)
 
         for index, example in tqdm(enumerate(data), total=len(data), desc=f"Processing {mode}"):
-            # if index<len(data_new):
-            #     continue
+            if index<len(data_new):
+                continue
             nlq = example['nlq']
             db_id = example['db_id']
             target = example['target']
@@ -170,9 +306,11 @@ if __name__ == "__main__":
             content_prob = example['content_prob']
             possible_dvqs = get_dvqs(predict_dvq_set)
 
+            keyword = select_keyword(content_prob)
             if True:
-                prompt = prompt_maker(db_id, nlq, possible_dvqs, content_prob)
+                prompt = prompt_maker(db_id, nlq, possible_dvqs, content_prob, keyword)
                 print(prompt)
+                print("-"*100)
                 # exit()
                 messages = message.copy()
                 messages.append(
@@ -184,27 +322,36 @@ if __name__ == "__main__":
                 
                 while True:
                     try:
-                        reply = generate_reply(messages, 1, "nlq")
-                        print(reply)
-                        exit()
+                        question = generate_reply(messages, 1, "nlq")
+                        print(f"Generated question: {question}")
+                        print("-"*100)
+                        
+                        # Get answer from ground truth model with target information
+                        answer = get_answer(question, db_id, nlq, target)
+                        print(f"Answer: {answer}")
+                        print("-"*100)
+                        
+                        # Select correct DVQ based on answer
+                        final_dvq = select_correct_dvq(question, answer, possible_dvqs)
+                        print(f"Final DVQ: {final_dvq}")
+                        print("-"*100)
+                        
                         break
-
                     except Exception as ex:
-                        print(reply)
-                        print(ex)
-                        print("api error, wait for 3s...")
-                        time.sleep(3)
+                        print(f"Error: {ex}")
+                        print("Waiting for 3s...")
                         exit()
-                        break
+                        time.sleep(3)
                 
-                # print(content_prob)
                 # exit()                
                 example_new = example.copy()
-                example_new['content_prob'] = content_prob
+                example_new['generated_question'] = question
+                example_new['answer'] = answer
+                example_new['final_dvq'] = final_dvq
                 data_new.append(example_new)
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
-
+                exit()
                 # if index == 19:
                 #     exit()
 

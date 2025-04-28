@@ -27,5 +27,5 @@ print(a)
 # b = entropy_calculation([0.1, 0.1 ,0.8])
 # b = 0.8 * entropy_calculation([0.5, 0.5])
 
-b = 0.35*entropy_calculation([0.2, 0.15])
+b = 0.35*entropy_calculation([0.5, 0.5])
 print(b)

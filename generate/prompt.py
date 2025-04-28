@@ -50,13 +50,13 @@ ask_gen_prob = """### Database Schemas:
 # Foreign_keys = [ accelerator_compatible_browser.browser_identification = browser.identification , accelerator_compatible_browser.accelerator_identification = Web_client_accelerator.identification ]
 
 ### Natural Language Question (NLQ): 
-For employees with salaries ranging from 8000 to 12000, and with either non-null commission or department number not equal to 40, provide a comparison of the total employee_id sum grouped by hire_date bins over time using a bar chart. Please display the results in descending order by the total number count.
+# Present a bar graph representing the IDs and names of web accelerators that are compatible with two or more browsers, and kindly sort the y-axis in ascending order.
 
-### Candidate Set of Data Visualization Query (DVQs) with their probabilities: 
-# Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH : 0.4
-# Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY date_of_hire ORDER BY SUM(employee_id) DESC BIN date_of_hire BY MONTH : 0.3
-# Visualize BAR SELECT TO_CHAR(date_of_hire, 'YYYY-MM') AS hire_month , COUNT(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY hire_month ORDER BY COUNT(employee_id) DESC : 0.2
-# Visualize BAR SELECT EXTRACT(MONTH FROM date_of_hire) AS hire_month , COUNT(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40) GROUP BY hire_month ORDER BY COUNT(employee_id) DESC : 0.1
+### Possible Data Visualization Query (DVQs) with their probabilities: 
+# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC" : 0.4,
+# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC" : 0.3,
+# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.2,
+# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.1
 
 #### Given a set of database schemas, a natural language question (NLQ), and a list of candidate Data Visualization Queries (DVQs) with their associated probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
 
@@ -66,47 +66,54 @@ For employees with salaries ranging from 8000 to 12000, and with either non-null
 #   - For each keyword, if a content appears in multiple DVQs, sum the probabilities of all DVQs in which it appears
 #   - If a keyword is not present in given DVQs, treat its content as "None" with the corresponding probability sum of those DVQs
 # 2. Normalization:
-#   - For each SQL keyword, ensure the sum of probabilities of all its variants equals 1.0
+#   - For each SQL keyword, calculate the total probability of all its variants
+#   - If the total is not 1.0, normalize by dividing each variant's probability by the total
 #   - Round each probability to two decimal places
+#   - Verify that the sum of probabilities for each keyword equals 1.0
 # 3. Output Format:
 #   Return the result as a JSON-formatted nested dictionary:
 #   - Outer keys: SQL keywords (excluding ones that are completely missing across all DVQs)
 #   - Inner keys: Content strings corresponding to each keyword
 #   - Inner values: Their associated probabilities (rounded to two decimal places)
+#   - Note: The sum of probabilities for each keyword must equal 1.0
+#   - Example: If SELECT has variants with probabilities [0.70, 0.10], total is 0.80,
+#     the normalized probabilities should be [0.88, 0.12] (rounded to two decimal places)
 
-# Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
+# Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
 
 A: Let's think step by step!"""
 
 answer_gen_prob="""{
     "Visualize": {
-        "BAR": 1.0
+        "BAR": 1.00
     },
     "SELECT": {
-        "date_of_hire , SUM(employee_id)": 0.7,
-        "TO_CHAR(date_of_hire, 'YYYY-MM') AS hire_month , COUNT(employee_id)": 0.2,
-        "EXTRACT(MONTH FROM date_of_hire) AS hire_month , COUNT(employee_id)": 0.1
+        "name , identification": 1.00,
     },
     "FROM": {
-        "employees": 1.0
+        "Web_client_accelerator AS T1": 1.00,
     },
-    "WHERE": {
-        "wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40": 0.4,
-        "wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.3,
-        "wage BETWEEN 8000 AND 12000 AND (COMMISSION_PCT != \"null\" OR Dept_ID != 40)": 0.3
+    "JOIN": {
+        "accelerator_compatible_browser AS T2": 1.00,
+    },
+    "ON": {
+        "T2.accelerator_identification = T1.identification": 1.00,
     },
     "GROUP BY": {
-        "date_of_hire": 0.3,
-        "hire_month": 0.3,
-        "None": 0.4
+        "name, identification": 0.30,
+        "None": 0.70
     },
     "ORDER BY": {
-        "SUM(employee_id) DESC": 0.7,
-        "COUNT(employee_id) DESC": 0.3
+        "T1.identification ASC": 0.40,
+        "identification ASC": 0.60,
     },
-    "BIN": {
-        "date_of_hire BY MONTH": 0.7,
-        "None": 0.3
+    "HAVING": {
+        "None": 0.80,
+        "COUNT(DISTINCT T2.browser_identification) >= 2": 0.20
+    },
+    "WHERE": {
+        "None": 0.90,
+        "COUNT(DISTINCT T2.browser_identification) >= 2": 0.10
     }
 }"""
 

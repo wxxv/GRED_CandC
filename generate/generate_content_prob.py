@@ -127,7 +127,7 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str):
 #   - Inner keys: Content strings corresponding to each keyword
 #   - Inner values: Their associated probabilities (rounded to two decimal places)
 
-# Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
+# Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
 
 A: Let's think step by step!""".format(nlq, predict_dvq_set)
 
@@ -181,8 +181,8 @@ if __name__ == '__main__':
             data = json.load(f)
 
         for index, example in tqdm(enumerate(data), total=len(data), desc=f"Processing {mode}"):
-            # if index<len(data_new):
-            #     continue
+            if index<len(data_new):
+                continue
             nlq = example['nlq']
             db_id = example['db_id']
             target = example['target']
@@ -196,11 +196,11 @@ if __name__ == '__main__':
             if "  " in final_dvq:
                 final_dvq = final_dvq.replace("  ", " ")
             
-            if nlq == "For employees with salaries ranging from 8000 to 12000, and with either non-null commission or department number not equal to 40, provide a comparison of the total employee_id sum grouped by hire_date bins over time using a bar chart. Please display the results in descending order by the total number count.":
+            if True:
                 prompt = prompt_maker(db_id, nlq, possible_dvqs)
 
-                print(prompt)
-                exit()
+                # print(prompt)
+                # exit()
                 messages = message.copy()
                 messages.append(
                     {
@@ -238,5 +238,5 @@ if __name__ == '__main__':
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
 
-                if index == 19:
-                    exit()
+                # if index == 19:
+                #     exit()
