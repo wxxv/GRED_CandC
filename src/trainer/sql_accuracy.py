@@ -43,9 +43,9 @@ def to_VQL(text):
 
 
 
-def tree_accuracy(preds, targets):
+def tree_accuracy(preds, targets, final_dvq):
     num_tree, num_vis, num_axis, num_data = 0, 0, 0, 0
-    for pred, target in zip(preds, targets):
+    for idx, (pred, target) in enumerate(zip(preds, targets)):
         pred_dict = to_VQL(pred)
         target_dict = to_VQL(target)
         # print('--------------------------------')
@@ -53,6 +53,12 @@ def tree_accuracy(preds, targets):
         # print('target_dict', target_dict)
         if pred_dict == target_dict:
             num_tree += 1
+            print(target)
+            print(pred)
+            print(final_dvq[idx])
+            print(pred_dict)
+            print(target_dict)
+            print('--------------------------------')
         # else:
         #     print("pred:\t{}".format(pred))
         #     print("tgt:\t{}\n".format(target))

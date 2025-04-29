@@ -6,23 +6,22 @@ ask_gen_candidate_set = """### Database Schemas:
 ### Natural Language Question (NLQ): 
 # Determine the cumulative count of students enrolled in colleges established after the year 1850 for each type of affiliation. Display the results in a bar chart.
 
-### Possible Data Visualization Query (DVQ): 
+### Given a database schema, natural language question, and original DVQ, generate a set of candidate DVQs with their probabilities.
+# Rules:
+# 1. Only modify content, not structure or keywords
+# 2. Include original DVQ as first candidate
+# 3. Return JSON dictionary: {candidate_dvq: probability}
+# 4. Probabilities must sum to 1.0
+
+### Original DVQ:
 # Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference
-
-#### Given Natural Language Question (NLQ), reference the above Possible Data Visualization Query, please generate DVQs based on their correspoding Database Schemas. Follow these instructions:
-# 1. Please consider all possible content of each keyword, such as what follows "SELECT", "WHERE", "GROUP BY" or "ORDER BY". 
-# 2. Output the above Possible Data Visualization Query and all other possible correct DVQs with their probabilities in the form of a dictionary in JSON format.
-# 3. Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", instead of "IS NOT NULL", although they are exactly the same. Note that use the double quotes instead of the single quotes to indicate the string. Do not generate the column names that do not exist in the database schemas.
-
 A: Let's think step by step!"""
 
 
 answer_gen_candidate_set="""{
-    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.35,
-    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established >= 1850 GROUP BY basic_conference": 0.25,
-    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference ORDER BY basic_conference ASC": 0.15,
-    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference ORDER BY basic_conference DESC": 0.15,
-    "Visualize BAR SELECT association , COUNT(*) FROM university WHERE established > 1850 GROUP BY association": 0.1
+    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.6,
+    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established >= 1850 GROUP BY basic_conference": 0.3,
+    "Visualize BAR SELECT association , COUNT(*) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.1
 }"""
 
 
@@ -181,6 +180,6 @@ ask_gen_question = """### Database Schemas:
     }
 }
 
-### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate one or two questions you want to ask based on the content of "ORDER BY" of the Uncertain Data Visualization Query Information. Focus on how to choose the content of "ORDER BY" from the Uncertain Data Visualization Query Information."""
+### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate clear and concise questions you want to ask based on the content of "ORDER BY" of the Uncertain Data Visualization Query Information."""
 
 answer_gen_question = """Would you like the web accelerators to be sorted by their IDs in ascending or descending order on the y-axis? Also, would you prefer to prefix the column names in the ORDER BY clause with their table aliases?"""

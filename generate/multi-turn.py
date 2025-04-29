@@ -72,24 +72,24 @@ def creating_schema(DATASET_JSON):
 spider_schema,spider_primary,spider_foreign = creating_schema(DATASET_SCHEMA)
 
 def find_fields_MYSQL_like(db_name):
-  df = spider_schema[spider_schema['Database name'] == db_name]
-  df = df.groupby(' Table Name')
-  output = ""
-  for name, group in df:
-    output += "# Table " + name+ ', columns = [ '
-    for index, row in group.iterrows():
-      output += row[" Field Name"] + ' , '
-    output = output[:-2] + ']\n'
-  # output = output[:-1] + ']\n'
-  return output
+    df = spider_schema[spider_schema['Database name'] == db_name]
+    df = df.groupby(' Table Name')
+    output = ""
+    for name, group in df:
+        output += "# Table " + name+ ', columns = [ '
+        for index, row in group.iterrows():
+            output += row[" Field Name"] + ' , '
+        output = output[:-2] + ']\n'
+    # output = output[:-1] + ']\n'
+    return output
 
 def find_foreign_keys_MYSQL_like(db_name):
-  df = spider_foreign[spider_foreign['Database name'] == db_name]
-  output = "# Foreign_keys = [ "
-  for index, row in df.iterrows():
-    output += row['First Table Name'] + '.' + row['First Table Foreign Key'] + " = " + row['Second Table Name'] + '.' + row['Second Table Foreign Key'] + ' , '
-  output= output[:-2] + "]"
-  return output
+    df = spider_foreign[spider_foreign['Database name'] == db_name]
+    output = "# Foreign_keys = [ "
+    for index, row in df.iterrows():
+        output += row['First Table Name'] + '.' + row['First Table Foreign Key'] + " = " + row['Second Table Name'] + '.' + row['Second Table Foreign Key'] + ' , '
+    output= output[:-2] + "]"
+    return output
 
 
 def generate_schema(db_name:str):
@@ -111,7 +111,7 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str, content_prob:str, keyw
 ### Uncertain Data Visualization Query Information: 
 {}
 
-### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate one or two questions you want to ask based on the content of \"{}\" of the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob, keyword)
+### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate clear and concise questions you want to ask based on the content of \"{}\" of the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob, keyword)
     return prompt
 
 def generate_reply(messages, n=1, flag="vql"):
@@ -186,10 +186,10 @@ def select_keyword(content_prob):
             
             # Calculate score as product of non-None probability and entropy
             score = non_none_prob * entropy
-            print(f"keyword: {keyword}, Score: {score}")
-            print("-"*100)
+            # print(f"keyword: {keyword}, Score: {score}")
+            # print("-"*100)
             
-            if score > max_score:
+            if score >= max_score:
                 max_score = score
                 selected_keyword = keyword
     
@@ -200,11 +200,11 @@ def get_answer(question, db_id, nlq, target):
     messages = [
         {
             "role": "system",
-            "content": """You are a helpful assistant that has access to the ground truth knowledge. You know the correct data visualization query (target) that should be used to answer the natural language question. Your task is to generate answers based on this ground truth knowledge. You must strictly follow the target query in your answer, using exactly the same column names and table aliases as in the target."""
+            "content": """You are a helpful assistant that can answer the questions based on the content of the Data Visualization Query."""
         },
         {
             "role": "user",
-            "content": f"""Given the Database Schema, the Natural Language Question and the Ground Truth (Correct Data Visualization Query), please answer the follow-up question:
+            "content": f"""Given the Database Schema, the Natural Language Question and its Ground Truth (Correct Data Visualization Query):
 
 {generate_schema(db_id)}
 
@@ -214,16 +214,16 @@ def get_answer(question, db_id, nlq, target):
 ### Ground Truth (Correct Data Visualization Query): 
 # {target}
 
-### Follow-up Question:
-# {question}
-
-### Please first provide the analysis of the part of the Ground Truth that is related to the Follow-up Question, and then provide a clear and concise answer that strictly follows the target query."""
+### Suppose you can access the Ground Truth (Correct Data Visualization Query) to the Natural Language Question. Please reply to the Follow-up Questions based on the Ground Truth. You must strictly follow the content of Ground Truth (Correct Data Visualization Query) in the answer.
+# Follow-up Question:
+# {question}"""
         }
     ]
     
     while True:
         try:
             response = client.chat.completions.create(
+                # model="gpt-3.5-turbo-0125",
                 model="gpt-4o-mini",
                 messages=messages,
                 temperature=0.0,
@@ -256,13 +256,14 @@ Question: {question}
 
 Answer: {answer}
 
-Please select the most appropriate DVQ that matches the given answer."""
+Please only reply the most appropriate DVQ without the number prefix from the Possible DVQs that matches the given answer."""
         }
     ]
-    
+
     while True:
         try:
             response = client.chat.completions.create(
+                # model="gpt-3.5-turbo-0125",
                 model="gpt-4o-mini",
                 messages=messages,
                 temperature=0.0,
@@ -309,8 +310,8 @@ if __name__ == "__main__":
             keyword = select_keyword(content_prob)
             if True:
                 prompt = prompt_maker(db_id, nlq, possible_dvqs, content_prob, keyword)
-                print(prompt)
-                print("-"*100)
+                # print(prompt)
+                # print("-"*100)
                 # exit()
                 messages = message.copy()
                 messages.append(
@@ -323,18 +324,18 @@ if __name__ == "__main__":
                 while True:
                     try:
                         question = generate_reply(messages, 1, "nlq")
-                        print(f"Generated question: {question}")
-                        print("-"*100)
+                        # print(f"Generated question: {question}")
+                        # print("-"*100)
                         
                         # Get answer from ground truth model with target information
                         answer = get_answer(question, db_id, nlq, target)
-                        print(f"Answer: {answer}")
-                        print("-"*100)
+                        # print(f"Answer: {answer}")
+                        # print("-"*100)
                         
                         # Select correct DVQ based on answer
                         final_dvq = select_correct_dvq(question, answer, possible_dvqs)
-                        print(f"Final DVQ: {final_dvq}")
-                        print("-"*100)
+                        # print(f"Final DVQ: {final_dvq}")
+                        # print("-"*100)
                         
                         break
                     except Exception as ex:
@@ -345,14 +346,15 @@ if __name__ == "__main__":
                 
                 # exit()                
                 example_new = example.copy()
+                # example_new['prompt'] = messages[-1]['content']
                 example_new['generated_question'] = question
                 example_new['answer'] = answer
                 example_new['final_dvq'] = final_dvq
                 data_new.append(example_new)
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
-                exit()
-                # if index == 19:
-                #     exit()
+                # exit()
+                if index == 19:
+                    exit()
 
         

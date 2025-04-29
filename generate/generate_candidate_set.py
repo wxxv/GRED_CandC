@@ -109,16 +109,17 @@ def prompt_maker(db_id:str, nlq:str, rag_dvqs:list, final_dvq:str):
     prompt = db + "\n\n" + """### Natural Language Question (NLQ): 
 # {}
 
-### Possible Data Visualization Query (DVQ): 
+### Given a database schema, natural language question, and original DVQ, generate a set of candidate DVQs with their probabilities.
+# Rules:
+# 1. MUST include original DVQ as first candidate
+# 2. Only modify content, not structure or keywords
+# 3. Return JSON dictionary: {{candidate_dvq: probability}}
+# 4. Probabilities must sum to 1.0
+
+### Original DVQ: 
 # {}
+A: Let's think step by step!""".format(nlq, final_dvq)
 
-#### Given Natural Language Question (NLQ), reference the above Possible Data Visualization Query, please generate DVQs based on their correspoding Database Schemas. Follow these instructions:
-# 1. Please consider all possible content of each keyword, such as what follows "SELECT", "WHERE", "GROUP BY" or "ORDER BY". 
-# 2. Output the above Possible Data Visualization Query and all other possible correct DVQs with their probabilities in the form of a dictionary in JSON format.
-# 3. Please note that when indicating that a field is not empty, you should also use the form "!= \\"null\\"", instead of "IS NOT NULL", although they are exactly the same. Note that use the double quotes instead of the single quotes to indicate the string. Do not generate the column names that do not exist in the database schemas.
-
-A: Let’s think step by step!""".format(nlq, final_dvq)
-    
     return prompt
 
 def generate_reply(messages, n=1, flag="vql"):
@@ -200,8 +201,11 @@ if __name__ == '__main__':
                 while True:
                     try:
                         reply = generate_reply(messages, 1, "nlq")
-                        
-                        reply = json.loads(reply)
+                        if "```" in reply:
+                            reply = reply.split("```", 2)[1].split("json", 1)[-1]
+                            reply = json.loads(reply)
+                        else:
+                            reply = json.loads(reply)
                         if err_count > 0:
                             err_count = 0
                         break
@@ -227,5 +231,5 @@ if __name__ == '__main__':
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
 
-                # if index == 19:
-                #     exit()
+                if index == 19:
+                    exit()

@@ -51,11 +51,11 @@ class Metrics(object):
         meteor_score_ = self.meteor(preds, targets)
         return bleu_score, rouge_score, meteor_score_   
 
-    def accuracy(self, preds, targets, sql_type = ''):
+    def accuracy(self, preds, targets, final_dvq = [], sql_type = ''):
         if sql_type == 'sql':
             acc_tree, acc_vis, acc_axis, acc_data = sem_accuracy.tree_accuracy(preds, targets)
         else:
-            acc_tree, acc_vis, acc_axis, acc_data = sql_accuracy.tree_accuracy(preds, targets)
+            acc_tree, acc_vis, acc_axis, acc_data = sql_accuracy.tree_accuracy(preds, targets, final_dvq)
         return acc_tree, acc_vis, acc_axis, acc_data
 
 
