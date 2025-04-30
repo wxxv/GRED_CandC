@@ -111,7 +111,23 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str, content_prob:str, keyw
 ### Uncertain Data Visualization Query Information: 
 {}
 
-### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate clear and concise questions you want to ask based on the content of \"{}\" of the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob, keyword)
+### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate a clear and concise questions you want to ask based on the content of \"{}\" of the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob, keyword)
+    return prompt
+
+
+def prompt_maker_initial(db_id:str, nlq:str):
+
+    prompt="""#### Given Natural Language Questions, Generate DVQs based on correspoding Database Schemas.
+
+"""
+    prompt += """{}
+#
+### Chart Type: [ BAR , PIE , LINE , SCATTER ]
+### Natural Language Question:
+# "{}"
+### Data Visualization Query:
+A: Visualize """.format(generate_schema(db_id), nlq)
+    
     return prompt
 
 def generate_reply(messages, n=1, flag="vql"):
@@ -209,14 +225,14 @@ def get_answer(question, db_id, nlq, target):
 {generate_schema(db_id)}
 
 ### Natural Language Question:
-# {nlq}
+# "{nlq}"
 
+### Suppose you can access the Ground Truth (Correct Data Visualization Query) to the Natural Language Question. Please reply to the Follow-up Questions according to the Ground Truth.
 ### Ground Truth (Correct Data Visualization Query): 
 # {target}
-
-### Suppose you can access the Ground Truth (Correct Data Visualization Query) to the Natural Language Question. Please reply to the Follow-up Questions based on the Ground Truth. You must strictly follow the content of Ground Truth (Correct Data Visualization Query) in the answer.
 # Follow-up Question:
-# {question}"""
+# "{question}"
+A: Let's think step by step!"""
         }
     ]
     
@@ -238,27 +254,8 @@ def get_answer(question, db_id, nlq, target):
             exit()
             time.sleep(3)
 
-def select_correct_dvq(question, answer, predict_dvq_set):
+def select_correct_dvq(messages, question, answer, predict_dvq_set):
     """Select the correct DVQ based on the ground truth answer."""
-    messages = [
-        {
-            "role": "system",
-            "content": """You are a helpful assistant that can select the most appropriate data visualization query based on the given answer."""
-        },
-        {
-            "role": "user",
-            "content": f"""Given the following information, please select the most appropriate data visualization query:
-
-Possible DVQs:
-{predict_dvq_set}
-
-Question: {question}
-
-Answer: {answer}
-
-Please only reply the most appropriate DVQ without the number prefix from the Possible DVQs that matches the given answer."""
-        }
-    ]
 
     while True:
         try:
@@ -302,7 +299,7 @@ if __name__ == "__main__":
             record_name = example['record_name']
             dvq = example['predict_debugged_ref_dvqs']
             rag_dvqs = example['rag_dvqs']
-            final_dvq = example['predict_debugged_db_ann']
+            debugged_db_ann_dvq = example['predict_debugged_db_ann']
             predict_dvq_set = example['predict_dvq_set']
             content_prob = example['content_prob']
             possible_dvqs = get_dvqs(predict_dvq_set)
@@ -310,9 +307,6 @@ if __name__ == "__main__":
             keyword = select_keyword(content_prob)
             if True:
                 prompt = prompt_maker(db_id, nlq, possible_dvqs, content_prob, keyword)
-                # print(prompt)
-                # print("-"*100)
-                # exit()
                 messages = message.copy()
                 messages.append(
                     {
@@ -320,23 +314,51 @@ if __name__ == "__main__":
                         "content":prompt
                     }
                 )
-                
+
+                prompt_initial = prompt_maker_initial(db_id, nlq)
+                messages_initial = [
+                    {
+                        "role":"system",
+                        "content":"You are a data visualization expert."
+                    },
+                    {
+                        "role":"user",
+                        "content":prompt_initial
+                    },
+                    {
+                        "role":"assistant",
+                        "content":debugged_db_ann_dvq + "\n\n" + "But I also have some other possible DVQs:\n" + possible_dvqs
+                    }
+                ]
+
+
                 while True:
                     try:
                         question = generate_reply(messages, 1, "nlq")
                         # print(f"Generated question: {question}")
                         # print("-"*100)
+                        messages_initial[-1]['content'] += "\nTo avoid the confusion of the content. " + question
                         
-                        # Get answer from ground truth model with target information
                         answer = get_answer(question, db_id, nlq, target)
                         # print(f"Answer: {answer}")
                         # print("-"*100)
+                        messages_initial.append(
+                            {
+                                "role":"user",
+                                "content":answer + "\n\n" + """According to the above history conversation, please reply only the most appropriate DVQ from the Possible DVQs.
+A: Let's think step by step!"""
+                            }
+                        )
+
+                        # for i in messages_initial:
+                        #     print(i['role'])
+                        #     print(i['content'])
+                        #     print("-"*100)
                         
-                        # Select correct DVQ based on answer
-                        final_dvq = select_correct_dvq(question, answer, possible_dvqs)
-                        # print(f"Final DVQ: {final_dvq}")
+
+                        final_dvq = select_correct_dvq(messages_initial, question, answer, possible_dvqs)
+                        final_dvq = "Visualize " + final_dvq.split("Visualize ")[1]
                         # print("-"*100)
-                        
                         break
                     except Exception as ex:
                         print(f"Error: {ex}")
@@ -354,7 +376,7 @@ if __name__ == "__main__":
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
                 # exit()
-                if index == 19:
-                    exit()
+                # if index == 19:
+                #     exit()
 
         

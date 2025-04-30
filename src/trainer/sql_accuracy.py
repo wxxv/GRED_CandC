@@ -24,9 +24,8 @@ def to_VQL(text):
     '''
     # print(text)
     text = text.lower()
-    text=text.replace("."," . ").replace("(", " ( ").replace(")", " ) ")
+    text=text.replace("."," . ").replace("(", " ( ").replace(")", " ) ").replace("IS NOT NULL", "!= \"null\"")
     text = word_tokenize(text)
-    # print(text)
     VQL = []
     binning = True
     keywords_dict = {'group': [], 'bin': [], 'order': [], 'where': [], 'select': [], 'from': [], 'visualize': []}
@@ -48,17 +47,16 @@ def tree_accuracy(preds, targets, final_dvq):
     for idx, (pred, target) in enumerate(zip(preds, targets)):
         pred_dict = to_VQL(pred)
         target_dict = to_VQL(target)
-        # print('--------------------------------')
-        # print('pred_dict', pred_dict)
-        # print('target_dict', target_dict)
+        final_dvq_dict = to_VQL(final_dvq[idx])
+        print(pred)
+        print(target)
+        print(final_dvq[idx]
+        if final_dvq_dict == target_dict:
+            print("1"*50)
         if pred_dict == target_dict:
             num_tree += 1
-            print(target)
-            print(pred)
-            print(final_dvq[idx])
-            print(pred_dict)
-            print(target_dict)
-            print('--------------------------------')
+            print("2"*50)
+        print("-"*50)
         # else:
         #     print("pred:\t{}".format(pred))
         #     print("tgt:\t{}\n".format(target))

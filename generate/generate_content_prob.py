@@ -106,12 +106,10 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str):
 
     db = generate_schema('browser_web_robust')
     
-    prompt = db + "\n\n" + """### Natural Language Question (NLQ): 
+    prompt = """
+### Candidate Data Visualization Query (DVQs) with their probabilities: 
 {}
-
-### Candidate Set of Data Visualization Query (DVQs) with their probabilities: 
-{}
-#### Given a set of database schemas, a natural language question (NLQ), and a list of candidate Data Visualization Queries (DVQs) with their associated probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
+#### Given the candidate set of Data Visualization Queries (DVQs) with their corresponding probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
 
 # Step-by-step Instructions:
 # 1. Content Identification per Keyword:

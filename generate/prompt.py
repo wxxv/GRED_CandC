@@ -6,22 +6,22 @@ ask_gen_candidate_set = """### Database Schemas:
 ### Natural Language Question (NLQ): 
 # Determine the cumulative count of students enrolled in colleges established after the year 1850 for each type of affiliation. Display the results in a bar chart.
 
-### Given a database schema, natural language question, and original DVQ, generate a set of candidate DVQs with their probabilities.
-# Rules:
-# 1. Only modify content, not structure or keywords
-# 2. Include original DVQ as first candidate
-# 3. Return JSON dictionary: {candidate_dvq: probability}
-# 4. Probabilities must sum to 1.0
-
-### Original DVQ:
-# Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference
+#### Given a Database Schema, Natural Language Question, and Original Data Visualization Query(DVQ, a new Programming Language abstracted from Vega-Zero), please generate a set of candidate DVQs with their probabilities that you think are correct. 
+# Step-by-step Instructions:
+# 1. Copy the Original DVQ as the first candidate.
+# 2. Then for each of other candidate DVQs, only modify a content part of the Original DVQ, not structure or keywords.
+# 3. Generate the probability that you think each of the candidate DVQs is correct
+# 4. Return format - JSON dictionary: {{candidate_dvq: probability}}
+#### NOTE: Remember use '\"' to escape the double quotes in the candidate DVQs. Ensure the sum of probabilities is 1.
+### Original DVQ: 
+# Visualize BAR SELECT basic_conference , SUM(Enrollment) FROM university WHERE established > 1850 GROUP BY basic_conference
 A: Let's think step by step!"""
 
 
 answer_gen_candidate_set="""{
-    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.6,
-    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established >= 1850 GROUP BY basic_conference": 0.3,
-    "Visualize BAR SELECT association , COUNT(*) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.1
+    "Visualize BAR SELECT basic_conference , SUM(Enrollment) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.6,
+    "Visualize BAR SELECT basic_conference , SUM(Enrollment) FROM university WHERE established >= 1850 GROUP BY basic_conference": 0.3,
+    "Visualize BAR SELECT basic_conference , SUM(registration) FROM university WHERE established > 1850 GROUP BY basic_conference": 0.1
 }"""
 
 
@@ -58,7 +58,6 @@ ask_gen_prob = """### Database Schemas:
 # "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.1
 
 #### Given a set of database schemas, a natural language question (NLQ), and a list of candidate Data Visualization Queries (DVQs) with their associated probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
-
 # Step-by-step Instructions:
 # 1. Content Identification per Keyword:
 #   - For each SQL keyword that appears in the DVQs listed above, list all unique content variants found in the DVQs
@@ -78,8 +77,7 @@ ask_gen_prob = """### Database Schemas:
 #   - Example: If SELECT has variants with probabilities [0.70, 0.10], total is 0.80,
 #     the normalized probabilities should be [0.88, 0.12] (rounded to two decimal places)
 
-# Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
-
+#### Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
 A: Let's think step by step!"""
 
 answer_gen_prob="""{

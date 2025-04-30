@@ -24,16 +24,16 @@ DATASET_SCHEMA = './nvBench-Rob/tables.json'
 message = [
    {
       "role":"system",
-      "content":"""You are a helpful data visualization expert that generates possible DVQs through a Natural Language Question (NLQ) based on the given database schemas and natural language annotations."""
-   },
-   {
-      "role":"user",
-      "content":ask_gen_candidate_set
-   },
-   {
-      "role":"assistant",
-      "content":answer_gen_candidate_set
+      "content":"""You are a helpful data visualization expert that generates possible DVQs(a new Programming Language abstracted from Vega-Zero)."""
    }
+#    {
+#       "role":"user",
+#       "content":ask_gen_candidate_set
+#    },
+#    {
+#       "role":"assistant",
+#       "content":answer_gen_candidate_set
+#    }
 ]
 
 
@@ -109,13 +109,13 @@ def prompt_maker(db_id:str, nlq:str, rag_dvqs:list, final_dvq:str):
     prompt = db + "\n\n" + """### Natural Language Question (NLQ): 
 # {}
 
-### Given a database schema, natural language question, and original DVQ, generate a set of candidate DVQs with their probabilities.
-# Rules:
-# 1. MUST include original DVQ as first candidate
-# 2. Only modify content, not structure or keywords
-# 3. Return JSON dictionary: {{candidate_dvq: probability}}
-# 4. Probabilities must sum to 1.0
-
+#### Given a Database Schema, Natural Language Question, and Original Data Visualization Query(DVQ, a new Programming Language abstracted from Vega-Zero), please generate a set of candidate DVQs with their probabilities that you think are correct. 
+# Step-by-step Instructions:
+# 1. Copy the Original DVQ as the first candidate without any modification.
+# 2. Then for each of other candidate DVQs, only modify a content part of the Original DVQ, not structure or keywords.
+# 3. Generate the probability that you think each of the candidate DVQs is correct
+# 4. Return format - JSON dictionary: {{candidate_dvq: probability}}
+#### NOTE: Remember use '\"' to escape the double quotes in the candidate DVQs. Ensure the sum of probabilities is 1. Ensure the first candidate is the original DVQ.
 ### Original DVQ: 
 # {}
 A: Let's think step by step!""".format(nlq, final_dvq)
@@ -178,14 +178,14 @@ if __name__ == '__main__':
             record_name = example['record_name']
             dvq = example['predict_debugged_ref_dvqs']
             rag_dvqs = example['rag_dvqs']
-            final_dvq = example['predict_debugged_db_ann']
+            predict_debugged_db_ann = example['predict_debugged_db_ann']
             ref_dvqs = get_dvqs(rag_dvqs)
 
-            if "  " in final_dvq:
-                final_dvq = final_dvq.replace("  ", " ")
+            if "  " in predict_debugged_db_ann:
+                predict_debugged_db_ann = predict_debugged_db_ann.replace("  ", " ")
             
             if True:
-                prompt = prompt_maker(db_id, nlq, ref_dvqs, final_dvq)
+                prompt = prompt_maker(db_id, nlq, ref_dvqs, predict_debugged_db_ann)
 
                 # print(prompt)
                 # exit()
@@ -210,6 +210,8 @@ if __name__ == '__main__':
                             err_count = 0
                         break
                     except Exception as ex:
+                        print(target)
+                        print(predict_debugged_db_ann)
                         print(reply)
                         print(ex)
                         print("api error, wait for 3s...")
@@ -231,5 +233,5 @@ if __name__ == '__main__':
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
 
-                if index == 19:
-                    exit()
+                # if index == 19:
+                #     exit()
