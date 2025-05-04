@@ -24,7 +24,7 @@ DATASET_SCHEMA = './nvBench-Rob/tables.json'
 message = [
    {
       "role":"system",
-      "content":"""You are a helpful assistant that can generate the content probability of each DVQ keyword in the Possible Data Visualization Query (DVQs) based on the given Database Schemas, Natural Language Question (NLQ) and Possible Data Visualization Query (DVQs)."""
+      "content":"""You are an expert in programming language analysis."""
    },
    {
       "role":"user",
@@ -106,29 +106,43 @@ def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str):
 
     db = generate_schema('browser_web_robust')
     
-    prompt = """
-### Candidate Data Visualization Query (DVQs) with their probabilities: 
+#     prompt = """#### Given the candidate set of Data Visualization Queries (DVQs, a new Programming Language abstracted from Vega-Zero) with their corresponding probabilities, please compute the probability mass function (PMF) of the contents under each DVQ keyword (e.g., VISUALIZE, SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
+# # Step-by-step Instructions:
+# # 1. Content Identification per Keyword:
+# #   - For each DVQ keyword that appears in DVQs, list all unique content variants found in DVQs.
+# #   - For each keyword, if a content appears in multiple DVQs, sum the probabilities of all DVQs in which it appears.
+# #   - If a keyword is not present in given DVQs, treat its content as "None" with the corresponding probability sum of those DVQs.
+# # 2. Output Format:
+# #   - Return the result as a JSON-formatted nested dictionary:
+# #     - Outer keys: DVQ keywords (excluding ones that are completely missing across all DVQs)
+# #     - Inner keys: Content strings corresponding to each keyword
+# #     - Inner values: Their associated probabilities (rounded to two decimal places)
+# #### Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string.
+# ### Candidate Data Visualization Query (DVQs) with their probabilities: 
+# {}
+# A: Let's think step by step!""".format(nlq, predict_dvq_set)
+    prompt = """### Given a set of candidate DVQs and their corresponding probabilities, please extract the contents associated with each DVQ keyword (e.g., VISUALIZE, SELECT, JOIN, WHERE, GROUP BY, etc.) from the DVQs and compute the probability mass function (PMF) for each keyword's content.
+
+### The calculation of the PMF: 
+# For each DVQ keyword that appears in candidate DVQs:
+# 1 - Extract the content associated with the keyword from each candidate DVQ.
+# 2 - If candidate DVQs do not contain the keyword, record the content as "None".
+# 3 - Group identical contents together under the same keyword.
+# 4 - Sum the probabilities of all candidates that contain each unique content.
+#### Note: 
+# 1. Ensure that the sum of probabilities of the contents for each keyword equals 1.0. Use double quotes for all strings in the JSON. 
+# 2. Return the result in JSON format: each key is a DVQ keyword, and the value is a dictionary of contents and their normalized PMF values. Like this:
+# {{
+#     "Visualize": {{
+#         "BAR": 1.00
+#     }},
+#     "SELECT": {{
+#         "name , identification": 1.00,
+#     }},
+# }}
+### Here is the candidate DVQs with their probabilities: 
 {}
-#### Given the candidate set of Data Visualization Queries (DVQs) with their corresponding probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
-
-# Step-by-step Instructions:
-# 1. Content Identification per Keyword:
-#   - For each SQL keyword that appears in the DVQs listed above, list all unique content variants found in the DVQs
-#   - For each keyword, if a content appears in multiple DVQs, sum the probabilities of all DVQs in which it appears
-#   - If a keyword is not present in given DVQs, treat its content as "None" with the corresponding probability sum of those DVQs
-# 2. Normalization:
-#   - For each SQL keyword, ensure the sum of probabilities of all its variants equals 1.0
-#   - Round each probability to two decimal places
-# 3. Output Format:
-#   Return the result as a JSON-formatted nested dictionary:
-#   - Outer keys: SQL keywords (excluding ones that are completely missing across all DVQs)
-#   - Inner keys: Content strings corresponding to each keyword
-#   - Inner values: Their associated probabilities (rounded to two decimal places)
-
-# Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
-
-A: Let's think step by step!""".format(nlq, predict_dvq_set)
-
+A: Let's think step by step!""".format(predict_dvq_set)
     return prompt
 
 def generate_reply(messages, n=1, flag="vql"):
@@ -156,10 +170,11 @@ def generate_reply(messages, n=1, flag="vql"):
     return all_p_vqls
 
 def get_dvqs(dvqs:list):
-    prompt = ""
+    prompt = "{\n"
     for i, (k, v) in enumerate(dvqs.items()):
         k = k.replace(" ) ", ") ")
-        prompt += f"# " + k + " : " + str(v) + "\n"
+        prompt += k + " : " + str(v) + "\n"
+    prompt += "}"
     return prompt
 
 
@@ -236,5 +251,5 @@ if __name__ == '__main__':
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
 
-                # if index == 19:
-                #     exit()
+                if index == 19:
+                    exit()

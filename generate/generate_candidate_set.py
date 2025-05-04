@@ -113,7 +113,7 @@ def prompt_maker(db_id:str, nlq:str, rag_dvqs:list, final_dvq:str):
 # Step-by-step Instructions:
 # 1. Copy the Original DVQ as the first candidate without any modification.
 # 2. Then for each of other candidate DVQs, only modify a content part of the Original DVQ, not structure or keywords.
-# 3. Generate the probability that you think each of the candidate DVQs is correct
+# 3. Generate the probability that you think each of the candidate DVQs is correct.
 # 4. Return format - JSON dictionary: {{candidate_dvq: probability}}
 #### NOTE: Remember use '\"' to escape the double quotes in the candidate DVQs. Ensure the sum of probabilities is 1. Ensure the first candidate is the original DVQ.
 ### Original DVQ: 

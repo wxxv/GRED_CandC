@@ -42,42 +42,32 @@ answer_gen_candidate_set="""{
 
 
 
-ask_gen_prob = """### Database Schemas:
-# Table Web_client_accelerator, columns = [ * , identification , name , Operating_system , user , link ]
-# Table accelerator_compatible_browser, columns = [ * , accelerator_identification , browser_identification , compatible_since_year ]
-# Table browser, columns = [ * , identification , name , market_share ]
-# Foreign_keys = [ accelerator_compatible_browser.browser_identification = browser.identification , accelerator_compatible_browser.accelerator_identification = Web_client_accelerator.identification ]
+ask_gen_prob = """### Given a set of candidate DVQs and their corresponding probabilities, please extract the contents associated with each DVQ keyword (e.g., VISUALIZE, SELECT, JOIN, WHERE, GROUP BY, etc.) from the DVQs and compute the probability mass function (PMF) for each keyword's content.
 
-### Natural Language Question (NLQ): 
-# Present a bar graph representing the IDs and names of web accelerators that are compatible with two or more browsers, and kindly sort the y-axis in ascending order.
-
-### Possible Data Visualization Query (DVQs) with their probabilities: 
-# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC" : 0.4,
-# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC" : 0.3,
-# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.2,
-# "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.1
-
-#### Given a set of database schemas, a natural language question (NLQ), and a list of candidate Data Visualization Queries (DVQs) with their associated probabilities, please compute the probability mass function (PMF) of the contents under each SQL keyword (e.g., SELECT, JOIN, WHERE) by treating the contents as discrete random variables.
-# Step-by-step Instructions:
-# 1. Content Identification per Keyword:
-#   - For each SQL keyword that appears in the DVQs listed above, list all unique content variants found in the DVQs
-#   - For each keyword, if a content appears in multiple DVQs, sum the probabilities of all DVQs in which it appears
-#   - If a keyword is not present in given DVQs, treat its content as "None" with the corresponding probability sum of those DVQs
-# 2. Normalization:
-#   - For each SQL keyword, calculate the total probability of all its variants
-#   - If the total is not 1.0, normalize by dividing each variant's probability by the total
-#   - Round each probability to two decimal places
-#   - Verify that the sum of probabilities for each keyword equals 1.0
-# 3. Output Format:
-#   Return the result as a JSON-formatted nested dictionary:
-#   - Outer keys: SQL keywords (excluding ones that are completely missing across all DVQs)
-#   - Inner keys: Content strings corresponding to each keyword
-#   - Inner values: Their associated probabilities (rounded to two decimal places)
-#   - Note: The sum of probabilities for each keyword must equal 1.0
-#   - Example: If SELECT has variants with probabilities [0.70, 0.10], total is 0.80,
-#     the normalized probabilities should be [0.88, 0.12] (rounded to two decimal places)
-
-#### Note: Verify that the sum of probabilities of the contents for each keyword equals 1. When indicating that a field is not empty, you should also use the form "!= \\"null\\"", use the double quotes instead of the single quotes to indicate the string
+### The calculation of the PMF: 
+# For each DVQ keyword that appears in candidate DVQs:
+# 1 - Extract the content associated with the keyword from each candidate DVQ.
+# 2 - If candidate DVQs do not contain the keyword, record the content as "None".
+# 3 - Group identical contents together under the same keyword.
+# 4 - Sum the probabilities of all candidates that contain each unique content.
+#### Note: 
+# 1. Ensure that the sum of probabilities of the contents for each keyword equals 1.0. Use double quotes for all strings in the JSON. 
+# 2. Return the result in JSON format: each key is a DVQ keyword, and the value is a dictionary of contents and their normalized PMF values. Like this:
+# {{
+#     "Visualize": {{
+#         "BAR": 1.00
+#     }},
+#     "SELECT": {{
+#         "name , identification": 1.00,
+#     }},
+# }}
+### Here is the candidate DVQs with their probabilities: 
+{
+"Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC" : 0.4,
+"Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC" : 0.3,
+"Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.2,
+"Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC" : 0.1
+}
 A: Let's think step by step!"""
 
 answer_gen_prob="""{
