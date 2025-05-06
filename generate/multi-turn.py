@@ -219,7 +219,7 @@ def get_answer(question, db_id, nlq, target):
         },
         {
             "role": "user",
-            "content": f"""Given the Database Schema, the Natural Language Question(NLQ) and :
+            "content": f"""Given the Database Schema, the Natural Language Question(NLQ):
 
 {generate_schema(db_id)}
 
@@ -231,7 +231,7 @@ def get_answer(question, db_id, nlq, target):
 # {target}
 ### Follow-up Question:
 # "{question}"
-#### Note: Please answer the follow-up question by strictly referring to the Correct DVQ above. Your answer should only contain information that is explicitly present in the Correct DVQ. If the Correct DVQ doesn't contain information needed to answer the question, state that clearly.
+#### Note: Please answer the follow-up question by strictly referring to the Correct DVQ above. Your answer should only contain information that is explicitly present in the Correct DVQ. If the Correct DVQ doesn't contain information needed to answer the question, state that clearly. Remember, do not mention the details of the Correct DVQ in your description.
 A: Let's think step by step!"""
         }
     ]
@@ -372,9 +372,11 @@ if __name__ == "__main__":
 
                         final_dvq = select_correct_dvq(messages_multi_turn)
                         if final_dvq.startswith("A: "):
-                            final_dvq = "Visualize " + final_dvq.split("A: ")[1]
+                            final_dvq = "Visualize " + final_dvq.split("A: ")[-1]
+                            final_dvq = "Visualize " + final_dvq.split("Visualize ")[-1]
                         else:
                             final_dvq = "Visualize " + final_dvq.split("Visualize ")[1]
+                        
                         # print(final_dvq)
                         # exit()
                         # print("-"*100)
@@ -394,9 +396,8 @@ if __name__ == "__main__":
                 data_new.append(example_new)
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
-                # exit()
-                # if index == 19:
-                #     exit()
+
+
             else:
                 example_new = example.copy()
                 example_new['generated_question'] = ""
@@ -405,5 +406,7 @@ if __name__ == "__main__":
                 data_new.append(example_new)
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
+            # if index == 19:
+            #     exit()
 
         

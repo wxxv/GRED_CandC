@@ -30,5 +30,6 @@
 # b = 0.35*entropy_calculation([0.5, 0.5])
 # print(b)
 
-a = "LINE SELECT Openning_year, COUNT(Cinema_Identification) FROM cinema GROUP BY Openning_year ORDER BY Openning_year ASC;"
-print(a.split(": ")[0])
+
+a = "Visualize Visualize LINE SELECT Openning_year, COUNT(Cinema_Identification) FROM cinema GROUP BY Openning_year ORDER BY Openning_year ASC;"
+print(a.split("Visualize "))
