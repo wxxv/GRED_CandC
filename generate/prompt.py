@@ -8,11 +8,11 @@ ask_gen_candidate_set = """### Database Schemas:
 
 #### Given a Database Schema, Natural Language Question, and Original Data Visualization Query(DVQ, a new Programming Language abstracted from Vega-Zero), please generate a set of candidate DVQs with their probabilities that you think are correct. 
 # Step-by-step Instructions:
-# 1. Copy the Original DVQ as the first candidate.
+# 1. Copy the Original DVQ as the first candidate without any modification.
 # 2. Then for each of other candidate DVQs, only modify a content part of the Original DVQ, not structure or keywords.
-# 3. Generate the probability that you think each of the candidate DVQs is correct
+# 3. Generate the probability that you think each of the candidate DVQs is correct.
 # 4. Return format - JSON dictionary: {{candidate_dvq: probability}}
-#### NOTE: Remember use '\"' to escape the double quotes in the candidate DVQs. Ensure the sum of probabilities is 1.
+#### NOTE: Remember use '\"' to escape the double quotes in the candidate DVQs. Ensure the sum of probabilities is 1. Ensure the first candidate is the original DVQ.
 ### Original DVQ: 
 # Visualize BAR SELECT basic_conference , SUM(Enrollment) FROM university WHERE established > 1850 GROUP BY basic_conference
 A: Let's think step by step!"""
@@ -128,15 +128,13 @@ ask_gen_question = """### Database Schemas:
 ### Natural Language Question (NLQ): 
 # Present a bar graph representing the IDs and names of web accelerators that are compatible with two or more browsers, and kindly sort the y-axis in ascending order.
 
-### Possible Data Visualization Query (DVQs) with their probabilities:
-{
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC": 0.4,
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC": 0.3,
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.2,
-    "Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC": 0.1
-}
+### Candidate Data Visualization Queries (DVQs, a new Programming Language abstracted from Vega-Zero):
+1 - Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification ORDER BY T1.identification ASC
+2 - Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification GROUP BY name, identification ORDER BY identification ASC
+3 - Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification HAVING COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC
+4 - Visualize BAR SELECT name , identification FROM Web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_identification = T1.identification WHERE COUNT(DISTINCT T2.browser_identification) >= 2 ORDER BY identification ASC
 
-### Uncertain Data Visualization Query Information: 
+### Uncertain DVQ Information: 
 {
     "Visualize": {
         "BAR": 1.00
@@ -168,6 +166,6 @@ ask_gen_question = """### Database Schemas:
     }
 }
 
-### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate clear and concise questions you want to ask based on the content of "ORDER BY" of the Uncertain Data Visualization Query Information."""
+### Given Database Schemas, a Natural Language Question (NLQ), Candidate DVQs and the Uncertain DVQ Information, please generate a clear and concise questions you want to ask based on the content of "ORDER BY" of the Uncertain DVQ Information."""
 
 answer_gen_question = """Would you like the web accelerators to be sorted by their IDs in ascending or descending order on the y-axis? Also, would you prefer to prefix the column names in the ORDER BY clause with their table aliases?"""

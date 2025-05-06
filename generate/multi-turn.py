@@ -7,6 +7,12 @@ from tqdm import tqdm
 from prompt import ask_gen_question, answer_gen_question
 import pandas as pd
 import math
+import sys
+import os
+
+# Add the project root to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from src.trainer.sql_accuracy import to_VQL
 
 # 初始化OpenAI客户端
 client = OpenAI(
@@ -20,21 +26,6 @@ data_path = "./nvBench-Rob/{}/result_multi-turn/{}_result_gen_candidate_set_with
 result_save_path = "./nvBench-Rob/{}/result_multi-turn/{}_result_multi-turn_gpt4o.json"
 DATASET_SCHEMA = './nvBench-Rob/tables.json'
 
-# System messages for different models
-message = [
-    {
-        "role": "system",
-        "content": """You are a helpful assistant that can generate a question based on uncertain information."""
-    },
-    {
-        "role": "user",
-        "content": ask_gen_question
-    },
-    {
-        "role": "assistant",
-        "content": answer_gen_question
-    }
-]
 
 def creating_schema(DATASET_JSON):
     schema_df = pd.read_json(DATASET_JSON)
@@ -96,32 +87,34 @@ def generate_schema(db_name:str):
   schema = "### Database Schemas:\n" + find_fields_MYSQL_like(db_name) + find_foreign_keys_MYSQL_like(db_name)
   return schema
 
-def prompt_maker(db_id:str, nlq:str, predict_dvq_set:str, content_prob:str, keyword:str):
+def prompt_maker_gen_question(db_id:str, nlq:str, candidate_dvqs:str, content_prob:str, keyword:str, binary_keywords:list, max_score:float):
     with open(db_ann_file_path, 'r') as f:
         db_ann = json.load(f)
     db_ann = db_ann[db_id]
-
-    db = generate_schema('browser_web_robust')
+    db = generate_schema(db_id)
+    if max_score > 0:
+        sub_prompt = f"""Given Database Schemas, a Natural Language Question (NLQ), Candidate DVQs, please generate a clear and concise question you want to ask based on the content of \"{keyword}\" of the Uncertain DVQ Information."""
+    else:
+        sub_prompt = f"""Given Database Schemas, a Natural Language Question (NLQ), Candidate DVQs, please generate a clear and concise question you want to ask whether the \"{binary_keywords}\" is necessary in DVQ when answer the NLQ."""
     
     prompt = db + "\n\n" + """### Natural Language Question (NLQ): 
 # {}
 
-### Possible Data Visualization Query (DVQs):
+### Candidate Data Visualization Queries (DVQs, a new Programming Language abstracted from Vega-Zero):
 {}
-### Uncertain Data Visualization Query Information: 
-{}
-
-### Given Database Schemas, a Natural Language Question (NLQ), Possible Data Visualization Query (DVQs) and the Uncertain Data Visualization Query Information, please generate a clear and concise questions you want to ask based on the content of \"{}\" of the Uncertain Data Visualization Query Information.""".format(nlq, predict_dvq_set, content_prob, keyword)
+#### {}
+### Uncertain DVQ Information: 
+{}""".format(nlq, predict_dvq_set, sub_prompt, content_prob)
     return prompt
 
 
-def prompt_maker_initial(db_id:str, nlq:str):
+def prompt_maker_multi_turn(db_id:str, nlq:str):
 
     prompt="""#### Given Natural Language Questions, Generate DVQs based on correspoding Database Schemas.
 
 """
     prompt += """{}
-#
+
 ### Chart Type: [ BAR , PIE , LINE , SCATTER ]
 ### Natural Language Question:
 # "{}"
@@ -130,7 +123,7 @@ A: Visualize """.format(generate_schema(db_id), nlq)
     
     return prompt
 
-def generate_reply(messages, n=1, flag="vql"):
+def generate_question(messages, n=1, flag="vql"):
     # print("generate...")
     try:
         completions = client.chat.completions.create(
@@ -144,7 +137,7 @@ def generate_reply(messages, n=1, flag="vql"):
             presence_penalty=-0.0,
         )
     except Exception as ex:
-        print("Exception in generate_reply")
+        print("Exception in generate_question")
         print(f"API error: {ex}")
         print("Waiting for 3s...")
         exit()
@@ -189,10 +182,16 @@ def select_keyword(content_prob):
     max_score = -float('inf')
     selected_keyword = None
     
+    # 存储只有两个键值对且包含None的关键词
+    binary_keywords = []
+    
     for keyword, content_dict in content_prob.items():
+        # 检查是否只有两个键值对且包含None
+        if len(content_dict) == 2 and "None" in content_dict:
+            binary_keywords.append(keyword)
+            
         # Calculate probability of content not being None
         non_none_prob = 1 - content_dict.get("None", 0)
-        
         # Get probabilities of non-None contents
         non_none_probs = [prob for content, prob in content_dict.items() if content != "None"]
         
@@ -209,29 +208,30 @@ def select_keyword(content_prob):
                 max_score = score
                 selected_keyword = keyword
     
-    return selected_keyword
+    return selected_keyword, binary_keywords, max_score
 
 def get_answer(question, db_id, nlq, target):
     """Get answer from the ground truth model."""
     messages = [
         {
             "role": "system",
-            "content": """You are a helpful assistant that can answer the questions based on the content of the Data Visualization Query."""
+            "content": """You are an expert in data visualization."""
         },
         {
             "role": "user",
-            "content": f"""Given the Database Schema, the Natural Language Question and its Ground Truth (Correct Data Visualization Query):
+            "content": f"""Given the Database Schema, the Natural Language Question(NLQ) and :
 
 {generate_schema(db_id)}
 
-### Natural Language Question:
+### NLQ:
 # "{nlq}"
 
-### Suppose you can access the Ground Truth (Correct Data Visualization Query) to the Natural Language Question. Please reply to the Follow-up Questions according to the Ground Truth.
-### Ground Truth (Correct Data Visualization Query): 
+#### Suppose you can access the Correct Data Visualization Query(DVQ, a new Programming Language abstracted from Vega-Zero) of the NLQ. Please reply to the Follow-up Questions referring to the Correct DVQ.
+### Correct DVQ: 
 # {target}
-# Follow-up Question:
+### Follow-up Question:
 # "{question}"
+#### Note: Please answer the follow-up question by strictly referring to the Correct DVQ above. Your answer should only contain information that is explicitly present in the Correct DVQ. If the Correct DVQ doesn't contain information needed to answer the question, state that clearly.
 A: Let's think step by step!"""
         }
     ]
@@ -254,7 +254,7 @@ A: Let's think step by step!"""
             exit()
             time.sleep(3)
 
-def select_correct_dvq(messages, question, answer, predict_dvq_set):
+def select_correct_dvq(messages):
     """Select the correct DVQ based on the ground truth answer."""
 
     while True:
@@ -302,62 +302,81 @@ if __name__ == "__main__":
             debugged_db_ann_dvq = example['predict_debugged_db_ann']
             predict_dvq_set = example['predict_dvq_set']
             content_prob = example['content_prob']
-            possible_dvqs = get_dvqs(predict_dvq_set)
+            candidate_dvqs = get_dvqs(predict_dvq_set)
 
-            keyword = select_keyword(content_prob)
-            if True:
-                prompt = prompt_maker(db_id, nlq, possible_dvqs, content_prob, keyword)
-                messages = message.copy()
-                messages.append(
-                    {
-                        "role":"user",
-                        "content":prompt
-                    }
-                )
-
-                prompt_initial = prompt_maker_initial(db_id, nlq)
-                messages_initial = [
+            debugged_db_ann_dvq_dict = to_VQL(debugged_db_ann_dvq)
+            target_dict = to_VQL(target)
+            if debugged_db_ann_dvq_dict != target_dict:
+                keyword, binary_keywords, max_score = select_keyword(content_prob)
+                prompt_multi_turn = prompt_maker_multi_turn(db_id, nlq)
+                messages_multi_turn = [
                     {
                         "role":"system",
                         "content":"You are a data visualization expert."
                     },
                     {
                         "role":"user",
-                        "content":prompt_initial
+                        "content":prompt_multi_turn
                     },
                     {
                         "role":"assistant",
-                        "content":debugged_db_ann_dvq + "\n\n" + "But I also have some other possible DVQs:\n" + possible_dvqs
+                        "content":debugged_db_ann_dvq + "\n\n" + "But I also have some other uncertain DVQs that may be correct:\n" + candidate_dvqs
                     }
                 ]
 
+                messages_gen_question = [
+                    {
+                        "role": "system",
+                        "content": """You are a helpful assistant that can generate a question based on uncertain information."""
+                    },
+                    {
+                        "role": "user",
+                        "content": ask_gen_question
+                    },
+                    {
+                        "role": "assistant",
+                        "content": answer_gen_question
+                    }
+                ]
+                prompt_gen_question = prompt_maker_gen_question(db_id, nlq, candidate_dvqs, content_prob, keyword, binary_keywords, max_score)
+                messages_gen_question.append(
+                    {
+                        "role":"user",
+                        "content": prompt_gen_question
+                    }
+                )
 
                 while True:
                     try:
-                        question = generate_reply(messages, 1, "nlq")
+                        question = generate_question(messages_gen_question, 1, "nlq")
                         # print(f"Generated question: {question}")
                         # print("-"*100)
-                        messages_initial[-1]['content'] += "\nTo avoid the confusion of the content. " + question
-                        
+                        messages_multi_turn[-1]['content'] += "\nTo avoid the confusion of the content. " + question
+
                         answer = get_answer(question, db_id, nlq, target)
                         # print(f"Answer: {answer}")
                         # print("-"*100)
-                        messages_initial.append(
+
+                        messages_multi_turn.append(
                             {
                                 "role":"user",
                                 "content":answer + "\n\n" + """According to the above history conversation, please reply only the most appropriate DVQ from the Possible DVQs.
-A: Let's think step by step!"""
+                                A: Let's think step by step!"""
                             }
                         )
 
-                        # for i in messages_initial:
+                        # for i in messages_multi_turn:
                         #     print(i['role'])
                         #     print(i['content'])
                         #     print("-"*100)
-                        
 
-                        final_dvq = select_correct_dvq(messages_initial, question, answer, possible_dvqs)
-                        final_dvq = "Visualize " + final_dvq.split("Visualize ")[1]
+                        final_dvq = select_correct_dvq(messages_multi_turn)
+                        if final_dvq.startswith("A: "):
+                            final_dvq = "Visualize " + final_dvq.split("A: ")[1]
+                        else:
+                            final_dvq = "Visualize " + final_dvq.split("Visualize ")[1]
+                        # print(final_dvq)
+                        # exit()
                         # print("-"*100)
                         break
                     except Exception as ex:
@@ -378,5 +397,13 @@ A: Let's think step by step!"""
                 # exit()
                 # if index == 19:
                 #     exit()
+            else:
+                example_new = example.copy()
+                example_new['generated_question'] = ""
+                example_new['answer'] = ""
+                example_new['final_dvq'] = debugged_db_ann_dvq
+                data_new.append(example_new)
+                with open(result_save_path.format(mode, mode), 'w') as f:
+                    json.dump(data_new, f, indent=4)
 
         

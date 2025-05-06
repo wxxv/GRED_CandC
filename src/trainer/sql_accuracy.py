@@ -48,15 +48,15 @@ def tree_accuracy(preds, targets, final_dvq):
         pred_dict = to_VQL(pred)
         target_dict = to_VQL(target)
         final_dvq_dict = to_VQL(final_dvq[idx])
-        print(pred)
-        print(target)
-        print(final_dvq[idx]
-        if final_dvq_dict == target_dict:
-            print("1"*50)
+        # print(target)
+        # print(pred)
+        # print(final_dvq[idx])
+        # if final_dvq_dict == target_dict:
+        #     print("m"*50)
         if pred_dict == target_dict:
             num_tree += 1
-            print("2"*50)
-        print("-"*50)
+        #     print("p"*50)
+        # print("-"*50)
         # else:
         #     print("pred:\t{}".format(pred))
         #     print("tgt:\t{}\n".format(target))
