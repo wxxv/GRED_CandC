@@ -16,10 +16,10 @@ client = OpenAI(
         api_key='sk-dBlXWGiSrbjB6RO9AcMSFfjGhS6O5unK1TWs0ul2tD6g2WT8',
     )
 
-db_ann_file_path = "./nvBench-Rob/database_anno.json"
-data_path = "./nvBench-Rob/{}/result_multi-turn/{}_result_gen_candidate_set_gpt4o.json"
-result_save_path = "./nvBench-Rob/{}/result_multi-turn/{}_result_gen_candidate_set_with_content_prob_gpt4o.json"
-DATASET_SCHEMA = './nvBench-Rob/tables.json'
+db_ann_file_path = "../nvBench-Rob/database_anno.json"
+data_path = "../nvBench-Rob/{}/result_multi-turn/{}_result_gen_candidate_set_gpt4o.json"
+result_save_path = "../nvBench-Rob/{}/result_multi-turn/{}_result_gen_candidate_set_with_content_prob_gpt4o.json"
+DATASET_SCHEMA = '../nvBench-Rob/tables.json'
 
 message = [
    {
@@ -180,7 +180,7 @@ def get_dvqs(dvqs:list):
 
 if __name__ == '__main__':
     # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
-    for mode in ['dev_nlq_schema']:
+    for mode in ['dev_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 
@@ -236,7 +236,7 @@ if __name__ == '__main__':
                         break
 
                     except Exception as ex:
-                        print(reply)
+                        print(content_prob)
                         print(ex)
                         print("api error, wait for 3s...")
                         time.sleep(3)
