@@ -231,7 +231,7 @@ def get_answer(question, db_id, nlq, target):
 # {target}
 ### Follow-up Question:
 # "{question}"
-#### Note: Please answer the follow-up question by strictly referring to the Correct DVQ above. Your answer should only contain information that is explicitly present in the Correct DVQ. If the Correct DVQ doesn't contain information needed to answer the question, state that clearly. Remember, do not mention the details of the Correct DVQ in your description.
+#### Note: Please answer the follow-up question by strictly referring to the Correct DVQ above but only return the conclusion without using "Correct DVQ" as subject. Your answer should only contain information that is explicitly present in the Correct DVQ. If the Correct DVQ doesn't contain information needed to answer the question, state that clearly. Remember, do not mention the details of the Correct DVQ in your description.
 A: Let's think step by step!"""
         }
     ]
