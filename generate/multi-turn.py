@@ -93,7 +93,7 @@ def prompt_maker_gen_question(db_id:str, nlq:str, candidate_dvqs:str, content_pr
     db_ann = db_ann[db_id]
     db = generate_schema(db_id)
     if max_score > 0:
-        sub_prompt = f"""Given Database Schemas, a Natural Language Question (NLQ), Candidate DVQs, please generate a clear and concise question you want to ask based on the content of \"{keyword}\" of the Uncertain DVQ Information."""
+        sub_prompt = f"""Given Database Schemas, a Natural Language Question (NLQ), Candidate DVQs, please generate a clear and concise question you want to ask based on the content of \"{keyword}\" of the Uncertain DVQ Information. Note that do not include any other information of other keywords."""
     else:
         sub_prompt = f"""Given Database Schemas, a Natural Language Question (NLQ), Candidate DVQs, please generate a clear and concise question you want to ask whether the \"{binary_keywords}\" is necessary in DVQ when answer the NLQ."""
     
@@ -277,7 +277,7 @@ def select_correct_dvq(messages):
 
 if __name__ == "__main__":
     # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
-    for mode in ['dev_schema']:
+    for mode in ['dev_nlq_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 
