@@ -179,8 +179,8 @@ def get_dvqs(dvqs:list):
 
 
 if __name__ == '__main__':
-    # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
-    for mode in ['dev_schema']:
+    for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    # for mode in ['dev_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 
@@ -251,5 +251,3 @@ if __name__ == '__main__':
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
 
-                # if index == 19:
-                #     exit()

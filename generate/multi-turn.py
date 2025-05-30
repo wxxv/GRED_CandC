@@ -276,8 +276,8 @@ def select_correct_dvq(messages):
             time.sleep(3)
 
 if __name__ == "__main__":
-    # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
-    for mode in ['dev_nlq_schema']:
+    for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    # for mode in ['dev_nlq_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 
@@ -406,7 +406,6 @@ if __name__ == "__main__":
                 data_new.append(example_new)
                 with open(result_save_path.format(mode, mode), 'w') as f:
                     json.dump(data_new, f, indent=4)
-            # if index == 19:
-            #     exit()
+
 
         
