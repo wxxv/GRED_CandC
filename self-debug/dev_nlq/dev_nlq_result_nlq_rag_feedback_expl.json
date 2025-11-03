@@ -1,0 +1,11 @@
+[
+    {
+        "record_name": "375@y_name@ASC",
+        "db_id": "browser_web",
+        "target": "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id ASC",
+        "nlq": "Present a bar graph representing the IDs and names of web accelerators that are compatible with two or more browsers, and kindly sort the y-axis in ascending order.",
+        "predict_rag_nlq": "Visualize BAR SELECT name , id FROM web_client_accelerator AS T1 JOIN accelerator_compatible_browser AS T2 ON T2.accelerator_id = T1.id ORDER BY id ASC",
+        "feedback": "Executing the above DV query will return a bar chart with the X-axis representing the names from the \"web_client_accelerator\" table and the Y-axis representing the corresponding IDs. The query joins the \"web_client_accelerator\" table (as T1) with the \"accelerator_compatible_browser\" table (as T2) based on the condition that the \"accelerator_id\" in T2 matches the \"id\" in T1. The results are then sorted in ascending order by the \"id\" column. Therefore, the bar chart will display the names and IDs from the joined tables, sorted by ID in ascending order.",
+        "nlq_expl": "The return type of the question is a bar graph."
+    }
+]
