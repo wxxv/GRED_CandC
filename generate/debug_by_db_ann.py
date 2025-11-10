@@ -17,8 +17,8 @@ client = OpenAI(
     )
 
 db_ann_file_path = "../nvBench-Rob/database_anno.json"
-data_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_debugged_by_ref_dvqs_10_8.json"
-result_save_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_debugged_by_db_ann_10_8.json"
+data_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_debugged_by_ref_dvqs_8_10.json"
+result_save_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_debugged_by_db_ann_8_10.json"
 
 
 ask1 = """### Database Schemas:
@@ -284,7 +284,8 @@ def remove_as(dvq:str):
     return dvq_new
 
 if __name__ == '__main__':
-    for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    for mode in ['dev_nlq_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 

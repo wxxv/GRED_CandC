@@ -16,10 +16,10 @@ client = OpenAI(
 
 DATASET_SCHEMA = '../nvBench-Rob/tables.json'
 db_ann_file_path = "../nvBench-Rob/database_anno.json"
-data_path = "../nvBench-Rob/{}/{}_result_dvq_rag.json"
+data_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_dvq_rag_8.json"
 # result_save_path = "../nvBench-Rob/{}/{}_result_debugged_by_ref_dvqs.json"
 NUM_RAG = 10
-result_save_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_debugged_by_ref_dvqs_10_10.json"
+result_save_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_debugged_by_ref_dvqs_8_10.json"
 
 ask1 = """### Database Schemas:
 # Table countries, columns = [ * , COUNTRY_ID , COUNTRY_NAME , REGION_ID ]
@@ -189,8 +189,8 @@ A: Let’s think step by step! """.format(dvq)
 def generate_reply(messages, n=1):
     # print("generate...")
     completions = client.chat.completions.create(
-        model="gpt-4o-mini",
-        # model="gpt-3.5-turbo-0125",
+        # model="gpt-4o-mini",
+        model="gpt-3.5-turbo-0125",
         messages=messages,
         n = n,
         stream = False,
@@ -244,7 +244,8 @@ def remove_having(text:str):
     return " ".join(text)
 
 if __name__ == '__main__':
-    for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    for mode in ['dev_nlq_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 

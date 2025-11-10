@@ -1,0 +1,2348 @@
+[
+    {
+        "record_name": "690@x_name@ASC",
+        "db_id": "concert_singer_robust",
+        "target": "Visualize BAR SELECT Country , count(*) FROM singer GROUP BY Country ORDER BY Country ASC",
+        "nlq": "Display a bar chart depicting all countries and the respective count of singers in each country. Please ensure that the chart is sorted in ascending order according to the X-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Country , COUNT(*) FROM singer GROUP BY Country ORDER BY Country ASC": 0.6,
+            "Visualize BAR SELECT Country , COUNT(*) FROM singer GROUP BY Country ORDER BY COUNT(*) ASC": 0.3,
+            "Visualize BAR SELECT Country , COUNT(*) FROM singer GROUP BY Country ORDER BY COUNT(*) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "3",
+            "1",
+            "3",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2439@x_name@DESC",
+        "db_id": "music_4_robust",
+        "target": "Visualize BAR SELECT Category , COUNT(Category) FROM Music_Festival WHERE Result = \"Awarded\" GROUP BY Category ORDER BY Category DESC",
+        "nlq": "Provide the count of music festival categories that have been given the result \"Awarded,\" displayed in descending order on the x-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Category , COUNT(Category) FROM music_festival WHERE Result = \"Awarded\" GROUP BY Category ORDER BY Category DESC": 0.6,
+            "Visualize BAR SELECT Category , COUNT(Category) FROM music_festival WHERE Result = \"Awarded\" GROUP BY Category ORDER BY Category ASC": 0.2,
+            "Visualize BAR SELECT Category , COUNT(Category) FROM music_festival WHERE Result = \"Awarded\" GROUP BY Category ORDER BY COUNT(Category) DESC": 0.1,
+            "Visualize BAR SELECT Category , COUNT(Category) FROM music_festival WHERE Result = \"Awarded\" GROUP BY Category ORDER BY COUNT(Category) ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2498@y_name@ASC",
+        "db_id": "party_host_robust",
+        "target": "Visualize BAR SELECT First_year , COUNT(First_year) FROM party WHERE PartyTheme = \"Spring\" OR PartyTheme = \"Teqnology\"  ORDER BY COUNT(First_year) ASC BIN First_year BY WEEKDAY",
+        "nlq": "Present the cumulative count of parties in the first year with the themes \"Spring\" or \"Technology\" in a bar graph. Group the first year into intervals based on weekdays and tally the count. Please arrange the y-axis in ascending order from lowest to highest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT First_year , COUNT(First_year) FROM party WHERE PartyTheme = \"Spring\" OR PartyTheme = \"Technology\" GROUP BY First_year ORDER BY COUNT(First_year) ASC BIN First_year BY WEEKDAY": 0.6,
+            "Visualize BAR SELECT First_year , COUNT(First_year) FROM party WHERE PartyTheme = \"Spring\" OR PartyTheme = \"Technology\" GROUP BY First_year ORDER BY COUNT(First_year) DESC BIN First_year BY WEEKDAY": 0.2,
+            "Visualize BAR SELECT First_year , COUNT(First_year) FROM party WHERE PartyTheme = \"Spring\" OR PartyTheme = \"Technology\" GROUP BY First_year ORDER BY First_year ASC BIN First_year BY WEEKDAY": 0.1,
+            "Visualize BAR SELECT First_year , COUNT(First_year) FROM party WHERE PartyTheme = \"Spring\" OR PartyTheme = \"Technology\" GROUP BY First_year ORDER BY First_year DESC BIN First_year BY WEEKDAY": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2423@y_name@DESC",
+        "db_id": "music_1_robust",
+        "target": "Visualize BAR SELECT languages , avg(rating) FROM song GROUP BY languages ORDER BY avg(rating) DESC",
+        "nlq": "Present a bar chart illustrating the average song rating for each language, and please sort the total number in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT LANGUAGES , AVG(RATING) FROM song GROUP BY LANGUAGES ORDER BY AVG(RATING) DESC": 0.5,
+            "Visualize BAR SELECT LANGUAGES , AVG(RATING) FROM song GROUP BY LANGUAGES ORDER BY AVG(RATING) ASC": 0.3,
+            "Visualize BAR SELECT LANGUAGES , AVG(RATING) FROM song GROUP BY LANGUAGES ORDER BY LANGUAGES DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1607@x_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT JOB_ID , AVG(Dept_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY JOB_ID DESC",
+        "nlq": "For employees whose salary falls within the range of 8000 and 12000 and have a non-null commission or do not belong to department number 40, please provide a comparison of the average department ID across job IDs. Group the data by the job ID attribute and present it using a bar chart, with the x-axis ordered in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT JOB_ID , AVG(Dept_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY AVG(Dept_ID) DESC": 0.5,
+            "Visualize BAR SELECT JOB_ID , AVG(Dept_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY JOB_ID DESC": 0.3,
+            "Visualize BAR SELECT JOB_ID , AVG(Dept_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY JOB_ID ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3266@y_name@ASC",
+        "db_id": "workshop_paper_robust",
+        "target": "Visualize BAR SELECT writer , COUNT(DISTINCT T1.workshop_id) FROM acceptance AS T1 JOIN submission AS T2 ON T1.SubmissionID = T2.SubmissionID ORDER BY COUNT(DISTINCT T1.workshop_id) ASC",
+        "nlq": "Provide a histogram depicting the number of workshops submitted by each author. Present the author's name and the corresponding number of workshops, and arrange the total number in ascending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT writer , COUNT(DISTINCT T1.WorkshopID) FROM Acceptance AS T1 JOIN submission AS T2 ON T1.SubmissionID = T2.SubmissionID ORDER BY COUNT(DISTINCT T1.WorkshopID) ASC": 0.5,
+            "Visualize BAR SELECT writer , COUNT(DISTINCT T1.WorkshopID) FROM Acceptance AS T1 JOIN submission AS T2 ON T1.SubmissionID = T2.SubmissionID ORDER BY COUNT(DISTINCT T1.WorkshopID) DESC": 0.3,
+            "Visualize BAR SELECT writer , COUNT(DISTINCT T1.WorkshopID) FROM Acceptance AS T1 JOIN submission AS T2 ON T1.SubmissionID = T2.SubmissionID ORDER BY writer ASC": 0.1,
+            "Visualize BAR SELECT writer , COUNT(DISTINCT T1.WorkshopID) FROM Acceptance AS T1 JOIN submission AS T2 ON T1.SubmissionID = T2.SubmissionID ORDER BY writer DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "4",
+            "1\n",
+            "1",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "74@x_name@DESC",
+        "db_id": "apartment_rentals_robust",
+        "target": "Visualize BAR SELECT reservation_status_code , COUNT(*) FROM Apartment_Bookings GROUP BY reservation_status_code ORDER BY reservation_status_code DESC",
+        "nlq": "Display the booking status codes and their respective number of bookings in a bar chart, and arrange them in descending order by their names, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT RESERVATION_STATUS_CODE , COUNT(*) FROM Apartment_Bookings GROUP BY RESERVATION_STATUS_CODE ORDER BY RESERVATION_STATUS_CODE DESC": 0.4,
+            "Visualize BAR SELECT RESERVATION_STATUS_CODE , COUNT(*) FROM Apartment_Bookings GROUP BY RESERVATION_STATUS_CODE ORDER BY COUNT(*) DESC": 0.3,
+            "Visualize BAR SELECT RESERVATION_STATUS_CODE , COUNT(*) FROM Apartment_Bookings GROUP BY RESERVATION_STATUS_CODE ORDER BY COUNT(*) ASC": 0.2,
+            "Visualize BAR SELECT RESERVATION_STATUS_CODE , COUNT(*) FROM Apartment_Bookings GROUP BY RESERVATION_STATUS_CODE ORDER BY RESERVATION_STATUS_CODE ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2 ",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "744@y_name@ASC",
+        "db_id": "cre_Doc_Template_Mgt_robust",
+        "target": "Visualize BAR SELECT Template_Type_Code , count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID GROUP BY T1.Template_Type_Code ORDER BY count(*) ASC",
+        "nlq": "A bar chart illustrating the different codes for template types and the corresponding number of documents that utilize each type. Kindly arrange the chart in ascending order along the y-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Template_Type_Code , COUNT(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID GROUP BY T1.Template_Type_Code ORDER BY COUNT(*) ASC": 0.4,
+            "Visualize BAR SELECT Template_Type_Code , COUNT(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID GROUP BY T1.Template_Type_Code ORDER BY COUNT(*) DESC": 0.3,
+            "Visualize BAR SELECT Template_Type_Code , COUNT(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID GROUP BY T1.Template_Type_Code ORDER BY Template_Type_Code ASC": 0.2,
+            "Visualize BAR SELECT Template_Type_Code , COUNT(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.Template_ID = T2.Template_ID GROUP BY T1.Template_Type_Code ORDER BY Template_Type_Code DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "610",
+        "db_id": "college_2_robust",
+        "target": "Visualize PIE SELECT semester , COUNT(semester) FROM course AS T1 JOIN SECTION AS T2 ON T1.course_id = T2.course_id WHERE T1.department_name = 'Psychology' GROUP BY semester",
+        "nlq": "Represent the total number of courses offered by the Psychology department in each semester using a pie chart.",
+        "predict_dvq_set": {
+            "Visualize PIE SELECT semester , COUNT(semester) FROM course AS T1 JOIN section AS T2 ON T1.course_id = T2.course_id WHERE T1.department_name = 'Psychology' GROUP BY semester": 0.6,
+            "Visualize PIE SELECT semester , COUNT(semester) FROM course AS T1 JOIN section AS T2 ON T1.course_id = T2.course_id WHERE T1.department_name = 'Psychology' AND T2.semester = 'Fall' GROUP BY semester": 0.2,
+            "Visualize PIE SELECT semester , COUNT(semester) FROM course AS T1 JOIN section AS T2 ON T1.course_id = T2.course_id WHERE T1.department_name = 'Psychology' AND T2.semester = 'Spring' GROUP BY semester": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "2",
+            "2",
+            "1",
+            "2",
+            "1",
+            "1",
+            "2 "
+        ]
+    },
+    {
+        "record_name": "2818@x_name@DESC",
+        "db_id": "sports_competition_robust",
+        "target": "Visualize BAR SELECT Location , count(*) FROM player WHERE score < 30 GROUP BY Location ORDER BY Location DESC",
+        "nlq": "What is the count of players with scores below 30 for each position? Plot them as a bar chart, and list them in descending order by name.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Location , COUNT(Location) FROM player WHERE score < 30 GROUP BY Location ORDER BY Location DESC": 0.5,
+            "Visualize BAR SELECT Position , COUNT(Position) FROM player WHERE score < 30 GROUP BY Position ORDER BY Position DESC": 0.3,
+            "Visualize BAR SELECT name , COUNT(name) FROM player WHERE score < 30 GROUP BY name ORDER BY name DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "1",
+            "1",
+            "2",
+            "1",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "907@x_name@DESC",
+        "db_id": "culture_company_robust",
+        "target": "Visualize BAR SELECT Category , count(*) FROM book_club GROUP BY Category ORDER BY Category DESC",
+        "nlq": "Create a bar graph to illustrate the distribution of books across different categories, sorted by category names in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Category , COUNT(*) FROM book_club GROUP BY Category ORDER BY Category DESC": 0.5,
+            "Visualize BAR SELECT Category , COUNT(*) FROM book_club GROUP BY Category ORDER BY COUNT(*) DESC": 0.3,
+            "Visualize BAR SELECT Category , COUNT(*) FROM book_club GROUP BY Category ORDER BY COUNT(*) ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1576",
+        "db_id": "hr_1_robust",
+        "target": "Visualize SCATTER SELECT employee_id , COMMISSION_PCT FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%'",
+        "nlq": "For all employees whose first names contain the letters D or S, create a scatter plot depicting the relationship between employee_id and commission_pct.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT COMMISSION_PCT , employee_id FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%'": 0.6,
+            "Visualize SCATTER SELECT COMMISSION_PCT , employee_id FROM employees WHERE Fname LIKE '%D%' AND Fname LIKE '%S%'": 0.2,
+            "Visualize SCATTER SELECT COMMISSION_PCT , employee_id FROM employees WHERE Fname LIKE '%D%'": 0.1,
+            "Visualize SCATTER SELECT COMMISSION_PCT , employee_id FROM employees WHERE Fname LIKE '%S%'": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "834",
+        "db_id": "cre_Docs_and_Epenses_robust",
+        "target": "Visualize PIE SELECT T1.Budget_Type_Code , COUNT(T1.Budget_Type_Code) FROM Documents_with_expenses AS T1 JOIN Ref_budget_codes AS T2 ON T1.Budget_Type_Code = T2.Budget_Type_Code GROUP BY T1.Budget_Type_Code",
+        "nlq": "Display the quantity of documents for various budget type codes in a pie chart.",
+        "predict_dvq_set": {
+            "Visualize PIE SELECT Budget_Type_Code , COUNT(Budget_Type_Code) FROM Documents_with_Expenses GROUP BY Budget_Type_Code": 0.4,
+            "Visualize PIE SELECT Budget_Type_Code , COUNT(Budget_Type_Code) FROM Documents_with_Expenses WHERE Budget_Type_Code = 'Travel' GROUP BY Budget_Type_Code": 0.3,
+            "Visualize PIE SELECT Budget_Type_Code , COUNT(Budget_Type_Code) FROM Documents_with_Expenses WHERE Budget_Type_Code = 'Training' GROUP BY Budget_Type_Code": 0.2,
+            "Visualize PIE SELECT Budget_Type_Code , COUNT(Budget_Type_Code) FROM Documents_with_Expenses WHERE Budget_Type_Code = 'Supplies' GROUP BY Budget_Type_Code": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1518",
+        "db_id": "gas_company_robust",
+        "target": "Visualize BAR SELECT Headquarters , COUNT(Headquarters) FROM Company GROUP BY Headquarters",
+        "nlq": "Bar chart illustrating the number of headquarters for each individual headquarters.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Headquarters , COUNT(Headquarters) FROM company GROUP BY Headquarters": 0.4,
+            "Visualize BAR SELECT Headquarters , COUNT(*) FROM company GROUP BY Headquarters": 0.3,
+            "Visualize BAR SELECT Headquarters , COUNT(Company) FROM company GROUP BY Headquarters": 0.2,
+            "Visualize BAR SELECT Headquarters , SUM(Headquarters) FROM company GROUP BY Headquarters": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "3144@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT total_neutral , percentage_of_ACC FROM basketball_match ORDER BY total_neutral ASC",
+        "nlq": "A bar chart illustrates the distribution of All_Neutral and ACC_Percent, and arrange them in ascending order on the x-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT total_neutral , percentage_of_ACC FROM basketball_match ORDER BY total_neutral ASC": 0.6,
+            "Visualize BAR SELECT total_neutral , percentage_of_ACC FROM basketball_match ORDER BY percentage_of_ACC ASC": 0.2,
+            "Visualize BAR SELECT total_neutral , percentage_of_ACC FROM basketball_match ORDER BY total_neutral DESC": 0.1,
+            "Visualize BAR SELECT total_neutral , percentage_of_ACC FROM basketball_match ORDER BY percentage_of_ACC DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "2",
+            "1",
+            "1",
+            "2",
+            "2",
+            "1",
+            "2",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1621@x_name@ASC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize LINE SELECT date_of_hire , COMMISSION_PCT FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY date_of_hire ASC",
+        "nlq": "For employees with salaries ranging between 8000 and 12000, and either a non-null commission or a department number not equal to 40, create a line chart illustrating the variation in commission_pct over hire_date. Please arrange the x-axis in ascending order.",
+        "predict_dvq_set": {
+            "LINE SELECT date_of_hire , COMMISSION_PCT FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY date_of_hire ASC": 0.6,
+            "LINE SELECT date_of_hire , COMMISSION_PCT FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40 ORDER BY date_of_hire ASC": 0.3,
+            "LINE SELECT date_of_hire , COMMISSION_PCT FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40) ORDER BY date_of_hire ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1002",
+        "db_id": "customers_and_products_contacts_robust",
+        "target": "Visualize BAR SELECT T1.product_name , AVG(sum(T2.order_quantity)) FROM products AS T1 JOIN order_items AS T2 ON T1.productID = T2.productID GROUP BY T1.product_name",
+        "nlq": "Display the name of the product and the total quantity of orders for each product using a bar chart.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T1.product_name , SUM(SUM(T2.order_quantity) ) FROM Products AS T1 JOIN Order_Items AS T2 ON T1.productID = T2.productID GROUP BY T1.product_name": 0.4,
+            "Visualize BAR SELECT T1.product_name , SUM(T2.order_quantity) FROM Products AS T1 JOIN Order_Items AS T2 ON T1.productID = T2.productID GROUP BY T1.product_name": 0.3,
+            "Visualize BAR SELECT T1.product_name , COUNT(T2.order_quantity) FROM Products AS T1 JOIN Order_Items AS T2 ON T1.productID = T2.productID GROUP BY T1.product_name": 0.2,
+            "Visualize BAR SELECT T1.product_name , AVG(T2.order_quantity) FROM Products AS T1 JOIN Order_Items AS T2 ON T1.productID = T2.productID GROUP BY T1.product_name": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2852",
+        "db_id": "store_1_robust",
+        "target": "Visualize BAR SELECT FName , SUM(T2.total) FROM customers AS T1 JOIN invoices AS T2 ON T2.Customer_id = T1.id GROUP BY T1.id ORDER BY SUM(T2.total) DESC LIMIT 10",
+        "nlq": "Enumerate the ten customers with the highest total gross sales. Contrast the total gross sales of customers based on their first name.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT FName , SUM(total) FROM customers AS T1 JOIN invoices AS T2 ON T1.id = T2.Customer_id GROUP BY FName ORDER BY SUM(total) DESC LIMIT 10": 0.6,
+            "Visualize BAR SELECT FName , SUM(total) FROM customers AS T1 JOIN invoices AS T2 ON T1.id = T2.Customer_id GROUP BY FName ORDER BY SUM(total) ASC LIMIT 10": 0.2,
+            "Visualize BAR SELECT FName , SUM(total) FROM customers AS T1 JOIN invoices AS T2 ON T1.id = T2.Customer_id GROUP BY FName ORDER BY SUM(total) DESC LIMIT 5": 0.1,
+            "Visualize BAR SELECT FName , SUM(total) FROM customers AS T1 JOIN invoices AS T2 ON T1.id = T2.Customer_id GROUP BY FName ORDER BY SUM(total) DESC LIMIT 15": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "1",
+            "3",
+            "3",
+            "3",
+            "3",
+            "1",
+            "3",
+            "3",
+            "3"
+        ]
+    },
+    {
+        "record_name": "443@x_name@DESC",
+        "db_id": "cinema_robust",
+        "target": "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by DESC",
+        "nlq": "What is the film count for each director? Provide a bar graph and arrange the directors on the x-axis in descending order from highest to lowest, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) DESC": 0.5,
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY COUNT(Directed_by) ASC": 0.3,
+            "Visualize BAR SELECT Directed_by , COUNT(Directed_by) FROM film GROUP BY Directed_by ORDER BY Directed_by DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1624@x_name@ASC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT CITY , COUNT(CITY) FROM locations GROUP BY CITY ORDER BY CITY ASC",
+        "nlq": "Create a bar chart illustrating the count of cities per city, with the bars arranged in ascending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT CITY , COUNT(CITY) FROM locations GROUP BY CITY ORDER BY COUNT(CITY) ASC": 0.5,
+            "Visualize BAR SELECT CITY , COUNT(CITY) FROM locations GROUP BY CITY ORDER BY CITY ASC": 0.3,
+            "Visualize BAR SELECT CITY , COUNT(CITY) FROM locations GROUP BY CITY ORDER BY CITY DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2749@y_name@DESC",
+        "db_id": "ship_1_robust",
+        "target": "Visualize BAR SELECT class , COUNT(class) FROM ship WHERE SHIP_ID NOT IN (SELECT SHIP_ID FROM captain) GROUP BY class ORDER BY COUNT(class) DESC",
+        "nlq": "For the ships that do not have a captain, present the total number of their classifications using a pie chart, and arrange them in descending order based on the y-axis, please.",
+        "predict_dvq_set": {
+            "Visualize PIE SELECT class , COUNT(class) FROM Ship WHERE SHIP_ID NOT IN(SELECT SHIP_ID FROM captain) GROUP BY class ORDER BY COUNT(class) DESC": 0.5,
+            "Visualize PIE SELECT category , COUNT(category) FROM Ship WHERE SHIP_ID NOT IN(SELECT SHIP_ID FROM captain) GROUP BY category ORDER BY COUNT(category) DESC": 0.3,
+            "Visualize PIE SELECT Year_of_Built , COUNT(Year_of_Built) FROM Ship WHERE SHIP_ID NOT IN(SELECT SHIP_ID FROM captain) GROUP BY Year_of_Built ORDER BY COUNT(Year_of_Built) DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2055@y_name@ASC",
+        "db_id": "journal_committee_robust",
+        "target": "Visualize BAR SELECT Name , COUNT(Name) FROM editor GROUP BY Name ORDER BY COUNT(Name) ASC",
+        "nlq": "Plot a bar chart with the name of the x-axis as 'Location' and the name of the y-axis as 'Number of Locations', and please sort the data in ascending order based on the y-axis values.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT EditorID , COUNT(EditorID) FROM journal_committee GROUP BY EditorID ORDER BY COUNT(EditorID) ASC": 0.3,
+            "Visualize BAR SELECT Name , COUNT(Name) FROM journal_committee GROUP BY Name ORDER BY COUNT(Name) ASC": 0.2,
+            "Visualize BAR SELECT Work_Type , COUNT(Work_Type) FROM journal_committee GROUP BY Work_Type ORDER BY COUNT(Work_Type) ASC": 0.2,
+            "Visualize BAR SELECT JournalID , COUNT(JournalID) FROM journal_committee GROUP BY JournalID ORDER BY COUNT(JournalID) ASC": 0.3
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "4",
+            "2",
+            "1",
+            "2",
+            "1",
+            "2",
+            "2",
+            "4"
+        ]
+    },
+    {
+        "record_name": "564@x_name@DESC",
+        "db_id": "college_1_robust",
+        "target": "Visualize BAR SELECT DEPARTMENT_CODE , count(*) FROM student GROUP BY DEPARTMENT_CODE ORDER BY DEPARTMENT_CODE DESC",
+        "nlq": "How many students are there in each academic department? Please display the X-axis in descending order from highest to lowest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT DEPARTMENT_CODE , COUNT(*) FROM STUDENT GROUP BY DEPARTMENT_CODE ORDER BY COUNT(*) DESC": 0.6,
+            "Visualize BAR SELECT DEPARTMENT_NAME , COUNT(*) FROM STUDENT GROUP BY DEPARTMENT_CODE ORDER BY COUNT(*) DESC": 0.2,
+            "Visualize BAR SELECT DEPARTMENT_NAME , COUNT(*) FROM STUDENT GROUP BY DEPARTMENT_NAME ORDER BY COUNT(*) DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "160",
+        "db_id": "baseball_1_robust",
+        "target": "Visualize BAR SELECT year , AVG(count(*)) FROM postseason AS T1 JOIN team AS T2 ON T1.team_id_winner = T2.team_id_br WHERE T2.name = 'Boston Red Stockings' BIN year BY WEEKDAY",
+        "nlq": "Provide me with a bar graph that categorizes the years into intervals of days of the week and displays the average number of times the Boston Red Stockings team has won in the postseasons.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT year , AVG(COUNT(*) ) FROM postseason AS T1 JOIN team AS T2 ON T1.team_id_winner = T2.team_id_br WHERE T2.name = 'Boston Red Stockings' BIN year BY WEEKDAY": 0.6,
+            "Visualize BAR SELECT year , AVG(COUNT(*) ) FROM postseason AS T1 JOIN team AS T2 ON T1.team_id_winner = T2.team_id_br WHERE T2.name = 'Boston Red Stockings' BIN year BY MONTH": 0.2,
+            "Visualize BAR SELECT year , AVG(COUNT(*) ) FROM postseason AS T1 JOIN team AS T2 ON T1.team_id_winner = T2.team_id_br WHERE T2.name = 'Boston Red Stockings' BIN year BY QUARTER": 0.1,
+            "Visualize BAR SELECT year , AVG(COUNT(*) ) FROM postseason AS T1 JOIN team AS T2 ON T1.team_id_winner = T2.team_id_br WHERE T2.name = 'Boston Red Stockings' BIN year BY YEAR": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3090@y_name@DESC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_home ,  ACC_Street ORDER BY teamID DESC",
+        "nlq": "Provide me with a comparison of the Team_ID based on the ACC_Road attribute, grouped by the ACC_Home attribute, and display Y in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_Home , ACC_Street ORDER BY teamID DESC": 0.5,
+            "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_Home , ACC_Street ORDER BY ACC_Street DESC": 0.3,
+            "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_Home , ACC_Street ORDER BY ACC_Home DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "3",
+            "2",
+            "3",
+            "3",
+            "2",
+            "1",
+            "3",
+            "1",
+            "3",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1116@y_name@DESC",
+        "db_id": "department_store_robust",
+        "target": "Visualize BAR SELECT product_category_code , max(product_price) FROM products GROUP BY product_category_code ORDER BY max(product_price) DESC",
+        "nlq": "Provide a bar chart illustrating the highest price of each product type, sorted in descending order based on the maximum product price, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT product_category_code , max(product_price) FROM Products GROUP BY product_category_code ORDER BY max(product_price) DESC": 0.4,
+            "Visualize BAR SELECT product_category_code , min(product_price) FROM Products GROUP BY product_category_code ORDER BY min(product_price) DESC": 0.3,
+            "Visualize BAR SELECT product_category_code , avg(product_price) FROM Products GROUP BY product_category_code ORDER BY avg(product_price) DESC": 0.2,
+            "Visualize BAR SELECT product_category_code , sum(product_price) FROM Products GROUP BY product_category_code ORDER BY sum(product_price) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3195@x_name@ASC",
+        "db_id": "voter_1_robust",
+        "target": "Visualize BAR SELECT state , AVG(vote_id) FROM votes GROUP BY state ORDER BY state ASC",
+        "nlq": "In a bar chart, represent the average vote ID on the y-axis, and list the bars in ascending order from lowest to highest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT state , AVG(vote_id) FROM VOTES GROUP BY state ORDER BY AVG(vote_id) ASC": 0.4,
+            "Visualize BAR SELECT state , AVG(vote_id) FROM VOTES GROUP BY state ORDER BY AVG(vote_id) DESC": 0.3,
+            "Visualize BAR SELECT state , AVG(vote_id) FROM VOTES GROUP BY state ORDER BY state ASC": 0.2,
+            "Visualize BAR SELECT state , AVG(vote_id) FROM VOTES GROUP BY state ORDER BY state DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1606@x_name@ASC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT JOB_ID , SUM(Dept_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY JOB_ID ASC",
+        "nlq": "For employees with salaries ranging from 8000 to 12000 and commission not null, or employees whose department number is not equal to 40, visualize a bar chart depicting the distribution of job IDs and the sum of department IDs. Please group the chart by the job ID attribute and sort the bars in ascending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT JOB_ID , SUM(Dept_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY SUM(Dept_ID) ASC": 0.6,
+            "Visualize BAR SELECT JOB_ID , SUM(Dept_ID) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40 GROUP BY JOB_ID ORDER BY SUM(Dept_ID) ASC": 0.3,
+            "Visualize BAR SELECT JOB_ID , SUM(Dept_ID) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY SUM(Dept_ID) ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "824@y_name@DESC",
+        "db_id": "cre_Docs_and_Epenses_robust",
+        "target": "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID ORDER BY T1.ProjectID DESC",
+        "nlq": "Present the IDs and details associated with projects that have more than two documents in a bar chart, arranged from highest to lowest based on the total number.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID ORDER BY T1.Project_information DESC": 0.4,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID GROUP BY T1.ProjectID HAVING COUNT(T2.DocumentID) > 2 ORDER BY COUNT(T2.DocumentID) DESC": 0.3,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID GROUP BY T1.Project_information, T1.ProjectID HAVING COUNT(T2.DocumentID) > 2 ORDER BY COUNT(T2.DocumentID) DESC": 0.3
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "824@y_name@DESC",
+        "db_id": "cre_Docs_and_Epenses_robust",
+        "target": "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID ORDER BY T1.ProjectID DESC",
+        "nlq": "Retrieve the IDs and details corresponding to projects where there are more than two documents. Display the data in a bar chart and arrange it in descending order by the total number.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID ORDER BY T1.ProjectID DESC": 0.4,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID GROUP BY T1.ProjectID HAVING COUNT(*) > 2 ORDER BY COUNT(*) DESC": 0.3,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID GROUP BY T1.ProjectID HAVING COUNT(*) > 2 ORDER BY T1.ProjectID DESC": 0.2,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID GROUP BY T1.ProjectID HAVING COUNT(*) > 2 ORDER BY T1.ProjectID ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "824@y_name@DESC",
+        "db_id": "cre_Docs_and_Epenses_robust",
+        "target": "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID ORDER BY T1.ProjectID DESC",
+        "nlq": "Display a bar chart illustrating the project ID and project details for projects with at least two documents, and arrange them in descending order on the y-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID ORDER BY T1.Project_information DESC": 0.6,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID WHERE COUNT(T2.DocumentID) >= 2 ORDER BY T1.Project_information DESC": 0.3,
+            "Visualize BAR SELECT T1.Project_information , T1.ProjectID FROM Projects AS T1 JOIN Documents AS T2 ON T1.ProjectID = T2.ProjectID GROUP BY T1.Project_information HAVING COUNT(T2.DocumentID) >= 2 ORDER BY T1.Project_information DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2725",
+        "db_id": "scientist_1_robust",
+        "target": "Visualize PIE SELECT name , count(*) FROM projects AS T1 JOIN assignedto AS T2 ON T1.code = T2.Project WHERE T1.hours > 300 GROUP BY T1.name",
+        "nlq": "What are the titles of projects that necessitate more than 300 hours, and the number of scientists assigned to each project?",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT name , COUNT(*) FROM Projects AS T1 JOIN AssignedTo AS T2 ON T1.code = T2.Project WHERE T1.hours > 300 GROUP BY T1.name": 0.4,
+            "Visualize BAR SELECT name , COUNT(*) FROM Projects AS T1 JOIN AssignedTo AS T2 ON T1.code = T2.Project WHERE T1.hours > 200 GROUP BY T1.name": 0.3,
+            "Visualize BAR SELECT name , COUNT(*) FROM Projects AS T1 JOIN AssignedTo AS T2 ON T1.code = T2.Project WHERE T1.hours > 400 GROUP BY T1.name": 0.2,
+            "Visualize BAR SELECT name , COUNT(*) FROM Projects AS T1 JOIN AssignedTo AS T2 ON T1.code = T2.Project WHERE T1.hours > 300 AND T2.Scientist IS NOT NULL GROUP BY T1.name": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "376",
+        "db_id": "candidate_poll_robust",
+        "target": "Visualize BAR SELECT gender , COUNT(gender) FROM people GROUP BY gender",
+        "nlq": "Identify the gender and the respective count of each gender, group the data by the attribute \"gender,\" and represent it visually using a bar graph.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT gender , COUNT(gender) FROM people GROUP BY gender": 0.5,
+            "Visualize BAR SELECT gender , COUNT(*) FROM people GROUP BY gender": 0.3,
+            "Visualize BAR SELECT gender , COUNT(Name) FROM people GROUP BY gender": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2 ",
+            "2",
+            "2",
+            "1",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "3064@y_name@ASC",
+        "db_id": "tvshow_robust",
+        "target": "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC",
+        "nlq": "Find the package options of TV channels that do not include any cartoons directed by Ben Jones, and represent them using a bar chart, ranked in ascending order based on the total number.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC": 0.7,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE authored_by = 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC": 0.2,
+            "Visualize BAR SELECT Package_Option , COUNT(Package_Option) FROM TV_Channel WHERE id NOT IN(SELECT id FROM Cartoon WHERE helmed_by != 'Ben Jones') GROUP BY Package_Option ORDER BY COUNT(Package_Option) ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "3191",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT association , sum(registration) FROM university WHERE established > 1850 GROUP BY association",
+        "nlq": "A bar graph illustrating the various affiliations and the total enrollment of schools established after 1850 for each enrollment category.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT association , SUM(registration) FROM university WHERE established > 1850 GROUP BY association ORDER BY SUM(registration) ASC": 0.5,
+            "Visualize BAR SELECT association , SUM(registration) FROM university WHERE established > 1850 GROUP BY association ORDER BY SUM(registration) DESC": 0.3,
+            "Visualize BAR SELECT association , AVG(registration) FROM university WHERE established > 1850 GROUP BY association ORDER BY AVG(registration) ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1."
+        ]
+    },
+    {
+        "record_name": "466",
+        "db_id": "cinema_robust",
+        "target": "Visualize LINE SELECT Openning_year , COUNT(Openning_year) FROM cinema BIN Openning_year BY YEAR",
+        "nlq": "Plot the opening year against the frequency of opening years as a trend line.",
+        "predict_dvq_set": {
+            "Visualize LINE SELECT Openning_year , COUNT(Openning_year) FROM cinema ORDER BY Openning_year ASC BIN Openning_year BY YEAR": 0.5,
+            "Visualize LINE SELECT Openning_year , COUNT(Openning_year) FROM cinema ORDER BY Openning_year DESC BIN Openning_year BY YEAR": 0.3,
+            "Visualize LINE SELECT Openning_year , COUNT(Openning_year) FROM cinema ORDER BY Openning_year ASC BIN Openning_year BY QUARTER": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "1",
+            "2",
+            "3",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "3"
+        ]
+    },
+    {
+        "record_name": "1345@x_name@DESC",
+        "db_id": "employee_hire_evaluation_robust",
+        "target": "Visualize BAR SELECT ss_full_time , SUM(Shop_ID) FROM hiring GROUP BY ss_full_time ORDER BY ss_full_time DESC",
+        "nlq": "Create a grouped bar chart illustrating the distribution of \"Is_full_time\" and the sum of \"Shop_ID,\" with attribute \"Is_full_time\" as the grouping factor. Please arrange the bars in descending order along the x-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT ss_full_time , SUM(Shop_ID) FROM hiring GROUP BY ss_full_time ORDER BY ss_full_time DESC": 0.3,
+            "Visualize BAR SELECT ss_full_time , SUM(Shop_ID) FROM hiring GROUP BY ss_full_time ORDER BY SUM(Shop_ID) DESC": 0.2,
+            "Visualize BAR SELECT ss_full_time , COUNT(Shop_ID) FROM hiring GROUP BY ss_full_time ORDER BY ss_full_time DESC": 0.3,
+            "Visualize BAR SELECT ss_full_time , COUNT(Shop_ID) FROM hiring GROUP BY ss_full_time ORDER BY COUNT(Shop_ID) DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2459",
+        "db_id": "network_2_robust",
+        "target": "Visualize BAR SELECT job , avg(Age) FROM Person GROUP BY job",
+        "nlq": "Create a bar chart illustrating the average age for various job titles.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT job , AVG(Age) FROM Person GROUP BY job": 0.4,
+            "Visualize BAR SELECT job , AVG(Age) FROM Person GROUP BY city": 0.3,
+            "Visualize BAR SELECT job , AVG(Age) FROM Person GROUP BY sex": 0.2,
+            "Visualize BAR SELECT job , AVG(Age) FROM Person GROUP BY name": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1.",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2862@x_name@DESC",
+        "db_id": "store_product_robust",
+        "target": "Visualize BAR SELECT category , count(*) FROM store GROUP BY category ORDER BY category DESC",
+        "nlq": "Plot the number of stores for each store type in a bar chart, and display them in descending order on the X-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT category , COUNT(*) FROM store GROUP BY category ORDER BY category DESC": 0.3,
+            "Visualize BAR SELECT category , COUNT(*) FROM store GROUP BY category ORDER BY COUNT(*) DESC": 0.2,
+            "Visualize BAR SELECT category , COUNT(*) FROM store GROUP BY category ORDER BY COUNT(*) ASC": 0.2,
+            "Visualize BAR SELECT category , COUNT(*) FROM store GROUP BY category ORDER BY category ASC": 0.3
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "659",
+        "db_id": "college_3_robust",
+        "target": "Visualize BAR SELECT Last_Name , COUNT(Last_Name) FROM STUDENT WHERE gender = \"F\" GROUP BY Last_Name ORDER BY Age DESC",
+        "nlq": "Identify the surnames of female (sex=F) students, sorted in descending order by age, and represent the count using a bar chart.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Last_Name , COUNT(Last_Name) FROM Student WHERE gender = 'F' GROUP BY Last_Name ORDER BY Age DESC": 0.5,
+            "Visualize BAR SELECT Last_Name , COUNT(Last_Name) FROM Student WHERE gender = 'F' GROUP BY Last_Name ORDER BY Age ASC": 0.3,
+            "Visualize BAR SELECT Last_Name , COUNT(Last_Name) FROM Student WHERE gender = 'F' GROUP BY Last_Name ORDER BY Age DESC LIMIT 10": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1 ",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2831@y_name@ASC",
+        "db_id": "station_weather_robust",
+        "target": "Visualize BAR SELECT amenities , COUNT(amenities) FROM station GROUP BY amenities ORDER BY COUNT(amenities) ASC",
+        "nlq": "Enumerate the quantity of services by service type, and present the Y-axis in ascending order from least to greatest, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT amenities , COUNT(amenities) FROM station GROUP BY amenities ORDER BY COUNT(amenities) ASC": 0.5,
+            "Visualize BAR SELECT amenities , COUNT(NetworkName) FROM station GROUP BY amenities ORDER BY COUNT(NetworkName) ASC": 0.3,
+            "Visualize BAR SELECT amenities , COUNT(Local_Authority) FROM station GROUP BY amenities ORDER BY COUNT(Local_Authority) ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "3",
+            "2",
+            "1",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2453@x_name@DESC",
+        "db_id": "network_1_robust",
+        "target": "Visualize BAR SELECT name , AVG(grade) FROM Highschooler GROUP BY name ORDER BY name DESC",
+        "nlq": "Bar chart illustrating the average grade by different titles, and can you arrange them in descending order according to the names, please?",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT name , AVG(grade) FROM Highschooler GROUP BY name ORDER BY name DESC": 0.6,
+            "Visualize BAR SELECT name , AVG(grade) FROM Highschooler GROUP BY name ORDER BY AVG(grade) DESC": 0.3,
+            "Visualize BAR SELECT name , AVG(grade) FROM Highschooler GROUP BY name ORDER BY name ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1587@y_name@ASC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , AVG(Manager_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY AVG(Manager_ID) ASC BIN date_of_hire BY MONTH",
+        "nlq": "For employees whose salary falls within the range of 8000 and 12000, and either have a non-null commission or do not belong to department number 40, please create a bar chart displaying the distribution of hire_date. Bin the hire_date by time intervals and calculate the average of manager_id within each bin. The bars should be ordered in ascending order based on the Y-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , AVG(Manager_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID != 40 ORDER BY AVG(Manager_ID) ASC BIN date_of_hire BY MONTH": 0.5,
+            "Visualize BAR SELECT date_of_hire , AVG(Manager_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT IS NOT NULL AND Dept_ID != 40 ORDER BY AVG(Manager_ID) ASC BIN date_of_hire BY MONTH": 0.3,
+            "Visualize BAR SELECT date_of_hire , AVG(Manager_ID) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID != 40 ORDER BY AVG(Manager_ID) ASC BIN date_of_hire BY MONTH": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "920",
+        "db_id": "customers_and_addresses_robust",
+        "target": "Visualize BAR SELECT active_from_date , COUNT(active_from_date) FROM customers AS t1 JOIN customer_contact_channels AS t2 ON t1.customerID = t2.customerID WHERE t2.channelCode = 'Email' BIN active_from_date BY YEAR",
+        "nlq": "Find the count of customers who utilize email as their contact channel for each year. Represent this information using a bar chart.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT active_from_date , COUNT(active_from_date) FROM customers JOIN Customer_Contact_Channels ON customers.customerID = Customer_Contact_Channels.customerID WHERE Customer_Contact_Channels.channelCode = 'Email' BIN active_from_date BY YEAR": 0.4,
+            "Visualize BAR SELECT active_from_date , COUNT(active_from_date) FROM customers JOIN Customer_Contact_Channels ON customers.customerID = Customer_Contact_Channels.customerID WHERE Customer_Contact_Channels.channelCode = 'Email' BIN active_from_date BY MONTH": 0.3,
+            "Visualize BAR SELECT active_from_date , COUNT(active_from_date) FROM customers JOIN Customer_Contact_Channels ON customers.customerID = Customer_Contact_Channels.customerID WHERE Customer_Contact_Channels.channelCode = 'Email' BIN active_from_date BY QUARTER": 0.2,
+            "Visualize BAR SELECT active_from_date , COUNT(active_from_date) FROM customers JOIN Customer_Contact_Channels ON customers.customerID = Customer_Contact_Channels.customerID WHERE Customer_Contact_Channels.channelCode = 'Email' BIN active_from_date BY DAY": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "2",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3104@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home ASC",
+        "nlq": "Create a stacked bar chart illustrating the distribution of All_Home and the sum of School_ID, grouped by the All_Home attribute, and ordered in ascending order from lowest to highest, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY SUM(schoolID) ASC": 0.5,
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home ASC": 0.3,
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "3104@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home ASC",
+        "nlq": "Find the All_Home attribute and calculate the sum of School_ID. Group them based on the All_Home attribute and represent them visually using a bar chart. Please order them from low to high on the x-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home ASC": 0.6,
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home DESC": 0.2,
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY SUM(schoolID) ASC": 0.1,
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY SUM(schoolID) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "3",
+            "1",
+            "3",
+            "4",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3104@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY all_home ASC",
+        "nlq": "Generate a bar graph illustrating the distribution of All_Home and the total number of School_ID, grouped by the All_Home attribute, and display the bars in ascending order, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT all_home , SUM(schoolID) FROM basketball_match GROUP BY all_home ORDER BY SUM(schoolID) ASC": 0.5,
+            "Visualize BAR SELECT all_home , COUNT(schoolID) FROM basketball_match GROUP BY all_home ORDER BY COUNT(schoolID) ASC": 0.3,
+            "Visualize BAR SELECT all_home , COUNT(DISTINCT schoolID) FROM basketball_match GROUP BY all_home ORDER BY COUNT(DISTINCT schoolID) ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "3",
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "2",
+            "2",
+            "3",
+            "2"
+        ]
+    },
+    {
+        "record_name": "3111@y_name@DESC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT team_Name , schoolID FROM basketball_match ORDER BY schoolID DESC",
+        "nlq": "Generate a bar graph illustrating the distribution of Team_Name and School_ID, with the Y-axis listed in descending order, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT team_Name , schoolID FROM basketball_match ORDER BY schoolID DESC": 0.4,
+            "Visualize BAR SELECT team_Name , schoolID FROM basketball_match ORDER BY team_Name DESC": 0.3,
+            "Visualize BAR SELECT team_Name , schoolID FROM basketball_match ORDER BY team_Name ASC": 0.2,
+            "Visualize BAR SELECT team_Name , schoolID FROM basketball_match ORDER BY Total_Games DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "4",
+            "4",
+            "1",
+            "1",
+            "4",
+            "4",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3092@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home ,  all_home ORDER BY all_home ASC",
+        "nlq": "Display the distribution of All_Home and Team_ID, grouped by the ACC_Home attribute, in a bar chart, with the x-axis ranked in ascending order from least to greatest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY all_home ASC": 0.5,
+            "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home , teamID ORDER BY all_home ASC": 0.3,
+            "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY ACC_home ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3092@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home ,  all_home ORDER BY all_home ASC",
+        "nlq": "Stacked bar chart comparing team_id and ACC_Home based on all home locations, and arrange them in ascending order on the x-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY all_home ASC": 0.5,
+            "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY ACC_home ASC": 0.3,
+            "Visualize BAR SELECT all_home , teamID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY teamID ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "1",
+            "2",
+            "1",
+            "3",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2345",
+        "db_id": "mountain_photos_robust",
+        "target": "Visualize SCATTER SELECT Height , Prominence FROM mountain WHERE Range != 'Aberdare Range'",
+        "nlq": "What is the correlation between the altitude and prominence of mountains that are not part of the 'Aberdare Range'? Please represent the results using a scatter chart.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT Height , Prominence FROM mountain WHERE Range != 'Aberdare Range'": 0.6,
+            "Visualize SCATTER SELECT Height , Prominence FROM mountain WHERE Range <> 'Aberdare Range'": 0.2,
+            "Visualize SCATTER SELECT Height , Prominence FROM mountain WHERE Range NOT IN ('Aberdare Range')": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3275",
+        "db_id": "world_1_robust",
+        "target": "Visualize BAR SELECT GovernmentForm , sum(Population) FROM country GROUP BY GovernmentForm",
+        "nlq": "Provide me with a histogram illustrating the various government forms and their respective total populations. Only include government forms with an average life expectancy greater than 72.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT GovernmentForm , SUM(Population) FROM country WHERE LifeExpectancy > 72 GROUP BY GovernmentForm ORDER BY SUM(Population) DESC": 0.6,
+            "Visualize BAR SELECT GovernmentForm , SUM(Population) FROM country WHERE LifeExpectancy > 72 GROUP BY GovernmentForm ORDER BY SUM(Population) ASC": 0.3,
+            "Visualize BAR SELECT GovernmentForm , AVG(Population) FROM country WHERE LifeExpectancy > 72 GROUP BY GovernmentForm ORDER BY AVG(Population) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3275",
+        "db_id": "world_1_robust",
+        "target": "Visualize BAR SELECT GovernmentForm , sum(Population) FROM country GROUP BY GovernmentForm",
+        "nlq": "What are the distinct forms of government, and what is the total population for each government form with an average life expectancy exceeding 72? Represent the data using a bar chart.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT GovernmentForm , SUM(Population) FROM country WHERE LifeExpectancy > 72 GROUP BY GovernmentForm ORDER BY SUM(Population) ASC": 0.6,
+            "Visualize BAR SELECT GovernmentForm , SUM(Population) FROM country WHERE LifeExpectancy > 72 GROUP BY GovernmentForm ORDER BY SUM(Population) DESC": 0.3,
+            "Visualize BAR SELECT GovernmentForm , SUM(Population) FROM country WHERE LifeExpectancy > 72 GROUP BY GovernmentForm ORDER BY GovernmentForm ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1544@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%'  ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For all employees whose first names contain the letters D or S, generate a bar chart illustrating the distribution of hire dates and the sum of manager IDs binned by hire date over time. Sort the Y-axis in descending order from highest to lowest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH": 0.6,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY date_of_hire DESC BIN date_of_hire BY MONTH": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY date_of_hire DESC BIN SUM(Manager_ID) BY MONTH": 0.2
+        },
+        "predict_rag_nlq": [
+            "3",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "3",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1544@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%'  ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For all employees whose first name contains the letters D or S, a bar chart illustrates the distribution of hire dates and the cumulative sum of manager IDs grouped by hire date over time. Please sort the Y-axis in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH": 0.5,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' AND Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH": 0.3,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname IN ('D', 'S') ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1544@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%'  ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For all employees whose first name contains the letters D or S, provide a comparison of the sum of manager IDs grouped by hire date bins, and order them in descending order by the total number.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY WEEKDAY": 0.6,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY MONTH": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY QUARTER": 0.1,
+            "Visualize BAR SELECT date_of_hire , SUM(Manager_ID) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' ORDER BY SUM(Manager_ID) DESC BIN date_of_hire BY YEAR": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "1",
+            "1\n",
+            "4",
+            "4",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "490",
+        "db_id": "climbing_robust",
+        "target": "Visualize BAR SELECT Country , COUNT(Country) FROM mountain WHERE Height > 5000 GROUP BY Country",
+        "nlq": "A bar graph representing the count of countries with mountains exceeding a height of 5000.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT COUNTRY , COUNT(COUNTRY) FROM mountain WHERE Height > 5000 GROUP BY COUNTRY": 0.6,
+            "Visualize BAR SELECT Country , COUNT(Country) FROM mountain WHERE Height > 5000 GROUP BY Country": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1234",
+        "db_id": "dorm_1_robust",
+        "target": "Visualize PIE SELECT sex , count(*) FROM student WHERE Age > (SELECT avg(Age) FROM student) GROUP BY sex",
+        "nlq": "How many students of each gender are above the average age.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT sex , COUNT(*) FROM Student WHERE Age >(SELECT AVG(Age) FROM Student) GROUP BY sex ORDER BY sex ASC": 0.6,
+            "Visualize BAR SELECT gender , COUNT(*) FROM Student WHERE Age >(SELECT AVG(Age) FROM Student) GROUP BY gender ORDER BY gender ASC": 0.3,
+            "Visualize BAR SELECT sex , COUNT(*) FROM Student WHERE Age >(SELECT AVG(Age) FROM Student) GROUP BY sex ORDER BY COUNT(*) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2456@x_name@DESC",
+        "db_id": "network_1_robust",
+        "target": "Visualize BAR SELECT T2.name , AVG(count(*)) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.ID GROUP BY T2.name ORDER BY T2.name DESC",
+        "nlq": "Display the names of high school students and their respective number of friends. Represent this data as a bar chart, and arrange the bars in descending order on the X-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T2.name , SUM(COUNT(*) ) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.ID GROUP BY T2.name ORDER BY T2.name DESC": 0.6,
+            "Visualize BAR SELECT T2.name , COUNT(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.ID GROUP BY T2.name ORDER BY COUNT(*) DESC": 0.3,
+            "Visualize BAR SELECT T2.name , COUNT(friend_id) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id = T2.ID GROUP BY T2.name ORDER BY COUNT(friend_id) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1754@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21'  ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees who were hired prior to 2002-06-21, create a bar chart illustrating the distribution of hire_date based on the time period of hire_date bins, and display the Y-axis in descending order, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY MONTH": 0.4,
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY YEAR": 0.3,
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY QUARTER": 0.2,
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY WEEK": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1754@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21'  ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY MONTH",
+        "nlq": "For employees hired prior to 2002-06-21, generate a bar chart illustrating the distribution of hire dates and the count of employees per hire date bin, with the Y-axis displayed in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY COUNT(date_of_hire) DESC BIN date_of_hire BY MONTH": 0.6,
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY date_of_hire DESC BIN date_of_hire BY MONTH": 0.2,
+            "Visualize BAR SELECT date_of_hire , COUNT(date_of_hire) FROM employees WHERE date_of_hire < '2002-06-21' ORDER BY date_of_hire ASC BIN date_of_hire BY MONTH": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1990",
+        "db_id": "insurance_fnol_robust",
+        "target": "Visualize BAR SELECT DateClosed , COUNT(DateClosed) FROM customers AS t1 JOIN customers_policies AS t2 ON t1.CustomerID = t2.CustomerID WHERE t1.CustomerName LIKE \"%Diana%\" BIN DateClosed BY WEEKDAY",
+        "nlq": "Retrieve the closing dates of all policies linked to the customer whose name includes \"Diana\", categorize the closing dates into intervals based on the day of the week, and generate a bar chart to display the count of policies in each interval.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT DateClosed , COUNT(DateClosed) FROM Customers JOIN Customers_Policies ON Customers.CustomerID = Customers_Policies.CustomerID WHERE Customers.CustomerName LIKE \"%Diana%\" ORDER BY COUNT(DateClosed) DESC BIN DateClosed BY WEEKDAY": 0.6,
+            "Visualize BAR SELECT DateClosed , COUNT(DateClosed) FROM Customers JOIN Customers_Policies ON Customers.CustomerID = Customers_Policies.CustomerID WHERE Customers.CustomerName LIKE \"%Diana%\" ORDER BY DateClosed DESC BIN DateClosed BY WEEKDAY": 0.2,
+            "Visualize BAR SELECT DateClosed , COUNT(DateClosed) FROM Customers JOIN Customers_Policies ON Customers.CustomerID = Customers_Policies.CustomerID WHERE Customers.CustomerName LIKE \"%Diana%\" ORDER BY DateClosed ASC BIN DateClosed BY WEEKDAY": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2646",
+        "db_id": "race_track_robust",
+        "target": "Visualize BAR SELECT Name , capacity FROM track WHERE Year_Opened > 2000 ORDER BY capacity",
+        "nlq": "Display the names and seating capacities of tracks opened after 2000 in a bar graph, ordered by seating capacity.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Name , Capacity FROM track WHERE Year_Opened > 2000 ORDER BY Capacity": 0.4,
+            "Visualize BAR SELECT Name , capacity FROM track WHERE Year_Opened > 2000 ORDER BY capacity": 0.3,
+            "Visualize BAR SELECT Name , capacity FROM track WHERE Year_Opened > 2000 ORDER BY capacity DESC": 0.2,
+            "Visualize BAR SELECT Name , capacity FROM track WHERE Year_Opened > 2000 ORDER BY capacity ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2"
+        ]
+    },
+    {
+        "record_name": "636@y_name@DESC",
+        "db_id": "college_2_robust",
+        "target": "Visualize BAR SELECT title , AVG(credits) FROM course AS T1 JOIN prereq AS T2 ON T1.course_id = T2.course_id GROUP BY title ORDER BY AVG(credits) DESC",
+        "nlq": "What is the mean credit value of courses that have more than one prerequisite for each title? Please present the results in a bar graph, ordered in descending order based on the total number.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT title , AVG(credits) FROM course AS T1 JOIN prereq AS T2 ON T1.course_id = T2.course_id GROUP BY title ORDER BY AVG(credits) DESC": 0.6,
+            "Visualize BAR SELECT title , AVG(credits) FROM course AS T1 JOIN prereq AS T2 ON T1.course_id = T2.course_id WHERE COUNT(prereq_id) > 1 GROUP BY title ORDER BY AVG(credits) DESC": 0.3,
+            "Visualize BAR SELECT title , AVG(credits) FROM course AS T1 JOIN prereq AS T2 ON T1.course_id = T2.course_id HAVING COUNT(prereq_id) > 1 GROUP BY title ORDER BY AVG(credits) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2177@x_name@DESC",
+        "db_id": "manufactory_1_robust",
+        "target": "Visualize BAR SELECT Name , COUNT(Name) FROM products GROUP BY Name ORDER BY Name DESC",
+        "nlq": "Provide me with a bar chart illustrating the frequency of each name occurrence, with the bars arranged from highest to lowest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY COUNT(Name) DESC": 0.4,
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY COUNT(Name) ASC": 0.3,
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY Name DESC": 0.2,
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY Name ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2291",
+        "db_id": "manufactory_1_robust",
+        "target": "Visualize SCATTER SELECT Manufacturer , income FROM products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY Headquarter",
+        "nlq": "For the records pertaining to the products and their respective manufacturers, create a scatter chart illustrating the relationship between the manufacturer and revenue, and group them based on the attribute of headquarters.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT T2.Name , T2.Income FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Headquarter": 0.6,
+            "Visualize SCATTER SELECT T2.Name , T2.Income FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Founder": 0.2,
+            "Visualize SCATTER SELECT T2.Name , T2.Income FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Name": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "3",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1157",
+        "db_id": "dog_kennels_robust",
+        "target": "Visualize LINE SELECT date_of_treatment , COUNT(date_of_treatment) FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )",
+        "nlq": "How many dogs of the least common breed are there on each day of treatment? Create a line graph with grouping by treatment date, please.",
+        "predict_dvq_set": {
+            "Visualize LINE SELECT date_of_treatment , COUNT(date_of_treatment) FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY COUNT(*) ASC LIMIT 1) GROUP BY date_of_treatment": 0.5,
+            "Visualize LINE SELECT date_of_treatment , COUNT(date_of_treatment) FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY COUNT(*) DESC LIMIT 1) GROUP BY date_of_treatment": 0.3,
+            "Visualize LINE SELECT date_of_treatment , COUNT(date_of_treatment) FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id WHERE T1.breed_code = (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY COUNT(*) ASC LIMIT 1) GROUP BY date_of_treatment ORDER BY date_of_treatment ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1774@x_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT JOB_ID , SUM(employee_id) FROM employees WHERE date_of_hire < '2002-06-21' GROUP BY JOB_ID ORDER BY JOB_ID DESC",
+        "nlq": "For employees who were hired prior to 2002-06-21, create a bar chart depicting the distribution of job_id and the sum of employee_id, grouped by the job_id attribute, and display the bars in descending order from highest to lowest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT JOB_ID , SUM(EMPLOYEE_ID) FROM employees WHERE date_of_hire < '2002-06-21' GROUP BY JOB_ID ORDER BY SUM(EMPLOYEE_ID) DESC": 0.6,
+            "Visualize BAR SELECT JOB_ID , COUNT(EMPLOYEE_ID) FROM employees WHERE date_of_hire < '2002-06-21' GROUP BY JOB_ID ORDER BY COUNT(EMPLOYEE_ID) DESC": 0.3,
+            "Visualize BAR SELECT JOB_ID , AVG(wage) FROM employees WHERE date_of_hire < '2002-06-21' GROUP BY JOB_ID ORDER BY AVG(wage) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1357",
+        "db_id": "employee_hire_evaluation_robust",
+        "target": "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM hiring",
+        "nlq": "Create a scatter plot illustrating the relationship between the Shop_ID and Employee_ID.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM hiring": 0.4,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM employee": 0.3,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM shop": 0.2,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM evaluation": 0.1
+        },
+        "predict_rag_nlq": [
+            "4",
+            "4",
+            "4",
+            "4",
+            "4",
+            "4",
+            "3",
+            "4",
+            "4",
+            "4"
+        ]
+    },
+    {
+        "record_name": "1357",
+        "db_id": "employee_hire_evaluation_robust",
+        "target": "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM hiring",
+        "nlq": "Scatter plot depicting shop ID on the x-axis and employee ID on the y-axis.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM hiring": 0.4,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM shop": 0.2,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM employee": 0.1,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM evaluation": 0.1,
+            "Visualize SCATTER SELECT Shop_ID , EmployeeID FROM hiring WHERE ss_full_time = 'Yes'": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "3",
+            "3",
+            "3",
+            "5",
+            "2",
+            "3",
+            "4",
+            "3"
+        ]
+    },
+    {
+        "record_name": "657@y_name@ASC",
+        "db_id": "college_2_robust",
+        "target": "Visualize BAR SELECT building , COUNT(building) FROM department WHERE budget > (SELECT avg(budget) FROM department) GROUP BY building ORDER BY COUNT(building) ASC",
+        "nlq": "Provide a bar chart illustrating the number of departments with a budget greater than the average for each building, and arrange the buildings in ascending order from least to greatest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT building , COUNT(building) FROM department WHERE budget >(SELECT avg(budget) FROM department) GROUP BY building ORDER BY building ASC": 0.5,
+            "Visualize BAR SELECT building , COUNT(department_name) FROM department WHERE budget >(SELECT avg(budget) FROM department) GROUP BY building ORDER BY building ASC": 0.3,
+            "Visualize BAR SELECT building , COUNT(*) FROM department WHERE budget >(SELECT avg(budget) FROM department) GROUP BY building ORDER BY building ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "1",
+            "1",
+            "2",
+            "3",
+            "1",
+            "1",
+            "3",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "672",
+        "db_id": "college_3_robust",
+        "target": "Visualize SCATTER SELECT teacher , Department_NO FROM COURSE ORDER BY Credits",
+        "nlq": "Illustrate the correlation between Instructor and DNO.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT teacher , Department_NO FROM Course ORDER BY Credits": 0.3,
+            "Visualize SCATTER SELECT teacher , Department_NO FROM Faculty ORDER BY Rank": 0.2,
+            "Visualize SCATTER SELECT teacher , Department_NO FROM Course ORDER BY Department_NO": 0.3,
+            "Visualize SCATTER SELECT teacher , Department_NO FROM Faculty ORDER BY Department_NO": 0.2
+        },
+        "predict_rag_nlq": [
+            "3",
+            "3",
+            "2",
+            "3",
+            "2",
+            "4",
+            "3",
+            "2",
+            "2",
+            "3"
+        ]
+    },
+    {
+        "record_name": "1590@y_name@DESC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40  ORDER BY SUM(employee_id) DESC BIN date_of_hire BY WEEKDAY",
+        "nlq": "For employees with salaries ranging from 8000 to 12000 and having non-null commission or department number not equal to 40, present the distribution of hire dates and the sum of employee IDs binned by weekday in a bar graph, sorted in descending order along the Y-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY WEEKDAY": 0.6,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40 ORDER BY SUM(employee_id) DESC BIN date_of_hire BY WEEKDAY": 0.3,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40) ORDER BY SUM(employee_id) DESC BIN date_of_hire BY WEEKDAY": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2657@y_name@DESC",
+        "db_id": "railway_robust",
+        "target": "Visualize BAR SELECT Country , COUNT(Country) FROM manager WHERE Age > 50 OR Age < 46 GROUP BY Country ORDER BY COUNT(Country) DESC",
+        "nlq": "Display the nations with managers aged above 50 or below 46, and represent them with a bar chart. Please arrange the countries in descending order based on the count.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Country , COUNT(Country) FROM manager WHERE Age > 50 OR Age < 46 GROUP BY Country ORDER BY COUNT(Country) DESC": 0.6,
+            "Visualize BAR SELECT Country , COUNT(Country) FROM manager WHERE Age > 50 OR Age <= 46 GROUP BY Country ORDER BY COUNT(Country) DESC": 0.2,
+            "Visualize BAR SELECT Country , COUNT(Country) FROM manager WHERE Age >= 50 OR Age < 46 GROUP BY Country ORDER BY COUNT(Country) DESC": 0.1,
+            "Visualize BAR SELECT Country , COUNT(Country) FROM manager WHERE Age >= 50 OR Age <= 46 GROUP BY Country ORDER BY COUNT(Country) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "3101@x_name@ASC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT ACC_Street , AVG(schoolID) FROM basketball_match GROUP BY ACC_Street ORDER BY ACC_Street ASC",
+        "nlq": "Bar chart with the x-axis representing the ACC Road and the y-axis representing the average school ID. Please sort the bars in ascending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT ACC_Street , AVG(SCHOOLID) FROM basketball_match GROUP BY ACC_Street ORDER BY AVG(SCHOOLID) ASC": 0.5,
+            "Visualize BAR SELECT ACC_Street , AVG(Total_Games) FROM basketball_match GROUP BY ACC_Street ORDER BY AVG(Total_Games) ASC": 0.3,
+            "Visualize BAR SELECT ACC_Street , AVG(percentage_of_all_games) FROM basketball_match GROUP BY ACC_Street ORDER BY AVG(percentage_of_all_games) ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "1",
+            "2"
+        ]
+    },
+    {
+        "record_name": "1353@x_name@DESC",
+        "db_id": "employee_hire_evaluation_robust",
+        "target": "Visualize LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY YEAR",
+        "nlq": "Present the fluctuations in the average of Employee_ID across Start_from, classified by the attribute Is_full_time and categorizing Start_from by time intervals, in a line chart. Arrange the data on the X-axis in descending order, please.",
+        "predict_dvq_set": {
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY YEAR": 0.2,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY MONTH": 0.3,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY QUARTER": 0.3,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY DAY": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1353@x_name@DESC",
+        "db_id": "employee_hire_evaluation_robust",
+        "target": "Visualize LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY YEAR",
+        "nlq": "Provide me with the trend in the average of Employee_ID over Start_from, grouping by the attribute Is_full_time and categorizing Start_from into time intervals. Display the results on the x-axis in descending order from high to low.",
+        "predict_dvq_set": {
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY YEAR": 0.3,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY MONTH": 0.2,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY QUARTER": 0.2,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY DAY": 0.1,
+            "LINE SELECT Start_from , AVG(EmployeeID) FROM hiring GROUP BY ss_full_time ORDER BY Start_from DESC BIN Start_from BY WEEK": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1",
+            "3",
+            "3",
+            "1",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2517@x_name@ASC",
+        "db_id": "party_people_robust",
+        "target": "Visualize BAR SELECT Minister , COUNT(Minister) FROM party WHERE PartyName != 'Progress Party' GROUP BY Minister ORDER BY Minister ASC",
+        "nlq": "Which ministers do not belong to the Progress Party, and display them in a bar chart, listing the ministers from least to greatest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Minister , COUNT(Minister) FROM party WHERE PartyName != 'Progress Party' GROUP BY Minister ORDER BY COUNT(Minister)": 0.5,
+            "Visualize BAR SELECT Minister , COUNT(Minister) FROM party WHERE PartyName <> 'Progress Party' GROUP BY Minister ORDER BY COUNT(Minister)": 0.3,
+            "Visualize BAR SELECT Minister , COUNT(Minister) FROM party WHERE PartyName NOT LIKE 'Progress Party' GROUP BY Minister ORDER BY COUNT(Minister)": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "2",
+            "2",
+            "3",
+            "1",
+            "1",
+            "3",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2684",
+        "db_id": "roller_coaster_robust",
+        "target": "Visualize SCATTER SELECT distance , Elevation FROM roller_coaster",
+        "nlq": "Provide a scatter plot illustrating the lengths and heights of roller coasters.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT distance , Elevation FROM roller_coaster": 0.4,
+            "Visualize SCATTER SELECT distance , velocity FROM roller_coaster": 0.3,
+            "Visualize SCATTER SELECT Elevation , velocity FROM roller_coaster": 0.2,
+            "Visualize SCATTER SELECT distance , condition FROM roller_coaster": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "2",
+            "1",
+            "3",
+            "2",
+            "2",
+            "1",
+            "3",
+            "1",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2821",
+        "db_id": "sports_competition_robust",
+        "target": "Visualize BAR SELECT Location , COUNT(Location) FROM player GROUP BY Location HAVING avg(score) >= 20",
+        "nlq": "Enumerate the player positions for which the average points scored by that position exceed 20, and provide a bar chart illustrating the quantity of different positions.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Location , COUNT(Location) FROM player GROUP BY Location ORDER BY COUNT(Location) ASC": 0.3,
+            "Visualize BAR SELECT Position , COUNT(Position) FROM player GROUP BY Position ORDER BY COUNT(Position) ASC": 0.2,
+            "Visualize BAR SELECT Position , COUNT(Position) FROM player WHERE score > 20 GROUP BY Position ORDER BY COUNT(Position) ASC": 0.3,
+            "Visualize BAR SELECT Position , COUNT(Position) FROM player WHERE score > 20 GROUP BY Position ORDER BY COUNT(Position) DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "3",
+            "3",
+            "4",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2097@y_name@DESC",
+        "db_id": "local_govt_and_lot_robust",
+        "target": "Visualize BAR SELECT date_moved_in , COUNT(date_moved_in) FROM Customers AS T1 JOIN Customer_Events AS T2 ON T1.customer_ID = T2.customer_ID  ORDER BY COUNT(date_moved_in) DESC BIN date_moved_in BY YEAR",
+        "nlq": "Please utilize a stacked bar chart to compare the count of customers based on their move-in date, with the move-in dates grouped into yearly intervals. Please ensure that the total count is listed in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_moved_in , COUNT(date_moved_in) FROM Customers AS T1 JOIN Customer_Events AS T2 ON T1.customer_ID = T2.customer_ID GROUP BY date_moved_in": 0.5,
+            "Visualize BAR SELECT YEAR(date_moved_in) AS move_in_year , COUNT(customer_ID) FROM Customers AS T1 JOIN Customer_Events AS T2 ON T1.customer_ID = T2.customer_ID GROUP BY move_in_year": 0.3,
+            "Visualize BAR SELECT strftime('%Y', date_moved_in) AS move_in_year , COUNT(customer_ID) FROM Customers AS T1 JOIN Customer_Events AS T2 ON T1.customer_ID = T2.customer_ID GROUP BY move_in_year": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2993@y_name@DESC",
+        "db_id": "tracking_share_transactions_robust",
+        "target": "Visualize BAR SELECT many_details , COUNT(many_details) FROM LOTS GROUP BY many_details ORDER BY COUNT(many_details) DESC",
+        "nlq": "Bar chart with the X-axis representing the details of the lots, and the Y-axis representing the number of lot details, with the list arranged in descending order on the Y-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT MANY_DETAILS , COUNT(MANY_DETAILS) FROM Lots GROUP BY MANY_DETAILS ORDER BY COUNT(MANY_DETAILS) DESC": 0.5,
+            "Visualize BAR SELECT MANY_DETAILS , COUNT(MANY_DETAILS) FROM Lots GROUP BY MANY_DETAILS ORDER BY MANY_DETAILS DESC": 0.3,
+            "Visualize BAR SELECT MANY_DETAILS , COUNT(MANY_DETAILS) FROM Lots GROUP BY MANY_DETAILS ORDER BY MANY_DETAILS ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2757",
+        "db_id": "ship_mission_robust",
+        "target": "Visualize PIE SELECT Category , COUNT(Category) FROM ship GROUP BY Category",
+        "nlq": "Present a pie chart illustrating the overall count for each category of ship type.",
+        "predict_dvq_set": {
+            "Visualize PIE SELECT Category , COUNT(Category) FROM ship GROUP BY Category": 0.4,
+            "Visualize PIE SELECT Category , COUNT(*) FROM ship GROUP BY Category": 0.3,
+            "Visualize PIE SELECT Category , COUNT(tonnage) FROM ship GROUP BY Category": 0.2,
+            "Visualize PIE SELECT Category , SUM(tonnage) FROM ship GROUP BY Category": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "653@y_name@DESC",
+        "db_id": "college_2_robust",
+        "target": "Visualize BAR SELECT title , COUNT(title) FROM course AS T1 JOIN teaches AS T2 ON T1.course_id = T2.course_id JOIN instructor AS T3 ON T2.ID = T3.ID WHERE year = 2008 GROUP BY title ORDER BY COUNT(title) DESC",
+        "nlq": "What is the number of instructors for each course in 2008? Please display a bar chart with the courses grouped by title, and arrange them in descending order on the y-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT title , COUNT(title) FROM course AS T1 JOIN teaches AS T2 ON T1.course_id = T2.course_id JOIN instructor AS T3 ON T2.ID = T3.ID WHERE T2.year = 2008 GROUP BY title ORDER BY COUNT(title) DESC": 0.5,
+            "Visualize BAR SELECT title , COUNT(title) FROM course AS T1 JOIN teaches AS T2 ON T1.course_id = T2.course_id JOIN instructor AS T3 ON T2.ID = T3.ID WHERE T2.year = 2008 GROUP BY title ORDER BY title DESC": 0.3,
+            "Visualize BAR SELECT title , COUNT(title) FROM course AS T1 JOIN teaches AS T2 ON T1.course_id = T2.course_id JOIN instructor AS T3 ON T2.ID = T3.ID WHERE T2.year = 2008 GROUP BY title ORDER BY title ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1605@x_name@ASC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT JOB_ID , AVG(Manager_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY JOB_ID ASC",
+        "nlq": "For the employees whose salary falls between 8000 and 12000, and either have a non-null commission or their department number is not equal to 40, generate a bar chart illustrating the distribution of job_id and the average manager_id. Group the data by the job_id attribute and list it in ascending order on the X-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT JOB_ID , AVG(MANAGER_ID) FROM employees WHERE wage BETWEEN 8000 AND 12000 AND COMMISSION_PCT != \"null\" OR Dept_ID != 40 GROUP BY JOB_ID ORDER BY JOB_ID ASC": 0.6,
+            "Visualize BAR SELECT JOB_ID , AVG(MANAGER_ID) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40 GROUP BY JOB_ID ORDER BY JOB_ID ASC": 0.3,
+            "Visualize BAR SELECT JOB_ID , AVG(MANAGER_ID) FROM employees WHERE wage >= 8000 AND wage <= 12000 AND (COMMISSION_PCT IS NOT NULL OR Dept_ID <> 40) GROUP BY JOB_ID ORDER BY JOB_ID ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2223@x_name@DESC",
+        "db_id": "manufactory_1_robust",
+        "target": "Visualize BAR SELECT T2.Headquarter , T1.Code FROM products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Headquarter ORDER BY T2.Headquarter DESC",
+        "nlq": "For the data pertaining to the products and their respective manufacturers, create a bar chart illustrating the distribution of headquarters and the average of codes. Group the data by the attribute \"headquarter\" and rank the categories in descending order based on their names.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T2.Headquarter , T1.Code FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Headquarter ORDER BY T2.Headquarter DESC": 0.6,
+            "Visualize BAR SELECT T2.Headquarter , AVG(T1.Code) FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Headquarter ORDER BY T2.Headquarter DESC": 0.3,
+            "Visualize BAR SELECT T2.Headquarter , COUNT(T1.Code) FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Headquarter ORDER BY T2.Headquarter DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "1",
+            "1",
+            "1",
+            "2",
+            "2",
+            "1",
+            "2",
+            "3",
+            "1"
+        ]
+    },
+    {
+        "record_name": "434",
+        "db_id": "car_1_robust",
+        "target": "Visualize BAR SELECT T1.continent , count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.continent_ID = T2.continent JOIN car_makers AS T3 ON T2.continent_ID = T3.Country GROUP BY T1.continent",
+        "nlq": "A bar chart displaying the names of each continent and the respective number of car makers in each continent.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T1.continent , COUNT(*) FROM continents AS T1 JOIN countries AS T2 ON T1.continent_ID = T2.continent_ID JOIN car_makers AS T3 ON T2.continent_ID = T3.Country GROUP BY T1.continent ORDER BY T1.continent ASC": 0.5,
+            "Visualize BAR SELECT T1.continent , COUNT(*) FROM continents AS T1 JOIN countries AS T2 ON T1.continent_ID = T2.continent_ID JOIN car_makers AS T3 ON T2.continent_ID = T3.Country GROUP BY T1.continent ORDER BY COUNT(*) DESC": 0.3,
+            "Visualize BAR SELECT T1.continent , COUNT(*) FROM continents AS T1 JOIN countries AS T2 ON T1.continent_ID = T2.continent_ID JOIN car_makers AS T3 ON T2.continent_ID = T3.Country GROUP BY T1.continent ORDER BY COUNT(*) ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "2",
+            "1",
+            "2",
+            "1",
+            "3",
+            "2",
+            "2",
+            "2",
+            "3"
+        ]
+    },
+    {
+        "record_name": "2487@x_name@ASC",
+        "db_id": "news_report_robust",
+        "target": "Visualize BAR SELECT Nationality , SUM(Age) FROM journalist GROUP BY Nationality ORDER BY Nationality ASC",
+        "nlq": "Present a bar chart illustrating the nationalities and cumulative ages of journalists. Kindly sort the data in ascending order on the x-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Nationality , SUM(Age) FROM journalist GROUP BY Nationality ORDER BY Nationality ASC": 0.4,
+            "Visualize BAR SELECT Nationality , SUM(Age) FROM journalist GROUP BY Nationality ORDER BY SUM(Age) ASC": 0.3,
+            "Visualize BAR SELECT Nationality , SUM(Age) FROM journalist GROUP BY Nationality ORDER BY Nationality DESC": 0.2,
+            "Visualize BAR SELECT Nationality , SUM(Age) FROM journalist GROUP BY Nationality ORDER BY SUM(Age) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "3",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "356",
+        "db_id": "body_builder_robust",
+        "target": "Visualize SCATTER SELECT Snatch , Clean_Jerk FROM body_builder",
+        "nlq": "Provide a scatter plot illustrating the relationship between Snatch and Clean_Jerk.",
+        "predict_dvq_set": {
+            "Visualize SCATTER SELECT Snatch , Clean_Jerk FROM body_builder": 0.4,
+            "Visualize SCATTER SELECT Snatch , Clean_Jerk FROM body_builder WHERE Snatch IS NOT NULL AND Clean_Jerk IS NOT NULL": 0.3,
+            "Visualize SCATTER SELECT Snatch , Clean_Jerk FROM body_builder WHERE Snatch > 0 AND Clean_Jerk > 0": 0.2,
+            "Visualize SCATTER SELECT Snatch , Clean_Jerk FROM body_builder WHERE Snatch >= 0 AND Clean_Jerk >= 0": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "3",
+            "1",
+            "2",
+            "3",
+            "2",
+            "3",
+            "2",
+            "3",
+            "2"
+        ]
+    },
+    {
+        "record_name": "2239@x_name@DESC",
+        "db_id": "manufactory_1_robust",
+        "target": "Visualize BAR SELECT T1.Name , T1.Manufacturer FROM products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T1.Name , T1.Name ORDER BY T1.Name DESC",
+        "nlq": "For the records from the products and the manufacturer of each product, provide me with a comparison of manufacturers based on their names. Group the attribute names and display them in a bar chart, with the names ordered in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T2.Name , T1.Code FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Name ORDER BY T2.Name DESC": 0.6,
+            "Visualize BAR SELECT T2.Name , T1.Code FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Name ORDER BY T2.Name ASC": 0.2,
+            "Visualize BAR SELECT T2.Name , T1.Code FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Name ORDER BY T2.Name": 0.1,
+            "Visualize BAR SELECT T2.Name , T1.Code FROM Products AS T1 JOIN Manufacturers AS T2 ON T1.Manufacturer = T2.Code GROUP BY T2.Name ORDER BY T2.Name DESC LIMIT 10": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2180@x_name@ASC",
+        "db_id": "manufactory_1_robust",
+        "target": "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY Name ASC",
+        "nlq": "Display the names of all products and represent their count using a bar graph. Please arrange the X-axis in ascending order, from lowest to highest.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY Name ASC": 0.4,
+            "Visualize BAR SELECT Name , COUNT(*) FROM Products GROUP BY Name ORDER BY Name ASC": 0.3,
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY COUNT(Name) ASC": 0.2,
+            "Visualize BAR SELECT Name , COUNT(Name) FROM Products GROUP BY Name ORDER BY COUNT(Name) DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "1",
+            "2",
+            "1",
+            "1",
+            "1",
+            "2",
+            "4",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1233@y_name@DESC",
+        "db_id": "dorm_1_robust",
+        "target": "Visualize BAR SELECT city_code , avg(Age) FROM student GROUP BY city_code ORDER BY avg(Age) DESC",
+        "nlq": "Create a bar chart illustrating the average age for each city, and identify the respective cities. Display the cities in descending order along the Y-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT city_code , avg(Age) FROM Student GROUP BY city_code ORDER BY avg(Age) DESC": 0.4,
+            "Visualize BAR SELECT city_code , avg(Age) FROM Student GROUP BY city_code ORDER BY avg(Age) ASC": 0.3,
+            "Visualize BAR SELECT city_code , avg(Age) FROM Student GROUP BY city_code ORDER BY city_code DESC": 0.2,
+            "Visualize BAR SELECT city_code , avg(Age) FROM Student GROUP BY city_code ORDER BY city_code ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "394@y_name@DESC",
+        "db_id": "candidate_poll_robust",
+        "target": "Visualize BAR SELECT Name , Height FROM people ORDER BY Height DESC",
+        "nlq": "A bar chart illustrates the distribution of Name and Height, and I would like to display it with the y-axis in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Name , Height FROM people ORDER BY Height DESC": 0.4,
+            "Visualize BAR SELECT Name , Height FROM people ORDER BY Name DESC": 0.3,
+            "Visualize BAR SELECT Name , Height FROM people ORDER BY Name ASC": 0.2,
+            "Visualize BAR SELECT Name , Height FROM people ORDER BY Height ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "769@y_name@DESC",
+        "db_id": "cre_Doc_Tracking_DB_robust",
+        "target": "Visualize BAR SELECT LocationCode , COUNT(LocationCode) FROM Document_locations GROUP BY LocationCode ORDER BY COUNT(LocationCode) DESC",
+        "nlq": "Bar chart with the X-axis representing location codes and the Y-axis representing the number of location codes, displayed in descending order on the Y-axis, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT LocationCode , COUNT(LocationCode) FROM Document_Locations GROUP BY LocationCode ORDER BY COUNT(LocationCode) DESC": 0.5,
+            "Visualize BAR SELECT LocationCode , COUNT(LocationCode) FROM Document_Locations GROUP BY LocationCode ORDER BY LocationCode DESC": 0.3,
+            "Visualize BAR SELECT LocationCode , COUNT(LocationCode) FROM Document_Locations GROUP BY LocationCode ORDER BY LocationCode ASC": 0.2
+        },
+        "predict_rag_nlq": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1273@x_name@ASC",
+        "db_id": "e_learning_robust",
+        "target": "Visualize BAR SELECT course_name , COUNT(*) FROM Courses AS T1 JOIN Student_Course_Enrolment AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY course_name ASC",
+        "nlq": "What are the names of each course and the respective student enrollment numbers? Please display the information in a bar chart with the bars arranged in ascending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT course_name , COUNT(*) FROM Courses AS T1 JOIN Student_Course_Enrolment AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY COUNT(*) ASC": 0.6,
+            "Visualize BAR SELECT course_name , COUNT(*) FROM Courses AS T1 JOIN Student_Course_Enrolment AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY COUNT(*) DESC": 0.2,
+            "Visualize BAR SELECT course_name , COUNT(*) FROM Courses AS T1 JOIN Student_Course_Enrolment AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY course_name ASC": 0.1,
+            "Visualize BAR SELECT course_name , COUNT(*) FROM Courses AS T1 JOIN Student_Course_Enrolment AS T2 ON T1.course_id = T2.course_id GROUP BY T1.course_name ORDER BY course_name DESC": 0.1
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2"
+        ]
+    },
+    {
+        "record_name": "960@y_name@ASC",
+        "db_id": "customers_and_invoices_robust",
+        "target": "Visualize BAR SELECT T2.customer_Fname , T1.customerID FROM Accounts AS T1 JOIN Customers AS T2 ON T1.customerID = T2.customerID ORDER BY T1.customerID ASC",
+        "nlq": "What are the given names and identification numbers for customers who possess two or more accounts, and display them on the y-axis in ascending order, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT T2.customer_Fname , T1.customerID FROM Accounts AS T1 JOIN Customers AS T2 ON T1.customerID = T2.customerID ORDER BY T1.customerID ASC": 0.4,
+            "Visualize BAR SELECT T2.customer_Fname , T1.customerID FROM Accounts AS T1 JOIN Customers AS T2 ON T1.customerID = T2.customerID GROUP BY T1.customerID ORDER BY T1.customerID ASC": 0.3,
+            "Visualize BAR SELECT T2.customer_Fname , T1.customerID FROM Accounts AS T1 JOIN Customers AS T2 ON T1.customerID = T2.customerID HAVING COUNT(T1.accountID) >= 2 ORDER BY T1.customerID ASC": 0.2,
+            "Visualize BAR SELECT T2.customer_Fname , T1.customerID FROM Accounts AS T1 JOIN Customers AS T2 ON T1.customerID = T2.customerID WHERE T1.accountID IN (SELECT accountID FROM Accounts GROUP BY customerID HAVING COUNT(accountID) >= 2) ORDER BY T1.customerID ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3"
+        ]
+    },
+    {
+        "record_name": "3093@y_name@DESC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT all_home , schoolID FROM basketball_match GROUP BY ACC_home ,  all_home ORDER BY schoolID DESC",
+        "nlq": "Stacked bar chart comparing school ID to ACC Home, based on all home, listed on the y-axis in descending order.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT all_home , schoolID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY schoolID DESC": 0.5,
+            "Visualize BAR SELECT all_home , schoolID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY ACC_home DESC": 0.3,
+            "Visualize BAR SELECT all_home , schoolID FROM basketball_match GROUP BY ACC_home , all_home ORDER BY all_home DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "3",
+            "2",
+            "1",
+            "1",
+            "3",
+            "2",
+            "3",
+            "3",
+            "2",
+            "1"
+        ]
+    },
+    {
+        "record_name": "2494",
+        "db_id": "orchestra_robust",
+        "target": "Visualize BAR SELECT Record_Company , COUNT(*) FROM Orchestra GROUP BY Record_Company",
+        "nlq": "How many orchestras are managed by each record label? Display the data in a bar chart, please.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT Record_Company , COUNT(*) FROM orchestra GROUP BY Record_Company": 0.5,
+            "Visualize BAR SELECT Record_Company , COUNT(OrchestraID) FROM orchestra GROUP BY Record_Company": 0.3,
+            "Visualize BAR SELECT Record_Company , COUNT(DISTINCT OrchestraID) FROM orchestra GROUP BY Record_Company": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "2",
+            "1",
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1"
+        ]
+    },
+    {
+        "record_name": "1548@y_name@ASC",
+        "db_id": "hr_1_robust",
+        "target": "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%'  ORDER BY SUM(employee_id) ASC BIN date_of_hire BY WEEKDAY",
+        "nlq": "For all employees with the letters D or S in their first name, create a bar chart illustrating the distribution of hire dates and sum of employee IDs binned by weekday, ordered in ascending order on the y-axis.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE Fname LIKE '%D%' OR Fname LIKE '%S%' BIN date_of_hire BY WEEKDAY ORDER BY SUM(employee_id) ASC": 0.5,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE Fname LIKE '%D%' AND Fname LIKE '%S%' BIN date_of_hire BY WEEKDAY ORDER BY SUM(employee_id) ASC": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE Fname IN ('D', 'S') BIN date_of_hire BY WEEKDAY ORDER BY SUM(employee_id) ASC": 0.2,
+            "Visualize BAR SELECT date_of_hire , SUM(employee_id) FROM employees WHERE Fname REGEX 'D|S' BIN date_of_hire BY WEEKDAY ORDER BY SUM(employee_id) ASC": 0.1
+        },
+        "predict_rag_nlq": [
+            "1",
+            "3",
+            "3",
+            "3",
+            "3",
+            "3",
+            "4",
+            "1",
+            "1",
+            "3"
+        ]
+    },
+    {
+        "record_name": "3090@y_name@DESC",
+        "db_id": "university_basketball_robust",
+        "target": "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_home ,  ACC_Street ORDER BY teamID DESC",
+        "nlq": "A grouped bar chart displays the distribution of ACC_Road and Team_ID, grouped by the ACC_Home attribute, and listed in descending order based on the Team_ID.",
+        "predict_dvq_set": {
+            "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_Home , ACC_Street ORDER BY teamID DESC": 0.5,
+            "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_Home , ACC_Street ORDER BY ACC_Street DESC": 0.3,
+            "Visualize BAR SELECT ACC_Street , teamID FROM basketball_match GROUP BY ACC_Home , ACC_Street ORDER BY ACC_Home DESC": 0.2
+        },
+        "predict_rag_nlq": [
+            "2",
+            "2",
+            "1",
+            "2",
+            "2",
+            "1",
+            "1",
+            "1",
+            "3",
+            "2"
+        ]
+    }
+]

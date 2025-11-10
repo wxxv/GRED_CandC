@@ -9,6 +9,7 @@ import pickle
 import os
 import time
 from config import OPENAI_BASE_URL, OPENAI_API_KEY
+import random
 
 client = OpenAI(
         # openai系列的sdk，包括langchain，都需要这个/v1的后缀
@@ -18,8 +19,8 @@ client = OpenAI(
 
 embedding_file_path = "../nvBench-Rob/nlq_embedding.pkl"
 embedding_test_file_path = "../nvBench-Rob/nlq_embedding_test.pkl"
-data_file_path = "../nvBench-Rob/{}/{}.csv"
-result_save_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_nlq_rag_8.json"
+data_file_path = "../nvBench-Rob/{}/result_multi-turn/rebuttal/{}_result_multi-turn_gpt-3.5-turbo_0.json"
+result_save_path = "../nvBench-Rob/{}/result_rebuttal/{}_confidence_2.json"
 
 with open(embedding_file_path, 'rb') as f:
         nlq_embedding_all = pickle.load(f)
@@ -113,9 +114,6 @@ def generate_schema(db_name:str):
 
 DATASET_SCHEMA = '../nvBench-Rob/tables.json'
 spider_schema,spider_primary,spider_foreign = creating_schema(DATASET_SCHEMA)
-# print(find_fields_MYSQL_like("pets_1"))
-# print(find_foreign_keys_MYSQL_like("pets_1"))
-# print(generate_schema("network_1"))
 
 def generate_reply(messages, n=1, flag="vql"):
     # print("generate...")
@@ -125,104 +123,51 @@ def generate_reply(messages, n=1, flag="vql"):
         messages=messages,
         n = n,
         stream = False,
-        temperature=0.0,
-        frequency_penalty=-0.5, # 避免重复性(-2.0 ~ 2.0)
-        presence_penalty=-0.5   # 生成新主题(-2.0 ~ 2.0)
+        temperature=1.4,
+        frequency_penalty=0, # 避免重复性(-2.0 ~ 2.0)
+        presence_penalty=0   # 生成新主题(-2.0 ~ 2.0)
     )
     # print(completions)
-    mes = completions.choices[0].message.content
-    if flag == "vql":
-        all_p_vqls = []
+    output = completions.choices[0].message.content
+    if flag == "multiple":
+        output = []
         for i in range(n):
-            vql = completions.choices[i].message.content
+            o = completions.choices[i].message.content
             # print(vql)
-            all_p_vqls.append(vql)
+            output.append(o)
     else:
         return completions.choices[0].message.content
-    return all_p_vqls
-
-def get_embedding(text, model="text-embedding-3-large"):
-    # model = "text-embedding-3-large"
-    response = openai.Embedding.create(input=text, engine=model)
-    # 确保我们正确地处理响应数据
-    embedding = response['data'][0]['embedding']
-    # 将嵌入向量转换为numpy数组
-    return np.array(embedding)
-
-def get_embedding_from_file(vql:str, embedding_file:list):
-    # print(vql)
-    for v in embedding_file:
-        # print(v)
-        if v['NLQ'].lower() == vql.lower():
-            return v['Embedding']
-        
-    raise RuntimeError("No such NLQ in Embedding file: {}".format(vql))
+    return output
 
 
-def rag_by_nlq(nlq:str, k=10):
+def prompt_maker(db_id:str, nlq:str, dvqs:list):
 
+    prompt="""#### Given Natural Language Questions, Database Schemas, and multiple Generate DVQs. Please select one of them to answer the question.
 
-    document_all = pd.DataFrame(nlq_embedding_all)
-    document_embeddings = document_all['Embedding'].to_list()
+{}
 
-    # question_embedding = get_embedding(nlq)
-    try:
-        question_embedding = get_embedding_from_file(nlq, nlq_test_embedding_all)
-    except:
-        question_embedding = get_embedding(nlq)
-    # 计算问题向量与文档中每个句子向量的相似度
-    similarities = [1 - cosine(question_embedding, doc_embedding) for doc_embedding in document_embeddings]
-
-    # 选择top-k个最相似的句子
-    top_k_indices = np.argsort(similarities)[-k:][::-1]
-    top_k_row = document_all.loc[top_k_indices.tolist()][['NLQ', "VQL","db_id"]]
-
-    examples = []
-    for index, row in top_k_row.iterrows():
-            example = {
-                    "NLQ":row['NLQ'],
-                    "VQL":row['VQL'],
-                    "schema":generate_schema(row['db_id'])
-            }
-            examples.append(example)
-
-    examples.reverse()
-    return examples
-
-def prompt_maker(rag_list:list, db_id:str, nlq:str):
-
-    prompt="""#### Given Natural Language Questions, Generate DVQs based on their correspoding Database Schemas.
-
-"""
-    for example in rag_list:
-        prompt += """{}
-#
 ### Chart Type: [ BAR , PIE , LINE , SCATTER ]
 ### Natural Language Question:
 # “{}”
-### Data Visualization Query:
-A: {}
+### Data Visualization Query (DVQ):""".format(generate_schema(db_id), nlq)
 
-""".format(example['schema'], example['NLQ'], example['VQL'])
-        
+    for index, dvq in enumerate(dvqs):
+        prompt += """
+{} : {}""".format(index+1, dvq)
 
-    prompt += """{}
-#
-### Chart Type: [ BAR , PIE , LINE , SCATTER ]
-### Natural Language Question:
-# “{}”
-### Data Visualization Query:
-A: Visualize """.format(generate_schema(db_id), nlq)
-    
+    prompt += "NOTE: ONLY return a numeric index of the selected DVQ. Do not return any other text.\n\nindex: "
     return prompt
 
 
 if __name__ == '__main__':
+    
 
     # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
     for mode in ['dev_nlq_schema']:
 
-        data = pd.read_csv(data_file_path.format(mode, mode))
+        data = json.load(open(data_file_path.format(mode, mode), 'r'))
+        # 生成100个不同的随机整数
+        random_numbers = random.sample(range(len(data)), 100)
         data_new = []
 
         if os.path.exists(result_save_path.format(mode, mode)):
@@ -233,22 +178,21 @@ if __name__ == '__main__':
             with open(result_save_path.format(mode, mode), 'w') as f:
                 json.dump(data_new, f, indent=4)
         
-        for index, d in tqdm(data.iterrows(), total=len(data), desc=f"Processing {mode}"):
-            if index < len(data_new):
+        for index, d in tqdm(enumerate(data), total=len(data), desc=f"Processing {mode}"):
+            if index not in random_numbers:
                 continue
-            nlq = d['nl_queries']
-            target = d['VQL']
+            nlq = d['nlq']
+            target = d['target']
             db_id = d['db_id']
             record_name = d['record_name']
+            dvqs = d['predict_dvq_set']
 
-            # examples = rag_by_nlq(nlq, 10)
-            examples = rag_by_nlq(nlq, 8)
-            prompt = prompt_maker(examples, db_id, nlq)
+            prompt = prompt_maker(db_id, nlq, dvqs)
 
             message = [
                 {
                     "role":"system",
-                    "content":"Please follow the syntax in the examples instead of SQL syntax."
+                    "content":""
                 },
                 {
                     "role":"user",
@@ -256,21 +200,15 @@ if __name__ == '__main__':
                 }
             ]
 
-            # times = 0
             while True:
-                # times += 1
-                # if times == 3:
-                #     reply = generate_reply(message, 1, "nlq").replace("IS NOT NULL", "!= \"null\"").replace("\n", " ").replace("<>", "!=")
-                #     break
                 try:
-                    reply = "Visualize " + generate_reply(message, 1, "nlq").replace("\n", " ")
+                    reply = generate_reply(message, 10, "multiple")
                     break
                 except Exception as ex:
                     print(ex)
                     print("api error, wait for 3s...")
                     if "maximum context length" in str(ex):
-                        examples = rag_by_nlq(nlq, 8)
-                        prompt = prompt_maker(examples, db_id, nlq)
+                        prompt = prompt_maker(db_id, nlq)
 
                         # print(prompt)
                         # exit()
@@ -295,6 +233,7 @@ if __name__ == '__main__':
                 "db_id":db_id,
                 "target":target,
                 "nlq":nlq,
+                "predict_dvq_set":dvqs,
                 "predict_rag_nlq":reply
             }
 
@@ -302,3 +241,4 @@ if __name__ == '__main__':
 
             with open(result_save_path.format(mode, mode), 'w') as f:
                 json.dump(data_new, f, indent=4)
+            

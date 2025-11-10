@@ -14,9 +14,9 @@ openai.api_base = OPENAI_BASE_URL
 # 替换为你的OpenAI API密钥
 openai.api_key = OPENAI_API_KEY
 
-embedding_file_path = "../data/vql_embedding.pkl"
-data_path = "../data/{}/{}_result_nlq_rag.json"
-result_save_path = "../data/{}/{}_result_dvq_rag.json"
+embedding_file_path = "../nvBench-Rob/vql_embedding.pkl"
+data_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_nlq_rag_8.json"
+result_save_path = "../nvBench-Rob/{}/result_rebuttal/para_ablation/{}_result_dvq_rag_8.json"
 
 with open(embedding_file_path, 'rb') as f:
         vql_embedding_all = pickle.load(f)
@@ -84,7 +84,8 @@ def get_dvqs_by_dvq_list(dvq:str, k=5):
 #     return " ".join(text)
 
 if __name__ == '__main__':
-    for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    # for mode in ['dev_nlq_schema', 'dev_nlq', 'dev_schema']:
+    for mode in ['dev_nlq_schema']:
         data_new = []
         if os.path.exists(result_save_path.format(mode, mode)):
             with open(result_save_path.format(mode, mode), 'r') as f: 
